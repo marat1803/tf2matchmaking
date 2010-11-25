@@ -1,0 +1,386 @@
+@font-face {
+    font-family: "TF2";
+    src: url("fonts/tf2secondary.ttf");
+}
+
+@font-face {
+    font-family: "TF2Build";
+    src: url("fonts/tf2build.ttf");
+}
+
+/* Reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{padding:0;margin:0}fieldset,img{border:0}table{border-collapse:collapse;border-spacing:0}ol,ul{list-style:none}address,caption,cite,code,dfn,em,strong,th,var{font-weight:normal;font-style:normal}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-weight:normal;font-size:100%}q:before,q:after{content:''}abbr,acronym{border:0}
+/* Standard Elemente */
+	html, body { height: 100%; }
+	body {
+		font-size: 14px;
+		line-height: 1em;
+		font-family: TF2, Arial, Helvetica, Geneva, sans-serif;
+		color: #F0E1BA;
+		background: #6b4532 url('images/bg.jpg') repeat-x;
+	} 
+		
+    /* Links */
+    a {
+        color: #F77D3A;
+        text-decoration: none;
+		font-weight: bold;
+	}
+
+        a:visited { }
+        a:hover, a:focus { color: #ECD1C1; }
+        a:active { }
+
+    /* Forms */
+
+    input {
+	}
+	label {
+	}
+	input:focus {
+	}
+	
+    textarea { }
+    button { }
+    /* Text */
+    q { }
+    q q { }
+
+    blockquote { }
+    strong { font-weight:bold; }
+    em { font-style: italic; }
+
+	p {
+		padding: 5px 0 0 5px;
+	}
+
+	h1,h2,h3,h4 {
+		 float: left;
+		 color: #F77D3A;
+		 font-family: "TF2Build";
+	}
+    h1 { font-size: 14px; }
+
+
+/* Layout */
+#background_image{
+	background:url("http://www.tf2.ro/wp-content/gallery/badlands1.png") no-repeat scroll center -37px transparent;
+	height:680px;
+	position:absolute;
+	width:100%;
+	z-index:-5;
+}
+#wrapper{
+	width: 955px;
+	min-height:100%; 
+	margin: 0 auto;
+}
+#header{
+	width: 935px;
+	height: 220px;
+	background: url("images/header.png") center no-repeat;
+	float: left;
+	clear: both;
+}
+a#logo{
+	display:block;
+	height: 220px;
+	width: 935px;
+	overflow: hidden;
+	text-indent: -5000px;
+	float: left;
+}
+#sidebar {
+	clear:both;
+	float:right;
+	width:210px;
+	margin-right: 23px;
+} 
+#content{
+	float: left;
+	width: 640px;
+	padding: 0px 30px 30px 5px;
+}
+#footer{
+	clear:both;
+	font-size:11px;
+	height:26px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:-36px;
+	width:935px;
+}
+
+/************/
+
+.play_now_button {
+	-moz-border-radius:5px 5px 5px 5px;
+	-moz-box-shadow:0 2px 5px #333333;
+	background:url("images/gradient.png") repeat-x 0 -100px #FF970F;
+	border:1px solid #644640;
+	color:#FFFFFF;
+	cursor:pointer;
+	float:left;
+	font-family:TF2Build;
+	font-size:35px;
+	font-weight:bold;
+	line-height:1.2em;
+	margin-bottom:15px;
+	margin-left:-2px;
+	padding:7px;
+	position:relative;
+	text-align:center;
+	text-shadow:0 2px 1px #000000;
+	width:100%;
+	z-index: 10;
+}
+
+.play_now_button:hover {
+	background: url("images/gradient.png") repeat-x scroll 0 -70px #FF970F;
+}
+
+.lobby_panel, .profile_panel, .friends_panel, #lobby_filter {
+	padding: 7px;
+	-moz-border-radius: 5px;
+	-moz-box-shadow: 0 0 5px #333;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0 0 5px #333;
+	float: left;
+	margin-bottom: 15px;
+	width: 100%;
+	background:url("images/gradient.png") repeat-x scroll 0 -150px #2F251B;
+	border:1px solid #2F251B;
+	position: relative;
+	z-index: 5;
+}
+
+#lobbys_opened {
+	float: left;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-bottom: 3px;
+	font-size: 12px;
+}
+
+#lobby_filter {
+	margin-top:-30px;
+	padding:20px 5px 5px;
+}
+#skill_to, #skill_from {
+	color:#ECD1C1;
+	margin-left:5px;
+	width:85px;
+}
+#uniform-skill_from, #uniform-skill_to {
+	width:95px;
+	float: left;
+	margin-bottom: 0;
+}
+#uniform-skill_from span, #uniform-skill_to span {
+	width: 65px;
+}
+
+#uniform-not_full{
+	margin: 3px;
+	margin-left: 15px;
+}
+
+#lobby_filter label {
+	font-weight: bold;
+	line-height: 25px;
+	float: left;
+}
+
+.lobby_panel {
+	width: 626px;
+}
+
+.lobby_panel:hover {
+	-moz-box-shadow: 0 0 10px #333;
+	cursor: pointer;
+	background:url("images/gradient.png") repeat-x scroll 0 -155px #2F251B;
+}
+
+.lobby_panel img.map_pic {
+	float: left;
+	border: 1px solid #644640;
+	height: 50px;
+}
+
+.panel_left{
+	float: left;
+	padding-left: 3px;
+}
+
+.date {
+	float: left;
+	color: #ECD1C1;
+	margin-left: 4px;
+	margin-top: 1px;
+}
+
+.map {
+	float: left;
+	clear: left;
+	color: #ECD1C1;
+}
+
+.classes{
+	float: left;
+	clear: left;
+	margin-top: 1px;
+}
+
+.classes li {
+	float: left;
+	opacity: .5;
+}
+
+.class_available{
+	opacity: 1 !important;
+}
+
+.panel_right{
+	float: right;
+	padding-right: 3px;
+}
+
+.skillevel {
+	float: right;
+	font-weight: bold;
+	background: url("images/bullet_arrow_down.png") no-repeat left;
+	padding-left: 15px;
+}
+
+.skill_matched{ background: url("images/bullet_green.png") no-repeat left; }
+.skill_higher{ background: url("images/bullet_red.png") no-repeat left; }
+
+.lobby_matched { -moz-box-shadow: 0 0 5px orange; }
+.lobby_matched:hover { -moz-box-shadow: 0 0 10px orange; }
+
+.matchtype {
+	float: right;
+	clear: right;
+	color: #ECD1C1;
+}
+
+.playercount {
+	float: right;
+	clear: right;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.profile_panel h1, .friends_panel h1 {
+	width: 100%;
+	border-bottom: 1px solid #da8a4c;
+	margin-bottom: 3px;
+	float: left;
+}
+
+.profile_panel img, .friends_panel img {
+	border: 1px solid #DA8A4C;
+	float: left;
+	margin: 2px;
+	margin-right: 3px;
+}
+
+.profile_panel .class_icon{
+	border: none;
+	margin: 1px 2px 0 0;
+}
+
+.friends_panel ul {
+	float: left;
+}
+.friends_panel li {
+	height: 40px;
+}
+
+.user_name {
+	font-weight: bold;
+	float: left;
+	width:170px;
+}
+
+.user_steamid, .user_steamon{
+	float: left;
+	width:170px;
+	font-size:12px;
+	line-height:10px;
+	color: #ECD1C1;
+}
+
+.friend_offline .user_name{
+	color: #aaa;
+}
+
+.profile_panel dd {
+	float: left;
+}
+.profile_panel dt{
+	width: 70px;
+	float: left;
+	clear: left;
+	color: #ECD1C1;
+}
+
+#lobby_tooltip {
+	-webkit-border-radius: 5px;
+	-moz-border-radius:5px;
+	-moz-box-shadow:0 0 5px #333333;
+	background:url("images/gradient.png") repeat-x scroll 0 -150px #2F251B;
+	border:1px solid #2F251B;
+	margin-bottom:15px;
+	margin-left:5px;
+	margin-top: -50px;
+	padding:50px 7px 7px;
+	width:615px;
+	position: relative;
+	float: left;
+}
+
+.blue_players, .red_players {
+	float: left;
+}
+
+.blue_players li, .red_players li {
+	padding: 3px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	background: #3c352f;
+	margin: 3px;
+	width: 200px;
+	float: left;
+	clear: left;
+	line-height: 18px;
+}
+.blue_players li.empty, .red_players li.empty {	cursor: pointer; }
+
+#lobby_tooltip img{
+	float:left;
+	margin-right:3px;	
+}
+
+#lobby_tooltip img.avatar{
+	float:right;
+	margin-left:3px;
+	border: 1px solid #DA8A4C;
+}
+
+#lobby_tooltip .teamname {
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	text-shadow: 0 2px 2px #000;
+}
+
+#lobby_tooltip .teamname.blu { background: #80a1c2 }
+#lobby_tooltip .teamname.red { background: #c15143 }
+
+/* Allgemeine Klassen */
+.clear { 
+    display:block;
+    width:100%;
+    clear:both;
+}
