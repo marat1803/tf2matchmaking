@@ -1,7 +1,8 @@
 <?php
 
 require 'includes/header.php';
-$id = 1;
+
+$id = displayID($_SESSION['steamid']);
 
 		
 echo '

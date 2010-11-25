@@ -4,6 +4,13 @@ require_once('includes/functions/rating.php');
 require_once('includes/functions/friends.php');
 require_once('includes/functions/steamcomm.php');
 
+function displayID($steamid) {
+	$sql =  'SELECT * FROM users WHERE steamid= \'' . $steamid . '\' LIMIT 1';
+	$query = mysql_query($sql);
+	$result = mysql_fetch_array($query);
+	return $result['id'];
+}
+
 
 class user {
 	public $id;
@@ -82,5 +89,4 @@ class user {
 	
 }
 $user = new user();
-
 ?>
