@@ -26,7 +26,7 @@ class lobby {
 	
 	$this->id = $lobbyinfo['id'];
 	$this->name = $lobbyinfo['name'];
-	$this->type = type($lobbyinfo['type']);
+	$this->type = $lobbyinfo['type'];
 	$this->region = $lobbyinfo['region'];
 	$this->map = $lobbyinfo['map'];
 	$this->players_blu = displayLobbyPlayers($this->id,1);
@@ -53,8 +53,8 @@ class lobby {
 					</div>
 					<div class="panel_right">
 								<span class="skillevel skill_higher">Division 2</span>
-								<span class="matchtype">' .$this->type .'</span>
-								<span class="playercount"><span class="currentplayers">'.countPlayers($this->id).'</span>/<span class="maxplayers">12</span></span>
+								<span class="matchtype">' .type($this->type) .'</span>
+								<span class="playercount"><span class="currentplayers">'.countPlayers($this->id).'</span>/<span class="maxplayers">'. 2*(teamplayers($this->type)).'</span></span>
 					</div>
 						<li id="lobby_tooltip">
 					<ul class="blue_players">

@@ -44,15 +44,16 @@ $xmlStr = file_get_contents($xmlUrl);
 $xmlObj = simplexml_load_string($xmlStr);
 $arrXml = objectsIntoArray($xmlObj);
 
+		
 foreach($arrXml['player']['teams']['team'] as $team) {
 	if($team['@attributes']['type'] != '6on6') {
 		continue;
 	}
 	foreach($team['comp'] as $comp) {
-		echo preg_replace('#^Division#', '', $comp['@attributes']['division']).'<br/>';
+			echo preg_replace('#^Division#', '', $comp['@attributes']['division']).'<br/>'; }
 	}
 //	echo $team['@attributes']['name'].'<br/>';
-}
+
 
 	
 ?>
