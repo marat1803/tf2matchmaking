@@ -1,10 +1,28 @@
 <?php
 
+function teamplayers($lobbytype) {
+	switch ($lobbytype) {
+		case 1:
+		return 6;
+		break;
+		case 2:
+		return 9;
+		break;
+	}
+}
+
 function type($lobbytype)
 {
-if ($lobbytype == 1) return "6vs6";
-if ($lobbytype == 2) return "Highlander";
+	switch (teamplayers($lobbytype)) {
+		case 6:
+		return "6vs6";
+		break;
+		case 9:
+		return "Highlander";
+		break;
+	}
 }
+
 
 function player_class($class)
 {
