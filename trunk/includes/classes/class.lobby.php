@@ -20,10 +20,11 @@ class lobby {
 		mysql_query($query) or die('Failed to add player to lobby.');
 		return;
 	}
-	$query = 'SELECT * FROM lobbies WHERE status = 1  LIMIT 1';
+	$query = 'SELECT * FROM lobbies WHERE status = 0 ';
 	$result = mysql_query($query);
-	$lobbyinfo = mysql_fetch_assoc($result);
 	
+	while ($lobbyinfo = mysql_fetch_assoc($result)) {
+		
 	$this->id = $lobbyinfo['id'];
 	$this->name = $lobbyinfo['name'];
 	$this->type = $lobbyinfo['type'];
@@ -35,7 +36,6 @@ class lobby {
 	$this->status = $lobbyinfo['status'];
 	$this->date = $lobbyinfo['date'];
 	
-//	for ($i=1; $i<=5; $i++) {
 		echo '<li class="lobby_panel" id="lobbyid:1">
 					<img class="map_pic" src="theme/images/maps/' .$this->map .'.jpg">
 					<div class="panel_left">
@@ -69,9 +69,9 @@ class lobby {
 					<button name="lobbyId" value="' . $this->id . '"></button>
 					</form>
 				</li>';
-//	}				
-	}
+		}
 	
+	}
 }	
 
 $lobby = new lobby();
