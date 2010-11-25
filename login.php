@@ -48,7 +48,6 @@ $row = mysql_fetch_assoc($result);
 if (isset($result) && ($steamid == $row[steamid]))
 		{
 				$_SESSION['steamid'] = $steamid;
-				$id = displayID($_SESSION['steamid']);
 				header('Location: index.php');
 		} else {
 			if(isset($_POST['nickname'], $_POST['email'], $_POST['steamId64'])) {
@@ -60,7 +59,6 @@ if (isset($result) && ($steamid == $row[steamid]))
 				echo '<p>Welcome, ' . $nickname . '</p>'
 					.'<p>Your account has been successfully created.</p>';
 					$_SESSION['steamid'] = $steamid;
-					$id = displayID($steamid);
 			} else {
 				echo '<form method="post" action="">'
 					.'<input type="hidden" name="steamId64" value="' . $steamid . '">'
