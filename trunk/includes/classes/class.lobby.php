@@ -30,8 +30,8 @@ class lobby {
 	$this->type = $lobbyinfo['type'];
 	$this->region = $lobbyinfo['region'];
 	$this->map = $lobbyinfo['map'];
-	$this->players_blu = displayLobbyPlayers($this->id,1);
-	$this->players_red = displayLobbyPlayers($this->id,2);
+	$this->players_blu = displayLobbyPlayers($this->id,$this->type,1);
+	$this->players_red = displayLobbyPlayers($this->id,$this->type,2);
 	$this->rules = $lobbyinfo['rules'];
 	$this->status = $lobbyinfo['status'];
 	$this->date = $lobbyinfo['date'];
