@@ -80,7 +80,7 @@ function player($playerID) {
 	return $row;
 }
 
-function displayLobbyPlayers($lobbyID, $team) {
+function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
 	$sql = "SELECT * FROM lobby_players WHERE `lobbyID` = '".$lobbyID."' AND `team` = '".$team."'"; 
 	$res = mysql_query($sql) or die(mysql_error());
 	$display = '';
@@ -93,7 +93,7 @@ function displayLobbyPlayers($lobbyID, $team) {
 		$n = $n+1;
 		}
 		for ($i=1;$i<=$n;$i++) {
-			$x = (6 - $n);
+			$x = (teamplayers($lobbytype) - $n);
 			for ($y;$y<$x;$y++) {
 				$display .= '<li class="empty"><img src="theme/images/class/noclass.png" height="18">empty</li>'; }
 			}
