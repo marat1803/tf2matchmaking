@@ -23,6 +23,20 @@ function type($lobbytype)
 	}
 }
 
+function lobbystatus($status)
+{
+	switch ($status) {
+		case 0:
+		return "Open";
+		break;
+		case 1:
+		return "In Progress";
+		break;
+		case 2:
+		return "Closed";
+		break;
+	}
+}
 
 function player_class($class)
 {
