@@ -34,6 +34,7 @@ class lobby {
 	$this->players_red = displayLobbyPlayers($this->id,$this->type,2);
 	$this->rules = $lobbyinfo['rules'];
 	$this->status = $lobbyinfo['status'];
+	$this->division = $lobbyinfo['division'];
 	$this->date = $lobbyinfo['date'];
 	
 		echo '<li class="lobby_panel" id="lobbyid:1">
@@ -52,7 +53,7 @@ class lobby {
 						</ul>
 					</div>
 					<div class="panel_right">
-								<span class="skillevel skill_higher">Division 2</span>
+								<span class="skillevel skill_higher">Division '.$this->division .'</span>
 								<span class="matchtype">' .type($this->type) .'</span>
 								<span class="playercount"><span class="currentplayers">'.countPlayers($this->id).'</span>/<span class="maxplayers">'. 2*(teamplayers($this->type)).'</span></span>
 					</div>
