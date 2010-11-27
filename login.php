@@ -32,9 +32,9 @@ if (($steamid) == "") {
 echo '<style type="text/css">
 body{
 	background-image:url(theme/images/splash.jpg);
-	background-position: center bottom;
+	background-position: center;
 	background-repeat:no-repeat;
-	background-size: 100%;
+	/*background-size: 100%;*/
 }
 button.login{
 	position:relative;
