@@ -26,10 +26,9 @@ try {
 }
 $steamid = basename($openid->identity);
 
-echo '<link href="theme/style.css" rel="stylesheet" type="text/css" />';
 
 if (($steamid) == "") {
-echo '<style type="text/css">
+echo '<link href="theme/style.css" rel="stylesheet" type="text/css" /><style type="text/css">
 body{
 	background-image:url(theme/images/splash.jpg);
 	background-position: center;
