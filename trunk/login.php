@@ -26,18 +26,10 @@ try {
 }
 $steamid = basename($openid->identity);
 
+echo '<link href="theme/style.css" rel="stylesheet" type="text/css" />';
+
 if (($steamid) == "") {
-echo '<style type="text/css">
-.login {
-  width:114px;
-  height:43px;
-  background:url(login.png) no-repeat;
-  text-indent:-9999px;
-  border:none;
-  cursor:pointer;
-}
-</style>
-<form action="?login" method="post">
+echo '<form action="?login" method="post">
     <button class="login">Login with Steam</button>
 </form>'; }
 else {

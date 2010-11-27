@@ -154,6 +154,15 @@ a#logo{
 	z-index: 5;
 }
 
+.login {
+  width:114px;
+  height:43px;
+  background:url(images/login.png) no-repeat;
+  text-indent:-9999px;
+  border:none;
+  cursor:pointer;
+}
+
 #lobbys_opened {
 	float: left;
 	font-weight: bold;
