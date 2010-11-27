@@ -29,9 +29,10 @@ $steamid = basename($openid->identity);
 echo '<link href="theme/style.css" rel="stylesheet" type="text/css" />';
 
 if (($steamid) == "") {
-echo '<form action="?login" method="post">
+echo '
+ <div class="loginbg"><form action="?login" method="post">
     <button class="login">Login with Steam</button>
-</form>'; }
+</form></div>'; }
 else {
 $query = "SELECT * FROM users WHERE steamid = ". $steamid . " LIMIT 1 ";
 $result = mysql_query($query); 
