@@ -157,8 +157,8 @@ a#logo{
 .login {
   width:114px;
   height:43px;
-  top: 90px;
-  left: 150px;
+  /*top: 90px;
+  left: 150px;*/
   position: absolute;
   background:url(images/login.png) no-repeat;
   text-indent:-9999px;
@@ -172,6 +172,8 @@ a#logo{
   width: 900px;
   height: 508px;
   position: relative;
+  
+  background-repeat:no-repeat;
 }
 
 #lobbys_opened {
