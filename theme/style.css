@@ -64,7 +64,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 
 /* Layout */
 #background_image{
-	background:url("http://www.tf2.ro/wp-content/gallery/badlands1.png") no-repeat scroll center -37px transparent;
+	background:url("images/bg.png") no-repeat scroll center -37px transparent;
 	height:680px;
 	position:absolute;
 	width:100%;
