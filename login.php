@@ -26,42 +26,14 @@ try {
 }
 $steamid = basename($openid->identity);
 
+echo '<link href="theme/style.css" rel="stylesheet" type="text/css" />';
 
 if (($steamid) == "") {
-echo '<link href="theme/style.css" rel="stylesheet" type="text/css" /><style type="text/css">
-body{
-	background-image:url(theme/images/splash.jpg);
-	background-position: center;
-	background-repeat:no-repeat;
-	/*background-size: 100%;*/
-}
-button.login{
-	position:relative;
-}
-
-/*centering thingies*/
-html, body {
-	height: 100%;
-	width:100%;
-}
-*{
-	padding:0px;
-	margin:0px;
-}
-body {
-	display: table;
-}
-#holder{
-	display: table-cell;
-	vertical-align: middle;
-	text-align:center;
-}
-</style>
-<div id="holder">
-	<form action="?login" method="post">
-		<button class="login">Login with Steam</button>
-	</form>
-</div>'; }
+echo '<div id="container">
+<div id="position">
+ <div class="loginbg"><form action="?login" method="post">
+    <button class="login">Login with Steam</button>
+</form></div></div></div>'; }
 else {
 $query = "SELECT * FROM users WHERE steamid = ". $steamid . " LIMIT 1 ";
 $result = mysql_query($query); 

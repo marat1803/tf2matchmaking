@@ -157,8 +157,8 @@ a#logo{
 .login {
   width:114px;
   height:43px;
-  /*top: 90px;
-  left: 150px;*/
+  top: 90px;
+  left: 150px;
   position: absolute;
   background:url(images/login.png) no-repeat;
   text-indent:-9999px;
@@ -168,13 +168,17 @@ a#logo{
 
 .loginbg {
   background-image:url(images/splash.jpg);
-  background-position: center bottom;
+  background-position: center center;
   width: 900px;
   height: 508px;
   position: relative;
-  
+  border-radius: 10px;
+  margin: auto;
+  vertical-align:middle;
   background-repeat:no-repeat;
 }
+#container { width: 100%; height: 100%; display: table; }
+#position { display: table-cell; vertical-align: middle; width: 100%; text-align: center; }
 
 #lobbys_opened {
 	float: left;
