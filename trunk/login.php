@@ -28,10 +28,19 @@ $steamid = basename($openid->identity);
 
 echo '<link href="theme/style.css" rel="stylesheet" type="text/css" />';
 
+$total = "1"; 
+$file_type = ".jpg"; 
+$start = "1"; 
+$random = mt_rand($start, $total); 
+$image_name = $random . $file_type; 
+
 if (($steamid) == "") {
-echo '<div id="container">
+echo '<style>
+body{
+color: #F0E1BA;
+}</style><div id="container">
 <div id="position">
- <div class="loginbg"><form action="?login" method="post">
+ <div class="loginbg" style="background-image:url(theme/images/splash/'.$image_name.')"><form action="?login" method="post">
     <button class="login">Login with Steam</button>
 </form></div></div></div>'; }
 else {
