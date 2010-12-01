@@ -107,6 +107,13 @@ function countPlayers($lobbyid) {
 	return $count;
 }
 
+function countLobbies($status) {
+	$sql = 'SELECT * FROM lobbies WHERE status = '.$status;
+	$res = mysql_query($sql);
+	$count = mysql_num_rows($res);
+	return $count;
+}
+
 function joinTeam($pid,$lid,$team) {
 	$sql = 'UPDATE lobby_players SET team = '.$team.' WHERE playerid = '.$pid.' AND lobbyid = '.$lid;
 	$query = mysql_query($sql);
