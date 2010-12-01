@@ -54,10 +54,7 @@ echo '
 			</li>
 			<li class="friends_panel">
 				<h1>Friends</h1>
-				<ul>';
-				foreach(queryfr($user->id) as $friend) {
-				echo $friend;
-				} echo '
+				<ul>'; echo getfriends($user->id); echo '
 				</ul>
 			</li>
 		</ul>
