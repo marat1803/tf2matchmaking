@@ -34,7 +34,7 @@ class user {
 	$this->nickname = $userinfo['nickname'];
 	$this->steamid  = $userinfo['steamid'];
 	$this->rating 	= rating($this->id);
-	$this->avatar 	= getAvatar($this->steamid);
+	$this->avatar 	= APIGet($this->steamid,avatar);
 	
 	echo $this->nickname .'<br />'.GetAuthID($this->steamid).'<br />'.$this->rating; 
 	}
@@ -50,7 +50,7 @@ class user {
 	$this->nickname = $userinfo['nickname'];
 	$this->steamid  = $userinfo['steamid'];
 	$this->rating 	= rating($this->id);
-	$this->avatar 	= getAvatar($this->steamid);
+	$this->avatar 	= APIGet($this->steamid,avatar);
 	
 	echo '
 					<h1>User Info</h1>

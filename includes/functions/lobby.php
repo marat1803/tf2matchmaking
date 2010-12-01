@@ -87,7 +87,7 @@ function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
 		while ($row = mysql_fetch_assoc($res)) {
 		$player = player($row["playerid"]);
 		$steamid = $player["steamid"];
-		$avatar = getAvatar($steamid);
+		$avatar = APIGet($steamid,avatar);
 		$class = player_class($row["class"]);
 		$display .= '<li><img src="theme/images/class/'.$class.'.png" height="18">'.$player["nickname"].'<img class="avatar" src='.$avatar.' height="16"></li>';
 		$n = $n+1;
