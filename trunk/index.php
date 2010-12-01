@@ -26,7 +26,7 @@ echo '
 			<li id="lobby_filter">
 				<ul id="lobbys_opened">
 					<li>25 open lobbys</li>
-					<li>23 lobbys in play</li>
+					<li>23 lobbies in play</li>
 				</ul>
 				<form method="get" action="">
 					<input type="checkbox" value="true" id="not_full"><label for="not_full">Not Full</label>
@@ -60,7 +60,7 @@ echo '
 		</ul>
 		<div id="content">
 			<ul id="lobby_list">';
-				echo $lobby->displaylobby($id).'
+				echo $lobby->displaylobbies(1); echo $lobby->displaylobbies(2).'
 			</ul>
 		</div>
 	</div>

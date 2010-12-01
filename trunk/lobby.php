@@ -3,17 +3,18 @@
 require_once 'includes/header.php';
 
 
+if(isset($_POST['team']) && ($_POST['id'])) {
+joinTeam($_POST['uid'],$_POST['id'],$_POST['team']);
+}
+else {
+$id = $_POST['id'];
+$uid = $_POST['uid'];
+displaylobby($id);
 
-displayLobbyPlayers(1);
-
-/*$lobbyID = "1";
-$sql = "SELECT * FROM lobby_players WHERE `lobbyID` = ".$lobbyID;
-$res = mysql_query($sql) or die(mysql_error());
-while ($row = mysql_fetch_assoc($res)) {
-	$test_sql = mysql_query("SELECT * FROM users WHERE id = ".$row["playerid"]);
-	while ($test_row = mysql_fetch_assoc($test_sql)) {
-		echo '<p>'.$test_row["nickname"].'</p>';
-	}
-}*/
-
+echo '<form name="team" action="lobby.php" method="post">
+<input type="hidden" name="id" value="'.$id.'">
+<input type="hidden" name="uid" value="'.$uid.'">
+<input type="submit" name="team" value="1" />
+<input type="submit" name="team" value="2" /></form>';
+}
 ?>
