@@ -26,23 +26,24 @@ try {
 }
 $steamid = basename($openid->identity);
 
-echo '<link href="theme/style.css" rel="stylesheet" type="text/css" />';
 
-$total = "1"; 
+$total = "3"; 
 $file_type = ".jpg"; 
 $start = "1"; 
 $random = mt_rand($start, $total); 
 $image_name = $random . $file_type; 
 
 if (($steamid) == "") {
-echo '<style>
+echo '<link href="theme/style.css" rel="stylesheet" type="text/css" /><style type="text/css">
 body{
-color: #F0E1BA;
-}</style><div id="container">
+//background: #FFFFFF;
+}
+</style>
+<div id="container">
 <div id="position">
  <div class="loginbg" style="background-image:url(theme/images/splash/'.$image_name.')"><form action="?login" method="post">
     <button class="login">Login with Steam</button>
-</form></div></div></div>'; }
+</form></div></div>'; }
 else {
 $query = "SELECT * FROM users WHERE steamid = ". $steamid . " LIMIT 1 ";
 $result = mysql_query($query); 
