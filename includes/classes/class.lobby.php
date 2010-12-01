@@ -12,7 +12,7 @@ class lobby {
 	public $status;
 	public $date;
 	
-	public function displaylobby($id) {
+	public function displaylobbies($type) {
 	global $user;
 	if(isset($_POST['lobbyId']) && $_POST['lobbyId']) {
 		
@@ -20,7 +20,7 @@ class lobby {
 		mysql_query($query) or die('Failed to add player to lobby.');
 		return;
 	}
-	$query = 'SELECT * FROM lobbies WHERE status = 0 ';
+	$query = 'SELECT * FROM lobbies WHERE status = 0 AND type = '.$type;
 	$result = mysql_query($query);
 	
 	while ($lobbyinfo = mysql_fetch_assoc($result)) {
@@ -66,8 +66,9 @@ class lobby {
 						<li class="teamname red">RED</li>
 						'.$this->players_red .'
 					</ul>
-					<form action="" method="post">
-					<button name="lobbyId" value="' . $this->id . '"></button>
+					<form action="lobby.php" method="post">
+					<input type="hidden" name="uid" value="'.$user->id.'">
+					<button name="id" value="' . $this->id . '"></button>
 					</form>
 				</li>';
 		}
@@ -76,6 +77,27 @@ class lobby {
 }	
 
 $lobby = new lobby();
+
+function displaylobby($id) {	
+	$sql = 'SELECT * FROM lobbies WHERE id = '.$id;
+	$query = mysql_query($sql);
+	$lobbyinfo = mysql_fetch_assoc($query);
+	
+	$lobby->id = $lobbyinfo['id'];
+	$lobby->name = $lobbyinfo['name'];
+	$lobby->type = $lobbyinfo['type'];
+	$lobby->region = $lobbyinfo['region'];
+	$lobby->map = $lobbyinfo['map'];
+	$lobby->players_blu = displayLobbyPlayers($lobby->id,$lobby->type,1);
+	$lobby->players_red = displayLobbyPlayers($lobby->id,$lobby->type,2);
+	$lobby->rules = $lobbyinfo['rules'];
+	$lobby->status = $lobbyinfo['status'];
+	$lobby->division = $lobbyinfo['division'];
+	$lobby->date = $lobbyinfo['date'];
+	
+	echo $lobby->players_blu;
+	echo $lobby->players_red;	
+}
 	
 
 ?>

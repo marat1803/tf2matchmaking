@@ -107,4 +107,8 @@ function countPlayers($lobbyid) {
 	return $count;
 }
 
+function joinTeam($pid,$lid,$team) {
+	$sql = 'UPDATE lobby_players SET team = '.$team.' WHERE playerid = '.$pid.' AND lobbyid = '.$lid;
+	$query = mysql_query($sql);
+}
 ?>
