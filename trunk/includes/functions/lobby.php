@@ -114,8 +114,20 @@ function countLobbies($status) {
 	return $count;
 }
 
-function joinTeam($pid,$lid,$team) {
-	$sql = 'UPDATE lobby_players SET team = '.$team.' WHERE playerid = '.$pid.' AND lobbyid = '.$lid;
+function getLPid($pid,$lid) {
+	$sql = 'SELECT * FROM lobby_players WHERE playerid = '.$pid.' AND lobbyid = '.$lid;
+	$query = mysql_query($sql);
+	$id = mysql_fetch_assoc($query);
+	return $id['id'];
+}
+
+function joinTeam($id,$team) {
+	$sql = 'UPDATE lobby_players SET team = '.$team.' WHERE id = '.$id;
+	$query = mysql_query($sql);
+}
+
+function switchClass($id,$class) {
+	$sql = 'UPDATE lobby_players SET class = '.$class.' WHERE id = '.$id;
 	$query = mysql_query($sql);
 }
 ?>

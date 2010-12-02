@@ -3,8 +3,9 @@
 require_once 'includes/header.php';
 
 
-if(isset($_POST['team']) && ($_POST['id'] && ($_POST['uid']))) {
-joinTeam($_POST['uid'],$_POST['id'],$_POST['team']);
+if(isset($_POST['team']) && ($_POST['id']) && ($_POST['uid'])) {
+$lpid = getLPid(($_POST['uid']),($_POST['id']));
+joinTeam($lpid,$_POST['team']);
 header('Location: lobby.php?id='.$_POST['id'].'&uid='.$_POST['uid']);
 }
 else {
