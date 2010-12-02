@@ -68,7 +68,7 @@ class lobby {
 					</ul>
 					<form action="lobby.php" method="post">
 					<input type="hidden" name="uid" value="'.$user->id.'">
-					<button name="id" value="' . $this->id . '"></button>
+					<button name="id" value="' . $this->id . '">Join Lobby</button>
 					</form>
 				</li>';
 		}
@@ -96,6 +96,7 @@ function displaylobby($id) {
 	$lobby->date = $lobbyinfo['date'];
 	
 	echo $lobby->players_blu;
+	echo '<br />';
 	echo $lobby->players_red;	
 }
 	
