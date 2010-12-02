@@ -3,12 +3,13 @@
 require_once 'includes/header.php';
 
 
-if(isset($_POST['team']) && ($_POST['id'])) {
+if(isset($_POST['team']) && ($_POST['id'] && ($_POST['uid']))) {
 joinTeam($_POST['uid'],$_POST['id'],$_POST['team']);
+header('Location: lobby.php?id='.$_POST['id'].'&uid='.$_POST['uid']);
 }
 else {
-$id = $_POST['id'];
-$uid = $_POST['uid'];
+$id = $_REQUEST['id'];
+$uid = $_REQUEST['uid'];
 displaylobby($id);
 
 echo '<form name="team" action="lobby.php" method="post">
