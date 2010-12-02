@@ -23,7 +23,9 @@ function getfriends ($id) {
 			$friendsinfo = mysql_fetch_assoc($result);
 			$fid = $friendsinfo['nickname'];
 			$steamid = $friendsinfo['steamid'];
-			$return = '<li>
+			if ($friendsinfo['status'] == 1) $status = '<li>';
+				else $status = '<li class="friend_offline">';
+			$return = $status.'
 			<img src='.APIGet($steamid,avatar).'></img>'.
 			'<span class="user_name">'.$fid.'</span>'.
 			'<span class="user_steamid">'.GetAuthID($steamid).'</span>'.
