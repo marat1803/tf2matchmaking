@@ -37,5 +37,20 @@ function getfriends ($id) {
 	
 }
 
+function addFriend ($id,$target) {
+	$sql = 'SELECT friends FROM users WHERE id = '.$id;
+	$query = mysql_query($sql);
+	$result = mysql_fetch_assoc($query);
+	$friends = $result['friends'];
+	$fids = explode(",", $friends);
+	foreach($fids as $fid) {
+		if ($fid == $target) $true = 1;  }
+	if ($true != 1) {
+	$friends .= ','.$target;
+	$sql = "UPDATE users SET friends = '".$friends."' WHERE id = ".$id;
+	$query = mysql_query($sql);
+	}
+		else echo 'You already friend with this player.';
+}
 
 ?>
