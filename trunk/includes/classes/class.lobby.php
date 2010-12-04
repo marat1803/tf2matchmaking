@@ -32,7 +32,7 @@ class lobby {
 	$this->division = $lobbyinfo['division'];
 	$this->date = $lobbyinfo['date'];
 	
-		echo '<li class="lobby_panel" id="lobbyid:1">
+		echo '<li class="lobby_panel" id="lobbyid:'.$id.'">
 					<img class="map_pic" src="theme/images/maps/' .$this->map .'.jpg">
 					<div class="panel_left">
 						<h1>' .$this->name .'</h1>
@@ -52,7 +52,7 @@ class lobby {
 								<span class="matchtype">' .type($this->type) .'</span>
 								<span class="playercount"><span class="currentplayers">'.countPlayers($this->id).'</span>/<span class="maxplayers">'. 2*(teamplayers($this->type)).'</span></span>
 					</div>
-						<li id="lobby_tooltip">
+						<li class="lobby_tooltip" id="lobby_tooltip:'.$id.'">
 					<ul class="blue_players">
 						<li class="teamname blu">BLU</li>
 						'.$this->players_blu .'
