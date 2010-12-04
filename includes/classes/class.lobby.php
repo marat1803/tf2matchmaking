@@ -61,7 +61,7 @@ class lobby {
 						<li class="teamname red">RED</li>
 						'.$this->players_red .'
 					</ul>
-					<form action="lobby.php" method="post">
+					<form action="lobby.php" method="get">
 					<button name="id" value="' . $this->id . '">Join Lobby</button>
 					</form>
 				</li>';

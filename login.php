@@ -61,6 +61,8 @@ if (isset($result) && ($steamid == $row[steamid]))
 				$steamid = (string)$_POST['steamId64'];
 				$query = "INSERT INTO `users` (`steamid`, `nickname`, `email`, `country`) VALUES('" .  mysql_real_escape_string($steamid) . "', '" .  mysql_real_escape_string($nickname) . "', '" .  mysql_real_escape_string($email) . "','".mysql_real_escape_string($_POST['loc'])."');";
 				mysql_query($query) or die("Error in query: $result. ".mysql_error());
+				$query = "INSERT INTO ratings (id) VALUES (displayID(mysql_real_escape_string($steamid)))";
+				mysql_query($query);
 				echo '<p>Welcome, ' . $nickname . '</p>'
 					.'<p>Your account has been successfully created.</p>';
 					$_SESSION['steamid'] = $steamid;

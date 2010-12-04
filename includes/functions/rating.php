@@ -7,7 +7,7 @@ function rating($id)
 	$ratinginfo = mysql_fetch_assoc($result);
 	
 	if (($ratinginfo['plus'] + $ratinginfo['minus']) == 0)
-	$ratinginfo['plus'] + $ratinginfo['minus'] = 1;
+	$ratingscore['id'] = "0.45";
 	else $ratingscore['id'] = $ratinginfo['plus'] / ($ratinginfo['plus'] + $ratinginfo['minus']);
 	
 	if ($ratingscore['id'] >= 0.8) { return "+++"; }
