@@ -108,7 +108,7 @@ if (isset($result) && ($steamid == $row[steamid]))
 			<td><input type="text" name="email"/></td>
 		</tr>
 		<tr>
-			<td>Location</td>
+			<td>Country:</td>
 			<td><input type="text" name="loc" value="'.APIGet($steamid,loccountrycode).'" /></td>
 		</tr>
 		<tr>
