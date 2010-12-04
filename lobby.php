@@ -11,7 +11,7 @@ if(isset($team) && isset($lid))
 {
 	$lpid = getLPid($uid,$lid);
 	joinTeam($lpid,$team);
-	header('Location: lobby.php?id='.$lid);
+	redirect('lobby.php?id='.$lid,0);
 }
 else
 {

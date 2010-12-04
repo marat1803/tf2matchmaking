@@ -351,7 +351,7 @@ a#logo{
 	color: #ECD1C1;
 }
 
-#lobby_tooltip {
+.lobby_tooltip {
 	-webkit-border-radius: 5px;
 	-moz-border-radius:5px;
 	-moz-box-shadow:0 0 5px #333333;
@@ -383,26 +383,26 @@ a#logo{
 }
 .blue_players li.empty, .red_players li.empty {	cursor: pointer; }
 
-#lobby_tooltip img{
+.lobby_tooltip img{
 	float:left;
 	margin-right:3px;	
 }
 
-#lobby_tooltip img.avatar{
+.lobby_tooltip img.avatar{
 	float:right;
 	margin-left:3px;
 	border: 1px solid #DA8A4C;
 }
 
-#lobby_tooltip .teamname {
+.lobby_tooltip .teamname {
 	font-weight: bold;
 	text-align: center;
 	color: #fff;
 	text-shadow: 0 2px 2px #000;
 }
 
-#lobby_tooltip .teamname.blu { background: #80a1c2 }
-#lobby_tooltip .teamname.red { background: #c15143 }
+.lobby_tooltip .teamname.blu { background: #80a1c2 }
+.lobby_tooltip .teamname.red { background: #c15143 }
 
 /* Allgemeine Klassen */
 .clear { 

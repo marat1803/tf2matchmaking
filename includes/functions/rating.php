@@ -7,16 +7,16 @@ function rating($id)
 	$ratinginfo = mysql_fetch_assoc($result);
 	
 	if (($ratinginfo['plus'] + $ratinginfo['minus']) == 0)
-	$ratingscore['id'] = "0.45";
-	else $ratingscore['id'] = $ratinginfo['plus'] / ($ratinginfo['plus'] + $ratinginfo['minus']);
+	$ratingscore = "0.45";
+	else $ratingscore = $ratinginfo['plus'] / ($ratinginfo['plus'] + $ratinginfo['minus']);
 	
-	if ($ratingscore['id'] >= 0.8) { return "+++"; }
-	elseif ($ratingscore['id'] >= 0.7) { return "++"; }
-	elseif ($ratingscore['id'] >= 0.55) { return "+"; }
-	elseif ($ratingscore['id'] == 0.45) { return "+/-"; }
-	elseif ($ratingscore['id'] >= 0.3) { return "-"; }
-	elseif ($ratingscore['id'] >= 0.2) { return "--"; }
-	elseif ($ratingscore['id'] < 0.2) { return "---"; }
+	if ($ratingscore >= 0.8) return "+++";
+	elseif ($ratingscore >= 0.7) return "++";
+	elseif ($ratingscore >= 0.55) return "+";
+	elseif ($ratingscore == 0.45) return "+/-";
+	elseif ($ratingscore >= 0.3) return "-";
+	elseif ($ratingscore >= 0.2) return "--";
+	elseif ($ratingscore < 0.2) return "---";
 }
 
 ?>
