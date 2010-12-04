@@ -14,12 +14,7 @@ class lobby {
 	
 	public function displaylobbies($type) {
 	global $user;
-	if(isset($_POST['lobbyId']) && $_POST['lobbyId']) {
-		
-		$query = 'INSERT INTO  `lobby_players` (`playerid` ,`lobbyID`) VALUES(' . $user->id . ' ,' . $_POST['lobbyId'] . ')';
-		mysql_query($query) or die('Failed to add player to lobby.');
-		return;
-	}
+	
 	$query = 'SELECT * FROM lobbies WHERE status = 0 AND type = '.$type;
 	$result = mysql_query($query);
 	
@@ -67,7 +62,6 @@ class lobby {
 						'.$this->players_red .'
 					</ul>
 					<form action="lobby.php" method="post">
-					<input type="hidden" name="uid" value="'.$user->id.'">
 					<button name="id" value="' . $this->id . '">Join Lobby</button>
 					</form>
 				</li>';

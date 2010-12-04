@@ -121,6 +121,11 @@ function getLPid($pid,$lid) {
 	return $id['id'];
 }
 
+function joinLobby($id,$lid) {
+	$sql = 'INSERT INTO  `lobby_players` (`playerid` ,`lobbyID`) VALUES(' . $id . ' ,' . $lid . ')';
+	$query = mysql_query($query);
+}
+
 function joinTeam($id,$team) {
 	$sql = 'UPDATE lobby_players SET team = '.$team.' WHERE id = '.$id;
 	$query = mysql_query($sql);
