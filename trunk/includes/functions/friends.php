@@ -5,7 +5,7 @@ function getStatus ($id)
 	$query = 'SELECT * FROM users WHERE id=' . $id;
 	$result = mysql_query($query);
 	$statuss = mysql_fetch_assoc($result);
-	$status = $statuss['status'];
+	$status = $statuss['online'];
 	if ($status == 1) return "Online";
 	else return "Offline";
 }
@@ -23,7 +23,7 @@ function getfriends ($id) {
 			$friendsinfo = mysql_fetch_assoc($result);
 			$fid = $friendsinfo['nickname'];
 			$steamid = $friendsinfo['steamid'];
-			if ($friendsinfo['status'] == 1) $status = '<li>';
+			if ($friendsinfo['online'] == 1) $status = '<li>';
 				else $status = '<li class="friend_offline">';
 			$return = $status.'
 			<img src='.APIGet($steamid,avatar).'></img>'.
@@ -46,9 +46,12 @@ function addFriend ($id,$target) {
 	foreach($fids as $fid) {
 		if ($fid == $target) $true = 1;  }
 	if ($true != 1) {
-	$friends .= ','.$target;
-	$sql = "UPDATE users SET friends = '".$friends."' WHERE id = ".$id;
-	$query = mysql_query($sql);
+		if ($target == $id) echo "You can't friend yourself.";
+		else {
+			$friends .= ','.$target;
+			$sql = "UPDATE users SET friends = '".$friends."' WHERE id = ".$id;
+			$query = mysql_query($sql);
+		}
 	}
 		else echo 'You already friend with this player.';
 }
