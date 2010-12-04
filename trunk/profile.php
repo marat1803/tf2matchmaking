@@ -2,16 +2,13 @@
 
 require_once 'includes/header.php';
 
-/*$id = $_GET['id'];
+$id = $_GET['id'];
 
-$query =  'SELECT * FROM users WHERE id = \'' . mysql_real_escape_string($id) . '\' LIMIT 1';
-$result = mysql_query($query);
-$userinfo = mysql_fetch_assoc($result);
 
-echo $userinfo['nickname'];
+$user->profileuser($id); 
+echo '<a href="addfriend.php?id='.$id.'">Add as friend</a>';
 
-$user->profileuser($id); */
-
+/*
 $steamid = '0:1:16096891';
 
 function objectsIntoArray($arrObjData, $arrSkipIndices = array())
@@ -52,7 +49,7 @@ foreach($arrXml['player']['teams']['team'] as $team) {
 	foreach($team['comp'] as $comp) {
 			echo preg_replace('#^Division#', '', $comp['@attributes']['division']).'<br/>'; }
 	}
-//	echo $team['@attributes']['name'].'<br/>';
+//	echo $team['@attributes']['name'].'<br/>'; */
 
 
 	
