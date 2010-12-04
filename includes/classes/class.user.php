@@ -63,29 +63,7 @@ class user {
 					<dt>Rating:</dt><dd>'. $this->rating . '</dd>
 				</dl>';
 	}
-	
-	
-	/*if(isset($_SESSION['steamid']) && $_SESSION['steamid']) {
-	$query =  'SELECT * FROM users WHERE steamid = \'' . mysql_real_escape_string($_SESSION['steamid']) . '\' LIMIT 1';
-	$result = mysql_query($query);
-	$userinfo = mysql_fetch_assoc($result);
-
-	$user = new user();
-	
-	
-	$user->id		= $userinfo['id'];
-	$user->nickname = $userinfo['nickname'];
-	$user->email    = $userinfo['email'];
-	$user->steamid  = $userinfo['steamid'];
-	$user->friends = $userinfo['friends'];
-	$user->banpoints = $userinfo['banpoints'];
-	$user->regdate  = $userinfo['regdate'];
-	$user->rating 	= rating($user->id);
-	
-	$avatar = getAvatar($steamid);
-	$steamid = $user->steamid;
-	
-*/
+		
 	
 }
 $user = new user();

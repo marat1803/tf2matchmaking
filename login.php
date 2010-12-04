@@ -52,6 +52,7 @@ $row = mysql_fetch_assoc($result);
 if (isset($result) && ($steamid == $row[steamid]))
 		{
 				$_SESSION['steamid'] = $steamid;
+				$_SESSION['id'] = displayID($steamid);
 				header('Location: index.php');
 		} else {
 			if(isset($_POST['nickname'], $_POST['email'], $_POST['steamId64'])) {
