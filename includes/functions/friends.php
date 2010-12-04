@@ -2,12 +2,12 @@
 
 function getStatus ($id)
 {
-	$query = 'SELECT * FROM users WHERE id=' . $id;
+	$query = 'SELECT online FROM users WHERE id = '.$id;
 	$result = mysql_query($query);
 	$statuss = mysql_fetch_assoc($result);
-	$status = $statuss['online'];
-	if ($status == 1) return "Online";
-	else return "Offline";
+	if ($statuss['online'] == 1) $status = "Online";
+		else $status = "Offline";
+	return $status;
 }
 
 function getfriends ($id) {
@@ -21,15 +21,16 @@ function getfriends ($id) {
 			$query = 'SELECT * FROM users WHERE id=' . $fid;
 			$result = mysql_query($query);
 			$friendsinfo = mysql_fetch_assoc($result);
-			$fid = $friendsinfo['nickname'];
+			$nickname = $friendsinfo['nickname'];
 			$steamid = $friendsinfo['steamid'];
+			$uid = $friendsinfo['id'];
 			if ($friendsinfo['online'] == 1) $status = '<li>';
 				else $status = '<li class="friend_offline">';
 			$return = $status.'
 			<img src='.APIGet($steamid,avatar).'></img>'.
-			'<span class="user_name">'.$fid.'</span>'.
+			'<span class="user_name">'.$nickname.'</span>'.
 			'<span class="user_steamid">'.GetAuthID($steamid).'</span>'.
-			'<span class="user_steamon">'.getStatus($id).'</span><br />
+			'<span class="user_steamon">'.getStatus($uid).'</span><br />
 			</li>';
 			echo $return;
 		}
@@ -48,7 +49,8 @@ function addFriend ($id,$target) {
 	if ($true != 1) {
 		if ($target == $id) echo "You can't friend yourself.";
 		else {
-			$friends .= ','.$target;
+			if ($friends == "") $friends .= $target; 
+			else $friends .= ','.$target;
 			$sql = "UPDATE users SET friends = '".$friends."' WHERE id = ".$id;
 			$query = mysql_query($sql);
 		}
