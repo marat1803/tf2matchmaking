@@ -6,6 +6,6 @@ $target = $_GET['id'];
 $id = $_SESSION['id'];
 
 addFriend ($id,$target);
-header('Location: profile.php?id='.target);
+redirect('profile.php?id='.$target,0);
 
 ?>

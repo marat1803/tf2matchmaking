@@ -66,6 +66,7 @@ if (isset($result) && ($steamid == $row[steamid]))
 				echo '<p>Welcome, ' . $nickname . '</p>'
 					.'<p>Your account has been successfully created.</p>';
 					$_SESSION['steamid'] = $steamid;
+					$_SESSION['id'] = displayID($steamid);
 					
 					echo '<meta http-equiv="refresh" content="6;url=index.php">';
 			} else {

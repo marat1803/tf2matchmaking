@@ -122,8 +122,8 @@ function getLPid($pid,$lid) {
 }
 
 function joinLobby($id,$lid) {
-	$sql = 'INSERT INTO  `lobby_players` (`playerid` ,`lobbyID`) VALUES(' . $id . ' ,' . $lid . ')';
-	$query = mysql_query($query);
+	$sql = 'INSERT INTO lobby_players (playerid, lobbyID) VALUES('.$id.', '.$lid.')';
+	$query = mysql_query($sql);
 }
 
 function joinTeam($id,$team) {
