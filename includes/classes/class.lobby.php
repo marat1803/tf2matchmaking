@@ -5,12 +5,23 @@ require_once('includes/functions/lobby.php');
 class lobby {
 	public $id;
 	public $name;
+	public $type;
 	public $region;
+	public $map;
 	public $players_blu;
 	public $players_red;
 	public $rules;
 	public $status;
+	public $division;
 	public $date;
+
+	public function lobbytype($id) {
+		$sql = 'SELECT * FROM lobbies WHERE id = '.$id;
+		$query = mysql_query($sql);
+		$lobbyinfo = mysql_fetch_assoc($query);
+		return $lobbyinfo['type'];
+		
+	}
 	
 	public function displaylobbies($type) {
 	global $user;
