@@ -3,10 +3,10 @@
 function getOnline ($id)
 {
 	$sql = 'SELECT * FROM users WHERE id = '.$id;
-	$query = mysql_query($query);
-	$users = mysql_fetch_assoc($result);
-	$lastseen = $query['lastseen'];
-	if ((time() - strtotime($lastseen)) > 5 * 60) return "Offline";
+	$query = mysql_query($sql);
+	$users = mysql_fetch_assoc($query);
+	$lastseen = $users['lastseen'];
+	if ((time() - strtotime($lastseen)) > (5 * 60)) return "Offline";
 	else return "Online";
 }
 
@@ -16,16 +16,14 @@ function getfriends ($id) {
 	$result = mysql_query($query);
 	$friendsinfo = mysql_fetch_assoc($result);	
 	$fids = $friendsinfo['friends'];
-	if ($fids != "") {
-	$fidsar = explode(",", $fids);
-		foreach($fidsar as $fid) {
-			$online = getOnline($fid);
-			$query = 'SELECT * FROM users WHERE id=' . $fid.' ORDER BY lastseen DESC';
-			$result = mysql_query($query);
-			$friendsinfo = mysql_fetch_assoc($result);
-			$nickname = $friendsinfo['nickname'];
-			$steamid = $friendsinfo['steamid'];
-			$uid = $friendsinfo['id'];
+	if ($fids != "" || count($fids) > 0) {
+		$query = 'SELECT * FROM users WHERE id IN(' . $fids.') ORDER BY lastseen DESC';
+		$result = mysql_query($query);
+		while ($friend = mysql_fetch_array($result, MYSQL_ASSOC)) {
+			$online = getOnline($friend['id']);			
+			$nickname = $friend['nickname'];
+			$steamid = $friend['steamid'];
+			$uid = $friend['id'];
 			if ($online == "Online") $status = '<li>';
 				else $status = '<li class="friend_offline">';
 			$return = $status.'
@@ -35,6 +33,7 @@ function getfriends ($id) {
 			'<span class="user_steamon">'.$online.'</span><br />
 			</li>';
 			echo $return;
+		
 		}
 	} else echo 'You have no friends yet';
 	
