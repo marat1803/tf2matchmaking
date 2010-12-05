@@ -126,6 +126,11 @@ function joinLobby($id,$lid) {
 	$query = mysql_query($sql);
 }
 
+function leaveLobby($id) {
+	$sql = 'DELETE FROM lobby_players WHERE id = '.$id;
+	$query = mysql_query($sql);
+}
+
 function joinTeam($id,$team) {
 	$sql = 'UPDATE lobby_players SET team = '.$team.' WHERE id = '.$id;
 	$query = mysql_query($sql);
