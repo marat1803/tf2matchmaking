@@ -67,4 +67,7 @@ class user {
 	
 }
 $user = new user();
+
+lastseen($user->id);
+
 ?>
