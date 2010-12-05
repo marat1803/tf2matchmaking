@@ -147,4 +147,33 @@ function switchClass($id,$class) {
 	$sql = 'UPDATE lobby_players SET class = '.$class.' WHERE id = '.$id;
 	$query = mysql_query($sql);
 }
+
+function freeslots($id,$team) {
+	$lobbyType = Lobby::lobbyType($id);
+	$playerCount = countTeamPlayers($id, $team);
+	$maxPlayers = teamPlayers($lobbyType);//
+	return $maxPlayers - $playerCount;
+}
+
+function startLobby($id) {
+	$sql = 'UPDATE lobbies SET status = 1 WHERE id = '.$id;
+	$query = mysql_query($sql);
+}
+
+function isPlayerInLobby($id) {
+	$sql = "
+	SELECT l.id FROM lobby_players AS `lp`
+	LEFT JOIN lobbies AS `l`
+	ON l.id = lp.lobbyID
+	WHERE l.status != 'closed' AND lp.playerid = ".$id."
+	GROUP BY lp.playerid;
+	";
+	$query = mysql_query($sql);
+	$row = mysql_fetch_assoc($query);
+	if($row) {
+		return $row['id'];
+	} else {
+		return null;
+	}
+}
 ?>

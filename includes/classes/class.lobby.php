@@ -26,7 +26,7 @@ class lobby {
 	public function displaylobbies($type) {
 	global $user;
 	
-	$query = 'SELECT * FROM lobbies WHERE status = 0 AND type = '.$type;
+	$query = 'SELECT * FROM lobbies WHERE status = "open" AND type = '.$type;
 	$result = mysql_query($query);
 	
 	while ($lobbyinfo = mysql_fetch_assoc($result)) {

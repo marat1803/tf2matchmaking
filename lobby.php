@@ -10,7 +10,7 @@ $team = $_POST['team'];
 if(isset($team) && isset($lid))
 {
 	$lpid = getLPid($uid,$lid);
-	if ((teamplayers($lobby->lobbytype($lid)) - countTeamPlayers($lid,$team)) > 0) {
+	if (freeslots($lid,$team) > 0) {
 		joinTeam($lpid,$team);
 	} else {
 		echo 'Team is full.';		
@@ -19,12 +19,15 @@ if(isset($team) && isset($lid))
 }
 else
 {
-	joinLobby($uid,$lid);
-	displaylobby($lid); echo '
+	if (!isPlayerInLobby($uid)) joinLobby($uid,$lid);
+	if (isPlayerInLobby($uid) == $lid) {
+		displaylobby($lid); echo '
 
-	<form name="team" action="lobby.php" method="post">
-		<input type="hidden" name="id" value="'.$lid.'">
-		<input type="submit" name="team" value="1" />
-		<input type="submit" name="team" value="2" />
-	</form> ';
+		<form name="team" action="lobby.php" method="post">
+			<input type="hidden" name="id" value="'.$lid.'">
+			<input type="submit" name="team" value="1" />
+			<input type="submit" name="team" value="2" />
+		</form> ';
+	}
+
  } ?>
