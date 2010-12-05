@@ -128,6 +128,11 @@ function getLPid($pid,$lid) {
 	return $id['id'];
 }
 
+function newLobby($name,$type,$region,$map,$division) {
+	$sql = 'INSERT INTO lobbies (name, type, region, map, division) VALUES ('.$name.', '.$type.', '.$region.', '.$map.', '.division;
+	$query = mysql_query($sql);
+}
+
 function joinLobby($id,$lid) {
 	$sql = 'INSERT INTO lobby_players (playerid, lobbyID) VALUES('.$id.', '.$lid.')';
 	$query = mysql_query($sql);
