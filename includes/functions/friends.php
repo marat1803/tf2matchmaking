@@ -45,6 +45,7 @@ function addFriend ($id,$target) {
 	$result = mysql_fetch_assoc($query);
 	$friends = $result['friends'];
 	$fids = explode(",", $friends);
+	$fids = sort($fids);
 	foreach($fids as $fid) {
 		if ($fid == $target) $true = 1;  }
 	if ($true != 1) {
