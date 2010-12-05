@@ -17,8 +17,9 @@ function getfriends ($id) {
 	$fids = $friendsinfo['friends'];
 	if ($fids != "") {
 	$fidsar = explode(",", $fids);
+	$fidsar = sort($fidsar);
 		foreach($fidsar as $fid) {
-			$query = 'SELECT * FROM users WHERE id=' . $fid;
+			$query = 'SELECT * FROM users WHERE id=' . $fid.' ORDER BY online DESC';
 			$result = mysql_query($query);
 			$friendsinfo = mysql_fetch_assoc($result);
 			$nickname = $friendsinfo['nickname'];
