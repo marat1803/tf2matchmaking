@@ -32,7 +32,7 @@ class lobby {
 	$this->division = $lobbyinfo['division'];
 	$this->date = $lobbyinfo['date'];
 	
-		echo '<li class="lobby_panel" id="lobbyid:'.$this->id.'" onClick="lid('.$this->id.')">
+		echo '<li class="lobby_panel" data-panel="lobby_tooltip-'.$this->id.'">
 					<img class="map_pic" src="theme/images/maps/' .$this->map .'.jpg">
 					<div class="panel_left">
 						<h1>' .$this->name .'</h1>
