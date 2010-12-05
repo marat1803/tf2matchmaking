@@ -10,7 +10,11 @@ $team = $_POST['team'];
 if(isset($team) && isset($lid))
 {
 	$lpid = getLPid($uid,$lid);
-	joinTeam($lpid,$team);
+	if ((teamplayers($lobby->lobbytype($lid)) - countTeamPlayers($lid,$team)) > 0) {
+		joinTeam($lpid,$team);
+	} else {
+		echo 'Team is full.';		
+	}
 	redirect('lobby.php?id='.$lid,0);
 }
 else

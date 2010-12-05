@@ -114,6 +114,13 @@ function countLobbies($status) {
 	return $count;
 }
 
+function countTeamPlayers($lid,$team) {
+	$sql = 'SELECT COUNT(*) AS `count` FROM lobby_players WHERE lobbyID = '.$lid.' AND team = '.$team;
+	$query = mysql_query($sql);
+	$row = mysql_fetch_row($query);
+	return $row[0];
+}
+
 function getLPid($pid,$lid) {
 	$sql = 'SELECT * FROM lobby_players WHERE playerid = '.$pid.' AND lobbyid = '.$lid;
 	$query = mysql_query($sql);
