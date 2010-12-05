@@ -16,8 +16,8 @@ function getfriends ($id) {
 	$result = mysql_query($query);
 	$friendsinfo = mysql_fetch_assoc($result);	
 	$fids = $friendsinfo['friends'];
-	if ($fids != "" || count($fids) > 0) {
-		$query = 'SELECT * FROM users WHERE id IN(' . $fids.') ORDER BY lastseen DESC';
+	if ($fids != "" && count($fids) > 0) {
+		$query = 'SELECT * FROM users WHERE id IN(' . $fids.') ORDER BY lastseen DESC LIMIT 10';
 		$result = mysql_query($query);
 		while ($friend = mysql_fetch_array($result, MYSQL_ASSOC)) {
 			$online = getOnline($friend['id']);			
