@@ -89,7 +89,7 @@ function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
 		$steamid = $player["steamid"];
 		$avatar = APIGet($steamid,avatar);
 		$class = player_class($row["class"]);
-		$display .= '<li><img src="theme/images/class/'.$class.'.png" height="18">'.$player["nickname"].'<img class="avatar" src='.$avatar.' height="16"></li>';
+		$display .= '<li><a href="profile.php?id='.$player['id'].'" target="_blank"><img src="theme/images/class/'.$class.'.png" height="18">'.$player["nickname"].'<img class="avatar" src='.$avatar.' height="16"></a></li>';
 		$n++;
 		}
 		for ($i=1;$i<=$n;$i++) {

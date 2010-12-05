@@ -382,6 +382,11 @@ a#logo{
 	clear: left;
 	line-height: 18px;
 }
+
+.blue_players li a, .red_players li a {
+	color: #F0E1BA;
+}
+
 .blue_players li.empty, .red_players li.empty {	cursor: pointer; }
 
 .lobby_tooltip img{
@@ -411,3 +416,4 @@ a#logo{
     width:100%;
     clear:both;
 }
+
