@@ -19,10 +19,23 @@ class lobby {
 		$sql = 'SELECT * FROM lobbies WHERE id = '.$id;
 		$query = mysql_query($sql);
 		$lobbyinfo = mysql_fetch_assoc($query);
-		return $lobbyinfo['type'];
-		
+		return $lobbyinfo['type'];		
+	}
+
+	public function lobbystatus($id) {
+		$sql = 'SELECT * FROM lobbies WHERE id = '.$id;
+		$query = mysql_query($sql);
+		$lobbyinfo = mysql_fetch_assoc($query);
+		return $lobbyinfo['status'];	
 	}
 	
+	public function lobbyserver($id) {
+		$sql = 'SELECT * FROM lobbies WHERE id = '.$id;
+		$query = mysql_query($sql);
+		$lobbyinfo = mysql_fetch_assoc($query);
+		return $lobbyinfo['sid'];	
+	}
+
 	public function displaylobbies($type) {
 	global $user;
 	
