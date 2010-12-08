@@ -6,7 +6,11 @@ $uid = $_SESSION['id'];
 $lid = $_REQUEST['id'];
 $team = $_POST['team'];
 
-
+if (lobbystatus($lid) == "In Progress") {
+	$server = new server($lobby->lobbyserver($lid));
+	$server->joinServer($lobby->lobbyserver($lid));
+	exit;
+}
 if(isset($team) && isset($lid))
 {
 	$lpid = getLPid($uid,$lid);
