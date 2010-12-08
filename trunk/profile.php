@@ -19,7 +19,7 @@ echo '
     <div id="background_image"></div>
     <div id="wrapper">
         <div id="header">
-            <a href="" id="logo">TF2 Matchmaking System</a>
+            <a href="index.php" id="logo">TF2 Matchmaking System</a>
         </div>
         <div id="content" class="big_panel">
             <ul class="nav_panel">

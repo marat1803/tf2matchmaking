@@ -167,6 +167,7 @@ a#logo{
     margin: -30px 10px 10px;
     position: absolute;
 	font-size: 20px;
+	display:block;
 }
 
 
