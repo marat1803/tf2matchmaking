@@ -28,8 +28,8 @@ echo '
 			<li class="play_now_button">Play Now!</li>
 			<li id="lobby_filter">
 				<ul id="lobbys_opened">
-					<li>'.countLobbies(0).' open lobbies</li>
-					<li>'.countLobbies(1).' lobbies in play</li>
+					<li>'.countLobbies(open).' open lobbies</li>
+					<li>'.countLobbies(ingame).' lobbies in play</li>
 				</ul>
 				<form method="get" action="">
 					<input type="checkbox" value="true" id="not_full"><label for="not_full">Not Full</label>
