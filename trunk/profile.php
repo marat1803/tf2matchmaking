@@ -5,8 +5,6 @@ require_once 'includes/header.php';
 $id = $_GET['id'];
 $steamid = displaySteamID($id);
 
-
-
 echo '
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -27,9 +25,11 @@ echo '
                 <li class="current"> &raquo; Profile (far from being finished, but at least some progress)</li>
             </ul>
             <div class="avatar_panel">
-                <img class="avatar_big" src="'.APIGet($steamid,avatarfull).'">
-                <a href="addfriend.php?id='.$id.'" class="friend_add button">+ Add</a>
-            </div>
+                <img class="avatar_big" src="'.APIGet($steamid,avatarfull).'">';
+if($steamid != $_SESSION['steamid']) {
+	echo '<a href="addfriend.php?id='.$id.'" class="friend_add button">+ Add</a>';
+}
+            echo '</div>
             '.$user->profileuser($id).'
             <dl class="stats_panel">
                 <dt>Wins</dt><dd>7</dd>
