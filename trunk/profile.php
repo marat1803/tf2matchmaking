@@ -23,7 +23,7 @@ echo '
         </div>
         <div id="content" class="big_panel">
             <ul class="nav_panel">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li class="current"> &raquo; Profile (far from being finished, but at least some progress)</li>
             </ul>
             <div class="avatar_panel">
