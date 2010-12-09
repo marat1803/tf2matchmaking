@@ -108,7 +108,7 @@ function countPlayers($lobbyid) {
 }
 
 function countLobbies($status) {
-	$sql = 'SELECT * FROM lobbies WHERE status = '.$status;
+	$sql = 'SELECT * FROM lobbies WHERE status = "'.$status.'"';
 	$res = mysql_query($sql);
 	$count = mysql_num_rows($res);
 	return $count;
