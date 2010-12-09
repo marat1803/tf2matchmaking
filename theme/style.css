@@ -300,7 +300,7 @@ a#logo{
 .profile_panel h1, .friends_panel h1 {
 	width: 100%;
 	border-bottom: 1px solid #da8a4c;
-	margin-bottom: 3px;
+	margin-bottom: 8px;
 	float: left;
 }
 
