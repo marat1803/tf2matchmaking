@@ -74,14 +74,14 @@ function player_class($class)
 	}
 }
 function player($playerID) {
-	$sql = "SELECT * FROM users WHERE `id` = '".$playerID."' LIMIT 1";
+	$sql = "SELECT * FROM users WHERE `id` = '".mysql_real_escape_string($playerID)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row;
 }
 
 function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
-	$sql = "SELECT * FROM lobby_players WHERE `lobbyID` = '".$lobbyID."' AND `team` = '".$team."'"; 
+	$sql = "SELECT * FROM lobby_players WHERE `lobbyID` = '".mysql_real_escape_string($lobbyID)."' AND `team` = '".$team."'"; 
 	$res = mysql_query($sql) or die(mysql_error());
 	$display = '';
 		while ($row = mysql_fetch_assoc($res)) {
@@ -101,55 +101,55 @@ function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
 }
 
 function countPlayers($lobbyid) {
-	$sql = 'SELECT * FROM lobby_players WHERE lobbyid = '.$lobbyid;
+	$sql = 'SELECT * FROM lobby_players WHERE lobbyid = '.mysql_real_escape_string($lobbyid);
 	$res = mysql_query($sql);
 	$count = mysql_num_rows($res);
 	return $count;
 }
 
 function countLobbies($status) {
-	$sql = 'SELECT * FROM lobbies WHERE status = "'.$status.'"';
+	$sql = 'SELECT * FROM lobbies WHERE status = "'.mysql_real_escape_string($status).'"';
 	$res = mysql_query($sql);
 	$count = mysql_num_rows($res);
 	return $count;
 }
 
 function countTeamPlayers($lid,$team) {
-	$sql = 'SELECT COUNT(*) AS `count` FROM lobby_players WHERE lobbyID = '.$lid.' AND team = '.$team;
+	$sql = 'SELECT COUNT(*) AS `count` FROM lobby_players WHERE lobbyID = '.mysql_real_escape_string($lid).' AND team = '.mysql_real_escape_string($team);
 	$query = mysql_query($sql);
 	$row = mysql_fetch_row($query);
 	return $row[0];
 }
 
 function getLPid($pid,$lid) {
-	$sql = 'SELECT * FROM lobby_players WHERE playerid = '.$pid.' AND lobbyid = '.$lid;
+	$sql = 'SELECT * FROM lobby_players WHERE playerid = '.mysql_real_escape_string($pid).' AND lobbyid = '.mysql_real_escape_string($lid);
 	$query = mysql_query($sql);
 	$id = mysql_fetch_assoc($query);
 	return $id['id'];
 }
 
 function newLobby($name,$type,$region,$map,$division) {
-	$sql = 'INSERT INTO lobbies (name, type, region, map, division) VALUES ('.$name.', '.$type.', '.$region.', '.$map.', '.division;
+	$sql = 'INSERT INTO lobbies (name, type, region, map, division) VALUES ('.mysql_real_escape_string($name).', '.mysql_real_escape_string($type).', '.mysql_real_escape_string($region).', '.mysql_real_escape_string($map).', '.mysql_real_escape_string($division);
 	$query = mysql_query($sql);
 }
 
 function joinLobby($id,$lid) {
-	$sql = 'INSERT INTO lobby_players (playerid, lobbyID) VALUES('.$id.', '.$lid.')';
+	$sql = 'INSERT INTO lobby_players (playerid, lobbyID) VALUES('.mysql_real_escape_string($id).', '.mysql_real_escape_string($lid).')';
 	$query = mysql_query($sql);
 }
 
 function leaveLobby($id) {
-	$sql = 'DELETE FROM lobby_players WHERE id = '.$id;
+	$sql = 'DELETE FROM lobby_players WHERE id = '.mysql_real_escape_string($id);
 	$query = mysql_query($sql);
 }
 
 function joinTeam($id,$team) {
-	$sql = 'UPDATE lobby_players SET team = '.$team.' WHERE id = '.$id;
+	$sql = 'UPDATE lobby_players SET team = '.mysql_real_escape_string($team).' WHERE id = '.mysql_real_escape_string($id);
 	$query = mysql_query($sql);
 }
 
 function switchClass($id,$class) {
-	$sql = 'UPDATE lobby_players SET class = '.$class.' WHERE id = '.$id;
+	$sql = 'UPDATE lobby_players SET class = '.mysql_real_escape_string($class).' WHERE id = '.mysql_real_escape_string($id);
 	$query = mysql_query($sql);
 }
 
@@ -161,7 +161,7 @@ function freeslots($id,$team) {
 }
 
 function startLobby($id) {
-	$sql = 'UPDATE lobbies SET status = 1 WHERE id = '.$id;
+	$sql = 'UPDATE lobbies SET status = 1 WHERE id = '.mysql_real_escape_string($id);
 	$query = mysql_query($sql);
 }
 
@@ -170,7 +170,7 @@ function isPlayerInLobby($id) {
 	SELECT l.id FROM lobby_players AS `lp`
 	LEFT JOIN lobbies AS `l`
 	ON l.id = lp.lobbyID
-	WHERE l.status != 'closed' AND lp.playerid = ".$id."
+	WHERE l.status != 'closed' AND lp.playerid = ".mysql_real_escape_string($id)."
 	GROUP BY lp.playerid;
 	";
 	$query = mysql_query($sql);

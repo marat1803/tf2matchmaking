@@ -2,7 +2,7 @@
 
 function rating($id)
 {
-	$query =  'SELECT * FROM ratings WHERE id = '.$id;
+	$query =  'SELECT * FROM ratings WHERE id = '.mysql_real_escape_string($id);
 	$result = mysql_query($query);
 	$ratinginfo = mysql_fetch_assoc($result);
 	

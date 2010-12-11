@@ -5,7 +5,7 @@ function redirect($url,$time=5){
 }
 
 function lastseen($id) {
-	$sql = "UPDATE users SET lastseen = \"".date('Y-m-d H:i:s')."\" WHERE id = ".$id;
+	$sql = "UPDATE users SET lastseen = \"".mysql_real_escape_string(date('Y-m-d H:i:s'))."\" WHERE id = ".mysql_real_escape_string($id);
 	mysql_query($sql);
 }
 

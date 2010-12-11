@@ -45,7 +45,7 @@ body{
     <button class="login">Login with Steam</button>
 </form></div></div>'; }
 else {
-$query = "SELECT * FROM users WHERE steamid = ". $steamid . " LIMIT 1 ";
+$query = "SELECT * FROM users WHERE steamid = ". mysql_real_escape_string($steamid) . " LIMIT 1 ";
 $result = mysql_query($query); 
 $row = mysql_fetch_assoc($result);
 
@@ -61,7 +61,7 @@ if (isset($result) && ($steamid == $row[steamid]))
 				$steamid = (string)$_POST['steamId64'];
 				$query = "INSERT INTO `users` (`steamid`, `nickname`, `email`, `country`) VALUES('" .  mysql_real_escape_string($steamid) . "', '" .  mysql_real_escape_string($nickname) . "', '" .  mysql_real_escape_string($email) . "','".mysql_real_escape_string($_POST['loc'])."');";
 				mysql_query($query) or die("Error in query: $result. ".mysql_error());
-				$sql = "INSERT INTO `ratings` (`id`) VALUES (displayID(mysql_real_escape_string($steamid)))";
+				$sql = "INSERT INTO `ratings` (`id`) VALUES (".mysql_real_escape_string(displayID($steamid)).")";
 				mysql_query($sql);
 				echo '<p>Welcome, ' . $nickname . '</p>'
 					.'<p>Your account has been successfully created.</p>';
