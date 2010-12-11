@@ -2,7 +2,7 @@
 
 function getOnline ($id)
 {
-	$sql = 'SELECT * FROM users WHERE id = '.$id;
+	$sql = 'SELECT * FROM users WHERE id = '.mysql_real_escape_string($id);
 	$query = mysql_query($sql);
 	$users = mysql_fetch_assoc($query);
 	$lastseen = $users['lastseen'];
@@ -12,12 +12,12 @@ function getOnline ($id)
 
 
 function getfriends ($id) {
-	$query = 'SELECT friends FROM users WHERE id='.$id;
+	$query = 'SELECT friends FROM users WHERE id='.mysql_real_escape_string($id);
 	$result = mysql_query($query);
 	$friendsinfo = mysql_fetch_assoc($result);	
 	$fids = $friendsinfo['friends'];
 	if ($fids != "" && count($fids) > 0) {
-		$query = 'SELECT * FROM users WHERE id IN(' . $fids.') ORDER BY lastseen DESC LIMIT 10';
+		$query = 'SELECT * FROM users WHERE id IN(' . mysql_real_escape_string($fids) .') ORDER BY lastseen DESC LIMIT 10';
 		$result = mysql_query($query);
 		while ($friend = mysql_fetch_array($result, MYSQL_ASSOC)) {
 			$online = getOnline($friend['id']);			
@@ -40,7 +40,7 @@ function getfriends ($id) {
 }
 
 function addFriend ($id,$target) {
-        $sql = 'SELECT friends FROM users WHERE id = '.$id;
+        $sql = 'SELECT friends FROM users WHERE id = '.mysql_real_escape_string($id);
         $query = mysql_query($sql);
         $result = mysql_fetch_assoc($query);
         $friends = $result['friends'];
@@ -52,7 +52,7 @@ function addFriend ($id,$target) {
                 else {
                         if ($friends == "") $friends .= $target; 
                         else $friends .= ','.$target;
-                        $sql = "UPDATE users SET friends = '".$friends."' WHERE id = ".$id;
+                        $sql = "UPDATE users SET friends = '".mysql_real_escape_string($friends)."' WHERE id = ".mysql_real_escape_string($id);
                         $query = mysql_query($sql);
                 }
         }

@@ -6,14 +6,14 @@ require_once('includes/functions/steamcomm.php');
 require_once('includes/functions/etf2l.php');
 
 function displayID($steamid) {
-	$sql =  'SELECT * FROM users WHERE steamid= \'' . $steamid . '\' LIMIT 1';
+	$sql =  'SELECT * FROM users WHERE steamid= \'' . mysql_real_escape_string($steamid) . '\' LIMIT 1';
 	$query = mysql_query($sql);
 	$result = mysql_fetch_array($query);
 	return $result['id'];
 }
 
 function displaySteamID($id) {
-	$sql =  'SELECT * FROM users WHERE id= \'' . $id . '\' LIMIT 1';
+	$sql =  'SELECT * FROM users WHERE id= \'' . mysql_real_escape_string($id) . '\' LIMIT 1';
 	$query = mysql_query($sql);
 	$result = mysql_fetch_array($query);
 	return $result['steamid'];
