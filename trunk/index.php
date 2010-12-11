@@ -6,24 +6,10 @@ if(isset($_SESSION['steamid'])) {
 
 $id = displayID($_SESSION['steamid']);
 
+include_once 'includes/header.inc';
+
 		
 echo '
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-	<title>TF2 Matchmaking System</title>
-	<link href="theme/style.css" rel="stylesheet" type="text/css" />
-	<link href="theme/uniform.default.css" rel="stylesheet" type="text/css" />
-	<script src="theme/js/jquery.js" type="text/javascript"></script>
-	<script src="theme/js/jquery.uniform.min.js" type="text/javascript"></script>
-	<script src="theme/js/main.js" type="text/javascript"></script>
-</head>
-<body>
-	<div id="background_image"></div>
-	<div id="wrapper">
-		<div id="header">
-			<a href="" id="logo">TF2 Matchmaking System</a>
-		</div>
 		<ul id="sidebar">
 			<li class="play_now_button">Play Now!</li>
 			<li id="lobby_filter">

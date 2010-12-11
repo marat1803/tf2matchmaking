@@ -5,20 +5,9 @@ require_once 'includes/header.php';
 $id = $_GET['id'];
 $steamid = displaySteamID($id);
 
+include_once 'includes/header.inc';
+
 echo '
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-    <title>TF2 Matchmaking System</title>
-    <link href="theme/style_profile.css" rel="stylesheet" type="text/css" />
-    <link href="theme/uniform.default.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-    <div id="background_image"></div>
-    <div id="wrapper">
-        <div id="header">
-            <a href="index.php" id="logo">TF2 Matchmaking System</a>
-        </div>
         <div id="content" class="big_panel">
             <ul class="nav_panel">
                 <li><a href="index.php">Home</a></li>

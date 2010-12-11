@@ -38,10 +38,13 @@ foreach($arrXml['player']['teams']['team'] as $team) {
     }
     if(isset($team['comp'])) {
         foreach($team['comp'] as $comp) {
-                return preg_replace('#^Division#', '', $comp['@attributes']['division']).'<br/>'; }
-        }
+            if ($comp != "") {
+                return preg_replace('#^Division#', '', $comp['@attributes']['division']).'<br/>';
+            }
+       }
     }
     //echo $team['@attributes']['name'].'<br/>'; 
+}
 }
 
 ?>
