@@ -6,6 +6,8 @@ if(isset($_SESSION['steamid'])) {
 
 $id = displayID($_SESSION['steamid']);
 
+$css = 'style.css';
+
 include_once 'includes/header.inc';
 
 		

@@ -5,7 +5,11 @@ require_once 'includes/header.php';
 $id = $_GET['id'];
 $steamid = displaySteamID($id);
 
+$css = 'style_profile.css';
+
 include_once 'includes/header.inc';
+
+echo '<head><link href="style_profile.css" rel="stylesheet" type="text/css" /></head>';
 
 echo '
         <div id="content" class="big_panel">
@@ -16,7 +20,7 @@ echo '
             <div class="avatar_panel">
                 <img class="avatar_big" src="'.APIGet($steamid,avatarfull).'">';
 if($steamid != $_SESSION['steamid']) {
-	echo '<a href="addfriend.php?id='.$id.'" class="friend_add button">+ Add</a>';
+    echo '<a href="addfriend.php?id='.$id.'" class="friend_add button">+ Add</a>';
 }
             echo '</div>
             '.$user->profileuser($id).'
@@ -32,12 +36,9 @@ if($steamid != $_SESSION['steamid']) {
                 </ul>
             </div>
     </div>
-    <script src="theme/js/jquery.js" type="text/javascript"></script>
-    <script src="theme/js/jquery.uniform.min.js" type="text/javascript"></script>
-    <script src="theme/js/main.js" type="text/javascript"></script>
 </body>
 </html>';
 
 
-	
+    
 ?>
