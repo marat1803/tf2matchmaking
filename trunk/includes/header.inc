@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>TF2 Matchmaking System</title>
-    <link href="theme/style.css" rel="stylesheet" type="text/css" />
+    <link href="theme/<?php echo $css; ?>" rel="stylesheet" type="text/css" />
     <link href="theme/uniform.default.css" rel="stylesheet" type="text/css" />
     <script src="theme/js/jquery.js" type="text/javascript"></script>
     <script src="theme/js/jquery.uniform.min.js" type="text/javascript"></script>
