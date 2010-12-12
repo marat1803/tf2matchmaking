@@ -26,13 +26,19 @@ function type($lobbytype)
 function lobbystatus($status)
 {
 	switch ($status) {
-		case 0:
+		case "open":
 		return "Open";
 		break;
-		case 1:
+		case "ready":
+		return "Ready Phase";
+		break;
+		case "ingame":
 		return "In Progress";
 		break;
-		case 2:
+		case "finished":
+		return "Finished";
+		break;
+		case "closed":
 		return "Closed";
 		break;
 	}
