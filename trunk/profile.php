@@ -9,8 +9,6 @@ $css = 'style_profile.css';
 
 include_once 'includes/header.inc';
 
-echo '<head><link href="style_profile.css" rel="stylesheet" type="text/css" /></head>';
-
 echo '
         <div id="content" class="big_panel">
             <ul class="nav_panel">
