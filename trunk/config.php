@@ -15,7 +15,5 @@ mysql_select_db($db) or die ("Unable to select database!");
 // Debugging
 
 $debugging = "1";
-$GLOBALS['debugging'];
-
 
 ?>

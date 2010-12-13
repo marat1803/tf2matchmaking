@@ -4,7 +4,7 @@ require_once 'includes/header.php';
 
 $uid = esc_int($_SESSION['id']);
 $lid = esc_int($_REQUEST['id']);
-$team = $_POST['team'];
+$team = esc_int($_POST['team']);
 
 
 if(lobbystatus($lobby->lobbystatus($lid)) == "Finished" && isPlayerInLobby($uid) == $lid) {
