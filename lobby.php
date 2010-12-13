@@ -2,8 +2,8 @@
 
 require_once 'includes/header.php';
 
-$uid = $_SESSION['id'];
-$lid = $_REQUEST['id'];
+$uid = esc_int($_SESSION['id']);
+$lid = esc_int($_REQUEST['id']);
 $team = $_POST['team'];
 
 
