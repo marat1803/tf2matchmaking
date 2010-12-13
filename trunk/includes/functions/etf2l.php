@@ -32,7 +32,28 @@ $xmlStr = file_get_contents($xmlUrl);
 $xmlObj = simplexml_load_string($xmlStr);
 $arrXml = objectsIntoArray($xmlObj);
 
+$json = json_encode($arrXml);
+$api = json_decode($json);
+//print_r($api);
+//print_r($arrXml);
 
+if(isset($api->player)) {
+    foreach ($api->player->teams->team as $team) {
+        if (isset($team->comp) && $team->{'@attributes'}->type == '6on6') {
+            foreach (array_reverse($team->comp) as $comp) {
+                if(isset($comp->{'@attributes'}->division)) {
+                    $division = $comp->{'@attributes'}->division;
+                    if ($division == 'Premier Division') return 'Premier';
+                    else {
+                        $divnumber = preg_replace('#Division#', '', $division);
+                        return substr($divnumber,  0, -1);
+                    }
+                }
+            }
+        }
+    }
+}
+/*
 if(array_key_exists('player', $arrXml)) {
     foreach($arrXml['player']['teams']['team'] as $team) {
         if($team['@attributes']['type'] != '6on6') {
@@ -47,7 +68,7 @@ if(array_key_exists('player', $arrXml)) {
         }
         //echo $team['@attributes']['name'].'<br/>'; 
     }
-    }
+    }*/
 }
 
 ?>
