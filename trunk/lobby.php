@@ -14,7 +14,7 @@ if(lobbystatus($lobby->lobbystatus($lid)) == "Finished" && isPlayerInLobby($uid)
 		$server = new server($lobby->lobbyserver($lid));
 		$server->joinServer($lobby->lobbyserver($lid));
 	}
-		elseif(isset($team) && isset($lid))
+		elseif($team > 0 && isset($lid))
 		{
 			$lpid = getLPid($uid,$lid);
 				if (freeslots($lid,$team) > 0) {
