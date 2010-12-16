@@ -31,7 +31,7 @@ function esc_int ($input) {
 	if (is_numeric($input)) {
 		return mysql_real_escape_string($input);
 	} else {
-		error("Non-numeric characters entered");
+		//error("Non-numeric characters entered");
 		return 0;
 	}
 }
