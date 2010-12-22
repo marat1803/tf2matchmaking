@@ -75,7 +75,7 @@ class user {
 	
 	echo '
 					<h1>User Info</h1>
-				<img src='. $this->avatar .'></img>
+				<img src='. $this->avatar .' width="32" height="32"></img>
 				<span class="user_name">'. $this->nickname. '</span>
 				<span class="user_steamid">'. GetAuthID($this->steamid) .'</span>
 				<dl>
