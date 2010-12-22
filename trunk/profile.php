@@ -16,7 +16,7 @@ echo '
                 <li class="current"> &raquo; Profile (far from being finished, but at least some progress)</li>
             </ul>
             <div class="avatar_panel">
-                <img class="avatar_big" src="'.APIGet($steamid,avatarfull).'">';
+                <img class="avatar_big" src="'.APIGet($steamid,avatar).'">';
 if($steamid != $_SESSION['steamid']) {
     echo '<a href="addfriend.php?id='.$id.'" class="friend_add button">+ Add</a>';
 }
