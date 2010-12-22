@@ -61,4 +61,11 @@ if(lobbystatus($lobby->lobbystatus($lid)) == "Finished" && isPlayerInLobby($uid)
 							
 					}
 				 } 
+
+/*$srcds_rcon = new srcds_rcon();
+$config = file_get_contents('configs/6vs6/etf2l.cfg');
+$commands = explode("\n", $config);
+foreach ($commands as $command) {
+echo $srcds_rcon->rcon_command("94.23.238.194", "27086", "", $command);
+}*/
  ?>
