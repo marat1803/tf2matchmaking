@@ -31,13 +31,11 @@ class user {
 	public $rating;
 	public $skill;
 	
-	
-	public function profileuser($id) {
-	
+	public function __construct($id) {
 	$query =  'SELECT * FROM users WHERE id= \'' . mysql_real_escape_string($id) . '\' LIMIT 1';
 
 	$result = mysql_query($query);
-	$userinfo = mysql_fetch_array($result);
+	$userinfo = mysql_fetch_assoc($result);
 		
 	$this->id		= $userinfo['id'];
 	$this->nickname = $userinfo['nickname'];
@@ -46,7 +44,10 @@ class user {
 	$this->rating 	= rating($this->id);
 	$this->avatar 	= APIGet($this->steamid,avatar);
 	$this->etf2lid = str_replace(steam, "", GetAuthID($this->steamid));
+		
+	}
 	
+	public function profileuser($id) {	
 	return  '
 	            <div class="profile_panel">
                 <h1>User Info</h1>
@@ -62,18 +63,7 @@ class user {
 	
 	public function mainuser($id) {
 	
-	$query =  'SELECT * FROM users WHERE id= \'' . mysql_real_escape_string($id) . '\' LIMIT 1';
-
-	$result = mysql_query($query);
-	$userinfo = mysql_fetch_array($result);
-		
-	$this->id		= $userinfo['id'];
-	$this->nickname = $userinfo['nickname'];
-	$this->steamid  = $userinfo['steamid'];
-	$this->rating 	= rating($this->id);
-	$this->avatar 	= APIGet($this->steamid,avatar);
-	
-	echo '
+	return '
 					<h1>User Info</h1>
 				<img src='. $this->avatar .' width="32" height="32"></img>
 				<span class="user_name">'. $this->nickname. '</span>
@@ -87,7 +77,7 @@ class user {
 		
 	
 }
-$user = new user();
+$user = new user($_SESSION['id']);
 
 lastseen($_SESSION['id']);
 

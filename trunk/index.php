@@ -8,6 +8,8 @@ $id = displayID($_SESSION['steamid']);
 
 $css = 'style.css';
 
+$lobby = new lobby();
+
 include_once 'includes/header.inc';
 
 		

@@ -8,6 +8,8 @@ $team = esc_int($_POST['team']);
 $start = esc_int($_POST['start']);
 $ready = esc_int($_POST['ready']);
 
+$lobby = new lobby($lid);
+
 
 if ($start == 1) changeLobby($lid,status,ready);
 if ($ready == 1) readyStatus(getLPid($uid,$lid),1);
