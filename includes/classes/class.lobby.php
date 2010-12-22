@@ -15,6 +15,24 @@ class lobby {
 	public $division;
 	public $date;
 
+	public function __construct($id) {
+		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
+		$query = mysql_query($sql);
+		$lobbyinfo = mysql_fetch_assoc($query);
+		
+		$lobby->id = $lobbyinfo['id'];
+		$lobby->name = $lobbyinfo['name'];
+		$lobby->type = $lobbyinfo['type'];
+		$lobby->region = $lobbyinfo['region'];
+		$lobby->map = $lobbyinfo['map'];
+		$lobby->players_blu = displayLobbyPlayers($lobby->id,$lobby->type,1);
+		$lobby->players_red = displayLobbyPlayers($lobby->id,$lobby->type,2);
+		$lobby->rules = $lobbyinfo['rules'];
+		$lobby->status = $lobbyinfo['status'];
+		$lobby->division = $lobbyinfo['division'];
+		$lobby->date = $lobbyinfo['date'];		
+	}
+
 	public function lobbytype($id) {
 		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
 		$query = mysql_query($sql);
@@ -35,6 +53,12 @@ class lobby {
 		$lobbyinfo = mysql_fetch_assoc($query);
 		return $lobbyinfo['sid'];	
 	}
+
+	public function displaylobby($id) {	
+	return $this->players_blu;
+	return '<br />';
+	return $this->players_red;	
+}
 
 	public function displaylobbies($type) {
 	global $user;
@@ -94,29 +118,6 @@ class lobby {
 	}
 }	
 
-$lobby = new lobby();
-
-function displaylobby($id) {	
-	$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
-	$query = mysql_query($sql);
-	$lobbyinfo = mysql_fetch_assoc($query);
-	
-	$lobby->id = $lobbyinfo['id'];
-	$lobby->name = $lobbyinfo['name'];
-	$lobby->type = $lobbyinfo['type'];
-	$lobby->region = $lobbyinfo['region'];
-	$lobby->map = $lobbyinfo['map'];
-	$lobby->players_blu = displayLobbyPlayers($lobby->id,$lobby->type,1);
-	$lobby->players_red = displayLobbyPlayers($lobby->id,$lobby->type,2);
-	$lobby->rules = $lobbyinfo['rules'];
-	$lobby->status = $lobbyinfo['status'];
-	$lobby->division = $lobbyinfo['division'];
-	$lobby->date = $lobbyinfo['date'];
-	
-	echo $lobby->players_blu;
-	echo '<br />';
-	echo $lobby->players_red;	
-}
 	
 
 ?>
