@@ -1,5 +1,7 @@
 <?php
 
+require_once 'class.rcon.php';
+
 class server {
 	public $id;
 	public $ip;
@@ -31,9 +33,9 @@ class server {
 		$query = mysql_query($sql);
 		$result = mysql_fetch_assoc($query);
 		$status = $result['status'];*/
-		return ($this->status == "online");
-		/*if ($status == "online") return true;
-		else return false;*/
+		//return ($this->status == "online");
+		if ($status == "online") return true;
+		else return false;
 	}
 
 	function joinServer() {
