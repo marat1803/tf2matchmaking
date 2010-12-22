@@ -8,8 +8,6 @@ $id = displayID($_SESSION['steamid']);
 
 $css = 'style.css';
 
-$lobby = new lobby();
-
 include_once 'includes/header.inc';
 
 		
@@ -53,7 +51,7 @@ echo '
 		</ul>
 		<div id="content">
 			<ul id="lobby_list">';
-				echo $lobby->displaylobbies(1); echo $lobby->displaylobbies(2).'
+				echo displaylobbies(1); echo displaylobbies(2).'
 			</ul>
 		</div>
 	</div>
