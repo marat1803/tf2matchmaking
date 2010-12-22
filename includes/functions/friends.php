@@ -27,7 +27,7 @@ function getfriends ($id) {
 			if ($online == "Online") $status = '<li>';
 				else $status = '<li class="friend_offline">';
 			$return = $status.'<a href = "profile.php?id='.$uid.'">
-			<img src='.APIGet($steamid,avatar).'></img>'.
+			<img src='.APIGet($steamid,avatar).' width="32" height="32"></img>'.
 			'<span class="user_name">'.$nickname.'</span>'.
 			'<span class="user_steamid">'.GetAuthID($steamid).'</span>'.
 			'<span class="user_steamon">'.$online.'</span><br />
