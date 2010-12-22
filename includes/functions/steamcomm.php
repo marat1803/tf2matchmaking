@@ -22,14 +22,11 @@ function APIGet ($steamid,$what)
 		if(!file_exists('cache/avatars/'.$steamid.'.jpg')) {
 			$api = file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0001/?key=8DEE586C5830B73298B0C2F06D330E3C&steamids='. $steamid);
 			$result = json_decode($api);
-			$avatar = $result->response->players->player[0]->$what;
+			$avatar = $result->response->players->player[0]->avatarfull;
 			$filename = 'cache/avatars/'.$steamid.'.jpg';
-			copy($avatar, $filename);
-			
-			return 'cache/avatars/'.$steamid.'.jpg';
-		} else {
-			return 'cache/avatars/'.$steamid.'.jpg';
-		}
+			copy($avatar, $filename);			
+	}
+	return 'cache/avatars/'.$steamid.'.jpg';
 	} else {
 		$api = file_get_contents('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0001/?key=8DEE586C5830B73298B0C2F06D330E3C&steamids='. $steamid);
 		$result = json_decode($api);

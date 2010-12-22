@@ -159,6 +159,11 @@ function switchClass($id,$class) {
 	$query = mysql_query($sql);
 }
 
+function readystatus($id,$ready) {
+	$sql = 'UPDATE lobby_players SET ready = "'.$ready.'" WHERE id = '.mysql_real_escape_string($id);
+	$query = mysql_query($sql);
+}
+
 function freeslots($id,$team) {
 	$lobbyType = Lobby::lobbyType($id);
 	$playerCount = countTeamPlayers($id, $team);
@@ -186,5 +191,10 @@ function isPlayerInLobby($id) {
 	} else {
 		return null;
 	}
+}
+
+function changeLobby ($id,$setting,$into) {
+	$sql = "UPDATE lobbies SET `".$setting."` = '".$into. "' WHERE id = ".mysql_real_escape_string($id);
+	$query = mysql_query($sql);
 }
 ?>
