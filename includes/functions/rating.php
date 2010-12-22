@@ -44,6 +44,5 @@ function rate($source,$target,$value) {
 	} else echo 'You already rated this player';
 }
 
-rate(4,3,1);
 
 ?>
