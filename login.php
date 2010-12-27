@@ -49,7 +49,7 @@ $query = "SELECT * FROM users WHERE steamid = ". mysql_real_escape_string($steam
 $result = mysql_query($query); 
 $row = mysql_fetch_assoc($result);
 
-if (isset($result) && ($steamid == $row[steamid]))
+if (isset($result) && ($steamid == $row['steamid']))
 		{
 				$_SESSION['steamid'] = $steamid;
 				$_SESSION['id'] = displayID($steamid);

@@ -5,7 +5,7 @@ function rating($id)
 	$query =  'SELECT * FROM ratings WHERE id = '.mysql_real_escape_string($id);
 	$result = mysql_query($query);
 	$ratinginfo = mysql_fetch_assoc($result);
-	
+
 	if (($ratinginfo['plus'] + $ratinginfo['minus']) == 0)
 	$ratingscore = "0.45";
 	else $ratingscore = $ratinginfo['plus'] / ($ratinginfo['plus'] + $ratinginfo['minus']);

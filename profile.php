@@ -5,6 +5,8 @@ require_once 'includes/header.php';
 $id = $_GET['id'];
 $steamid = displaySteamID($id);
 
+$user = new user($id);
+
 $css = 'style_profile.css';
 
 include_once 'includes/header.inc';
