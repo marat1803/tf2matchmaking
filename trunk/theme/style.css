@@ -113,8 +113,8 @@ a#logo{
 
 /************/
 
-.play_now_button {
-	-moz-border-radius:5px 5px 5px 5px;
+.button, .play_now_button {
+	-moz-border-radius:5px; -webkit-border-radius: 5px; border-radius:5px;
 	-moz-box-shadow:0 2px 5px #333333;
 	background:url("images/gradient.png") repeat-x 0 -100px #FF970F;
 	border:1px solid #644640;
@@ -135,11 +135,19 @@ a#logo{
 	z-index: 10;
 }
 
-.play_now_button:hover {
-	background: url("images/gradient.png") repeat-x scroll 0 -70px #FF970F;
+.play_now_button:hover, .button:hover {
+	background-position: 0 -70px;
 }
 
-.lobby_panel, .profile_panel, .friends_panel, #lobby_filter {
+.button.ready_up{
+	background-color: lime;
+}
+
+.button.ready_off{
+	background-color: #4c231c;
+}
+
+.lobby_panel, .profile_panel, .friends_panel, #lobby_filter, #lobby_info {
 	padding: 7px;
 	-moz-border-radius: 5px;
 	-moz-box-shadow: 0 0 5px #333;
@@ -188,7 +196,7 @@ a#logo{
 	font-size: 12px;
 }
 
-#lobby_filter {
+#lobby_filter, #lobby_info {
 	margin-top:-30px;
 	padding:20px 5px 5px;
 }
@@ -324,7 +332,6 @@ a#logo{
 }
 
 .user_name {
-	font-weight: bold;
 	float: left;
 	width:170px;
 	color: #ECD1C1;
@@ -342,17 +349,17 @@ a#logo{
 	color: #aaa;
 }
 
-.profile_panel dd {
+.profile_panel dd, #lobby_info dd {
 	float: left;
 }
-.profile_panel dt{
+.profile_panel dt, #lobby_info dt{
 	width: 70px;
 	float: left;
 	clear: left;
 	color: #ECD1C1;
 }
 
-.lobby_tooltip {
+.lobby_tooltip, .lobby_tooltip_big {
 	-webkit-border-radius: 5px;
 	-moz-border-radius:5px;
 	-moz-box-shadow:0 0 5px #333333;
@@ -365,6 +372,11 @@ a#logo{
 	width:615px;
 	position: relative;
 	float: left;
+}
+
+.lobby_tooltip_big {
+	width:585px;
+	padding-left: 40px;
 }
 
 .blue_players, .red_players {
@@ -383,32 +395,178 @@ a#logo{
 	line-height: 18px;
 }
 
+.lobby_tooltip_big .blue_players li, .lobby_tooltip_big .red_players li {
+	padding: 5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	background: #3c352f;
+	margin: 3px;
+	width: 250px;
+	float: left;
+	clear: left;
+	line-height: 18px;
+}
+
+
 .blue_players li a, .red_players li a {
 	color: #F0E1BA;
 }
 
 .blue_players li.empty, .red_players li.empty {	cursor: pointer; }
 
-.lobby_tooltip img{
+.lobby_tooltip img, .lobby_tooltip_big img{
 	float:left;
 	margin-right:3px;	
 }
 
-.lobby_tooltip img.avatar{
+.lobby_tooltip img.avatar, .lobby_tooltip_big img.avatar{
 	float:right;
 	margin-left:3px;
 	border: 1px solid #DA8A4C;
 }
 
-.lobby_tooltip .teamname {
+.teamname {
 	font-weight: bold;
 	text-align: center;
 	color: #fff;
 	text-shadow: 0 2px 2px #000;
 }
 
-.lobby_tooltip .teamname.blu { background: #80a1c2 }
-.lobby_tooltip .teamname.red { background: #c15143 }
+.teamname.blu { background: #80a1c2 !important }
+.teamname.red { background: #c15143 !important }
+
+
+.class_list {
+  float:left;
+  clear: both;
+  margin-top: 3px;
+}
+
+.class_list li {
+  width: 16px;
+  height: 16px;
+  padding: 3px;
+  background:url("images/gradient.png") repeat-x scroll 0 -150px #2F251B;
+  border:1px solid #1d1712;
+  -moz-border-radius:0.5em;
+  -webkit-border-radius:0.5em;
+  border-radius:0.5em;
+  float:left;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.class_list li.selected, .class_list li:active  {
+	background:url("images/gradient.png") repeat-x scroll 0 -110px #2F251B;	
+}
+
+.class_list li:hover, .class_list li:focus {
+	background:url("images/gradient.png") repeat-x scroll 0 -130px #2F251B;	
+}
+	
+.class_list li img {
+  width:16px;
+  height:16px;
+}
+
+.join_spec, .join_red, .join_blu{
+	height: 16px;
+	width: 16px;
+	border: 1px solid;
+	display: block;
+	float: left;
+}
+
+.join_blu{
+	background:url("images/gradient.png") repeat-x 0 -150px #80a1c2;
+	-moz-border-radius: 3px 0 0 3px;
+	-webkit-border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px; 
+}
+
+.join_red{
+	background:url("images/gradient.png") repeat-x 0 -150px #c15143;
+	-moz-border-radius:0 3px 3px 0;
+	-webkit-border-radius:0 3px 3px 0;
+	border-radius:0 3px 3px 0;
+}
+
+a.friend_inv{
+	-moz-border-radius:3px; -webkit-border-radius: 3px; border-radius:3px;
+	-moz-box-shadow:0 1px 2px #333333;
+	background:url("images/gradient.png") repeat-x 0 -150px #2F251B;
+	border:1px solid #644640;
+	padding:1px;
+	position:absolute;
+	text-align:center;
+	text-shadow:0 2px 1px #000;
+	margin-left: -23px;
+	margin-top: 17px;
+	font-size: 0.9em;	
+}
+
+.teamlist li {
+  height:27px;
+  width:221px;
+  background:url(images/blueGradient.png) repeat-x bottom #312520;
+  margin:4px;
+  -moz-border-radius:0.5em;
+}
+
+.teamlist.blue {
+  float:left;
+}
+
+.teamlist.red {
+  float:right;
+}
+
+.teamlist.blue li {
+  border:1px solid #292d36;
+}
+
+
+
+.teamlist.red li {
+  border:1px solid #4c231c;
+}
+
+.classList {
+  float:left;
+  width:100px;
+}
+
+.classList li {
+  width: 45px;
+  height: 45px;
+  background:url(images/blueGradient.png) repeat-x bottom #312520;
+  border:1px solid #1d1712;
+  -moz-border-radius:0.5em;
+  float:left;
+}
+
+.classList li.scout, .classList li.pyro, .classList li.heavy, .classList li.medic, .classList li.spy {
+  float:left;
+  margin:0 2px 8px 0;
+}
+
+.classList li.soldier, .classList li.demoman, .classList li.engineer, .classList li.sniper, .classList li.random {
+  float:right;
+  margin:0 0 8px 2px;
+}
+
+.classList li img {
+  width:32px;
+  height:32px;
+  margin:6px;
+}
+
+.classList li.ready {
+  width:100px;
+  height:46px;
+  text-align:center;
+  font-size:14pt;
+}
 
 /* Allgemeine Klassen */
 .clear { 
