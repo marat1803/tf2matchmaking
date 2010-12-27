@@ -1,5 +1,5 @@
 <?php
-
+// This is just a test
 require 'includes/header.php';
 
 if(isset($_SESSION['steamid'])) {
