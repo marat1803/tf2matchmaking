@@ -33,6 +33,7 @@ class lobby {
 		$this->date = $lobbyinfo['date'];		
 	}
 
+
 	public function lobbytype($id) {
 		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
 		$query = mysql_query($sql);
@@ -54,64 +55,54 @@ class lobby {
 		return $lobbyinfo['sid'];	
 	}
 
-	public function displaylobby($id) {	
+	public function displaylobbyplayers($id) {	
 	echo $this->players_blu;
 	echo '<br />';
 	echo $this->players_red;	
 	}
 }
 
+function displayLobby($id) {
+	$lobby = new lobby($id);
+	echo '<li class="lobby_panel" data-panel="lobby_tooltip-'.$lobby->id.'">
+			<img class="map_pic" src="theme/images/maps/' .$lobby->map .'.jpg">
+			<div class="panel_left">
+				<h1>' .$lobby->name .'</h1>
+				<span class="date">'.date('g:i a', strtotime($lobby->date)).'</span>
+				<span class="map">' .$lobby->map .'</span>
+				<ul class="classes">
+					<li><img src="theme/images/class/scout.png" height="18"></li>
+					<li><img src="theme/images/class/soldier.png" height="18"></li>
+					<li><img src="theme/images/class/demo.png" height="18"></li>
+					<li><img src="theme/images/class/heavy.png" height="18"></li>
+					<li><img src="theme/images/class/sniper.png" height="18"></li>					
+					<li><img src="theme/images/class/medic.png" height="18"></li>
+				</ul>
+			</div>
+			<div class="panel_right">
+						<span class="skillevel skill_higher">Division '.$lobby->division .'</span>
+						<span class="matchtype">' .type($lobby->type) .'</span>
+						<span class="playercount"><span class="currentplayers">'.countPlayers($lobby->id).'</span>/<span class="maxplayers">'. 2*(teamplayers($lobby->type)).'</span></span>
+			</div>
+				<li class="lobby_tooltip" id="lobby_tooltip:'.$lobby->id.'">
+			<ul class="blue_players">
+				<li class="teamname blu">BLU</li>
+				'.$lobby->players_blu .'
+			</ul>
+			<ul class="red_players">
+				<li class="teamname red">RED</li>
+				'.$lobby->players_red .'
+			</ul>
+		</li>';
+}
+
 function displaylobbies($type) {	
 	$query = 'SELECT * FROM lobbies WHERE status = "open" AND type = '.mysql_real_escape_string($type);
 	$result = mysql_query($query);
-	mysql_error();
 	
 	while ($lobbyinfo = mysql_fetch_assoc($result)) {
-		
-	$id = $lobbyinfo['id'];
-	$name = $lobbyinfo['name'];
-	$type = $lobbyinfo['type'];
-	$region = $lobbyinfo['region'];
-	$map = $lobbyinfo['map'];
-	$players_blu = displayLobbyPlayers($id,$type,1);
-	$players_red = displayLobbyPlayers($id,$type,2);
-	$status = $lobbyinfo['status'];
-	$division = $lobbyinfo['division'];
-	$date = $lobbyinfo['date'];
-	
-		echo '<li class="lobby_panel" data-panel="lobby_tooltip-'.$id.'">
-					<img class="map_pic" src="theme/images/maps/' .$map .'.jpg">
-					<div class="panel_left">
-						<h1>' .$name .'</h1>
-						<span class="date">'.date('g:i a', strtotime($date)).'</span>
-						<span class="map">' .$map .'</span>
-						<ul class="classes">
-							<li><img src="theme/images/class/scout.png" height="18"></li>
-							<li><img src="theme/images/class/soldier.png" height="18"></li>
-							<li><img src="theme/images/class/demo.png" height="18"></li>
-							<li><img src="theme/images/class/heavy.png" height="18"></li>
-							<li><img src="theme/images/class/sniper.png" height="18"></li>					
-							<li><img src="theme/images/class/medic.png" height="18"></li>
-						</ul>
-					</div>
-					<div class="panel_right">
-								<span class="skillevel skill_higher">Division '.$division .'</span>
-								<span class="matchtype">' .type($type) .'</span>
-								<span class="playercount"><span class="currentplayers">'.countPlayers($id).'</span>/<span class="maxplayers">'. 2*(teamplayers($type)).'</span></span>
-					</div>
-						<li class="lobby_tooltip" id="lobby_tooltip:'.$id.'">
-					<ul class="blue_players">
-						<li class="teamname blu">BLU</li>
-						'.$players_blu .'
-					</ul>
-					<ul class="red_players">
-						<li class="teamname red">RED</li>
-						'.$players_red .'
-					</ul>
-					<form action="lobby.php" method="get">
-					<button name="id" value="' . $id . '">Join Lobby</button>
-					</form>
-				</li>';
+		$id = $lobbyinfo['id'];
+		displayLobby($id);
 	}
 }
 

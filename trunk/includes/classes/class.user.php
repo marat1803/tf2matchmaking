@@ -40,7 +40,6 @@ class user {
 	$this->id		= $userinfo['id'];
 	$this->nickname = $userinfo['nickname'];
 	$this->steamid  = $userinfo['steamid'];
-	$this->steamid = $userinfo['steamid'];
 	$this->rating 	= rating($this->id);
 	$this->avatar 	= APIGet($this->steamid,avatar);
 	$this->etf2lid = str_replace(steam, "", GetAuthID($this->steamid));

@@ -29,16 +29,14 @@ function etf2ldiv($etf2lsteamid) {
 
 $xmlUrl = 'http://etf2l.org/feed/player/?steamid='.$etf2lsteamid; // XML feed file/URL
 $xmlStr = file_get_contents($xmlUrl);
-$xmlObj = simplexml_load_string($xmlStr);
-$arrXml = objectsIntoArray($xmlObj);
+$api = simplexml_load_string($xmlStr);
 
-$json = json_encode($arrXml);
-$api = json_decode($json);
-//print_r($api);
-//print_r($arrXml);
+//$api = new SimpleXMLElement(file_get_contents('http://etf2l.org/feed/player/?steamid='.$etf2lsteamid));
+$api2 = json_decode(json_encode(objectsIntoArray($api)));
 
-if(isset($api->player)) {
-    foreach ($api->player->teams->team as $team) {
+
+if(isset($api2->player)) {
+    foreach ($api2->player->teams->team as $team) {
         if (isset($team->comp) && $team->{'@attributes'}->type == '6on6') {
             foreach (array_reverse($team->comp) as $comp) {
                 if(isset($comp->{'@attributes'}->division)) {

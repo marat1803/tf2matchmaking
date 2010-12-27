@@ -147,6 +147,7 @@ a#logo{
 	background-color: #4c231c;
 }
 
+
 .lobby_panel, .profile_panel, .friends_panel, #lobby_filter, #lobby_info {
 	padding: 7px;
 	-moz-border-radius: 5px;
@@ -437,9 +438,10 @@ a#logo{
 
 
 .class_list {
-  float:left;
+  float: left;
   clear: both;
   margin-top: 3px;
+  width: 150px;
 }
 
 .class_list li {

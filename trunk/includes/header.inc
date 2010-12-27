@@ -6,7 +6,7 @@
     <link href="theme/uniform.default.css" rel="stylesheet" type="text/css" />
     <script src="theme/js/jquery.js" type="text/javascript"></script>
     <script src="theme/js/jquery.uniform.min.js" type="text/javascript"></script>
-    <script src="theme/js/main.js" type="text/javascript"></script>
+    <script src="theme/js/<?php echo $js; ?>" type="text/javascript"></script>
     <script type="text/javascript">
 
   var _gaq = _gaq || [];
