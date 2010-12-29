@@ -43,7 +43,7 @@ echo '<ul id="sidebar">
          		</ul>
 			</li>
 			<li class="profile_panel">';
-			echo $user->mainuser($id) .'
+			echo $user->display_profile($id) .'
 			</li>
 			<li class="friends_panel">
 				<h1>Friends</h1>

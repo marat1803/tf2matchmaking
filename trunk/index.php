@@ -4,9 +4,9 @@ require 'includes/header.php';
 
 if(isset($_SESSION['steamid'])) {
 
-$id = displayID($_SESSION['steamid']);
+$id = User::get_id($_SESSION['steamid']);
 
-$user = new user($id);
+$user = new User($id);
 
 $css = 'style.css';
 $js = 'main.js';
@@ -44,7 +44,7 @@ echo '
 				</form>
 			</li>
 			<li class="profile_panel">';
-			echo $user->mainuser($id) .'
+			echo $user->display_profile($id) .'
 			</li>
 			<li class="friends_panel">
 				<h1>Friends</h1>

@@ -3,9 +3,9 @@
 require_once 'includes/header.php';
 
 $id = $_GET['id'];
-$steamid = displaySteamID($id);
+$steamid = User:get_steamid($id);
 
-$user = new user($id);
+$user = new User($id);
 
 $css = 'style_profile.css';
 
@@ -23,7 +23,7 @@ if($steamid != $_SESSION['steamid']) {
     echo '<a href="addfriend.php?id='.$id.'" class="friend_add button">+ Add</a>';
 }
             echo '</div>
-            '.$user->profileuser($id).'
+            '.$user->display_profile($id, false).'
             <dl class="stats_panel">
                 <dt>Wins</dt><dd>7</dd>
                 <dt>Losses</dt><dd>10</dd>
