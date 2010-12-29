@@ -52,7 +52,7 @@ $row = mysql_fetch_assoc($result);
 if (isset($result) && ($steamid == $row['steamid']))
 		{
 				$_SESSION['steamid'] = $steamid;
-				$_SESSION['id'] = displayID($steamid);
+				$_SESSION['id'] = User::get_id($steamid);
 				header('Location: index.php');
 		} else {
 			if(isset($_POST['nickname'], $_POST['email'], $_POST['steamId64'])) {
@@ -61,12 +61,12 @@ if (isset($result) && ($steamid == $row['steamid']))
 				$steamid = (string)$_POST['steamId64'];
 				$query = "INSERT INTO `users` (`steamid`, `nickname`, `email`, `country`) VALUES('" .  mysql_real_escape_string($steamid) . "', '" .  mysql_real_escape_string($nickname) . "', '" .  mysql_real_escape_string($email) . "','".mysql_real_escape_string($_POST['loc'])."');";
 				mysql_query($query) or die("Error in query: $result. ".mysql_error());
-				$sql = "INSERT INTO `ratings` (`id`) VALUES (".mysql_real_escape_string(displayID($steamid)).")";
+				$sql = "INSERT INTO `ratings` (`id`) VALUES (".mysql_real_escape_string(User::get_id($steamid)).")";
 				mysql_query($sql);
 				echo '<p>Welcome, ' . $nickname . '</p>'
 					.'<p>Your account has been successfully created.</p>';
 					$_SESSION['steamid'] = $steamid;
-					$_SESSION['id'] = displayID($steamid);
+					$_SESSION['id'] = User::get_id($steamid);
 					
 					echo '<meta http-equiv="refresh" content="6;url=index.php">';
 			} else {
