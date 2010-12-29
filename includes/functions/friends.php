@@ -11,7 +11,7 @@ function getOnline ($id)
 }
 
 
-function getfriends ($id) {
+function getfriends ($id,$invite = false) {
 	$query = 'SELECT friends FROM users WHERE id='.mysql_real_escape_string($id);
 	$result = mysql_query($query);
 	$friendsinfo = mysql_fetch_assoc($result);	
@@ -26,11 +26,14 @@ function getfriends ($id) {
 			$uid = $friend['id'];
 			if ($online == "Online") $status = '<li>';
 				else $status = '<li class="friend_offline">';
+			if ($invite && $online == "Online") 
+			$invitelink = '<a class="friend_inv" href="#invite" title="Invite to Lobby">Inv+</a>';
 			$return = $status.'<a href = "profile.php?id='.$uid.'">
 			<img src='.APIGet($steamid,avatar).' width="32" height="32"></img>'.
 			'<span class="user_name">'.$nickname.'</span>'.
 			'<span class="user_steamid">'.GetAuthID($steamid).'</span>'.
 			'<span class="user_steamon">'.$online.'</span><br />
+			'.$invitelink.'
 			</a></li>';
 			echo $return;
 		
