@@ -76,8 +76,4 @@ class user {
 		
 	
 }
-$user = new user($_SESSION['id']);
-
-lastseen($_SESSION['id']);
-
 ?>
