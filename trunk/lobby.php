@@ -10,7 +10,8 @@ $team = esc_int($_POST['team']);
 $start = esc_int($_POST['start']);
 $ready = esc_int($_POST['ready']);
 
-$lobby = new lobby($lid);
+$lobby = new Lobby($lid);
+$user = new User($uid);
 
 include_once 'includes/header.inc';
 
@@ -43,11 +44,11 @@ echo '<ul id="sidebar">
          		</ul>
 			</li>
 			<li class="profile_panel">';
-			echo $user->display_profile($id) .'
+			echo $user->display_profile($uid) .'
 			</li>
 			<li class="friends_panel">
 				<h1>Friends</h1>
-				<ul>'; echo getfriends($user->id); echo '
+				<ul>'; echo getfriends($user->id,true); echo '
 				</ul>
 			</li>
 		</ul>

@@ -6,7 +6,7 @@
 
 $host = "localhost";
 $user = "root";
-$pass = "ratepo";
+$pass = "";
 $db = "tf2mm";
 
 $connection = mysql_connect($host, $user, $pass) or die ("Unable to connect!");
