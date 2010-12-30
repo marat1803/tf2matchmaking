@@ -413,6 +413,14 @@ a#logo{
 	color: #F0E1BA;
 }
 
+.blue_players li a img, .red_players li a img {
+	height: 18px;
+}
+
+.blue_players li a img.avatar {
+	height:16;
+}
+
 .blue_players li.empty, .red_players li.empty {	cursor: pointer; }
 
 .lobby_tooltip img, .lobby_tooltip_big img{

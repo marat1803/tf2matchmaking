@@ -14,6 +14,7 @@ class lobby {
 	public $status;
 	public $division;
 	public $date;
+	public $sid;
 
 	public function __construct($id) {
 		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
@@ -30,11 +31,15 @@ class lobby {
 		$this->rules = $lobbyinfo['rules'];
 		$this->status = $lobbyinfo['status'];
 		$this->division = $lobbyinfo['division'];
-		$this->date = $lobbyinfo['date'];		
+		$this->date = $lobbyinfo['date'];	
+		$this->sid = $lobbyinfo['sid'];	
 	}
 
 
 	public function lobbytype($id) {
+		if(!$id || $id == $this->id) {
+			return $this->type;
+		}
 		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
 		$query = mysql_query($sql);
 		$lobbyinfo = mysql_fetch_assoc($query);
@@ -42,6 +47,9 @@ class lobby {
 	}
 
 	public function lobbystatus($id) {
+		if(!$id || $id == $this->id) {
+			return $this->status;
+		}
 		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
 		$query = mysql_query($sql);
 		$lobbyinfo = mysql_fetch_assoc($query);
@@ -49,6 +57,9 @@ class lobby {
 	}
 	
 	public function lobbyserver($id) {
+		if(!$id || $id == $this->id) {
+			return $this->sid;
+		}
 		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
 		$query = mysql_query($sql);
 		$lobbyinfo = mysql_fetch_assoc($query);
@@ -60,7 +71,17 @@ class lobby {
 	echo '<br />';
 	echo $this->players_red;	
 	}
+
+	public function lobbyData() {
+		$data = array(
+			'blu'  => grabLobbyPlayers($this->id, $this->type, 1),
+			'red'  => grabLobbyPlayers($this->id, $this->type, 2),
+			'size' => teamplayers($this->type),
+		);
+		return $data;
+	}
 }
+
 
 function displayLobby($id) {
 	$lobby = new lobby($id);
@@ -105,6 +126,8 @@ function displaylobbies($type) {
 		displayLobby($id);
 	}
 }
+
+
 
 	
 

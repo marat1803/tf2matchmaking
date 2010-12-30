@@ -86,25 +86,38 @@ function player($playerID) {
 	return $row;
 }
 
-function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
+function grabLobbyPlayers($lobbyID, $lobbytype, $team) {
 	$sql = "SELECT * FROM lobby_players WHERE `lobbyID` = '".mysql_real_escape_string($lobbyID)."' AND `team` = '".$team."'"; 
 	$res = mysql_query($sql) or die(mysql_error());
-	$display = '';
-		while ($row = mysql_fetch_assoc($res)) {
+	$data = array();
+	while ($row = mysql_fetch_assoc($res)) {
 		$player = player($row["playerid"]);
 		$steamid = $player["steamid"];
 		$avatar = APIGet($steamid,avatar);
 		$class = player_class($row["class"]);
-		$display .= '<li><a href="profile.php?id='.$player['id'].'" target="_blank"><img src="theme/images/class/'.$class.'.png" height="18">'.$player["nickname"].'<img class="avatar" src='.$avatar.' height="16"></a></li>';
+		$data[] = array(
+			'id'       => $player['id'],
+			'class'    => $class,
+			'nickname' => $player['nickname'],
+			'avatar'   => $avatar
+		);
+	}
+	return $data;
+}
+
+function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
+	$lobbyPlayers = grabLobbyPlayers($lobbyID, $lobbytype, $team);
+	$display = '';
+	foreach ($lobbyPlayers as $data) {
+		$display .= '<li><a href="profile.php?id='.$data['id'].'" target="_blank"><img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'<img class="avatar" src='.$data['avatar'].' height="16"></a></li>';
 		$n++;
-		}
-		for ($i=1;$i<=$n;$i++) {
-			$x = (teamplayers($lobbytype) - $n);
-			for ($y;$y<$x;$y++) {
-				$display .= '<li class="empty"><img src="theme/images/class/noclass.png" height="18">empty</li>'; }
-			}
+	}
+	for($n; $n < teamplayers($lobbytype); $n++) {
+		$display .= '<li class="empty"><img src="theme/images/class/noclass.png" height="18">empty</li>';
+	}
 	return $display;
 }
+
 
 function countPlayers($lobbyid) {
 	$sql = 'SELECT * FROM lobby_players WHERE lobbyid = '.mysql_real_escape_string($lobbyid);
