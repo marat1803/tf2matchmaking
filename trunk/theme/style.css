@@ -306,14 +306,14 @@ a#logo{
 	font-weight: bold;
 }
 
-.profile_panel h1, .friends_panel h1 {
+.profile_panel h1, .friends_panel h1, .chat_container h1 {
 	width: 100%;
 	border-bottom: 1px solid #da8a4c;
 	margin-bottom: 8px;
 	float: left;
 }
 
-.profile_panel img, .friends_panel img {
+.profile_panel img.small_avatar, .friends_panel img {
 	border: 1px solid #DA8A4C;
 	float: left;
 	margin: 2px;
@@ -378,6 +378,23 @@ a#logo{
 .lobby_tooltip_big {
 	width:585px;
 	padding-left: 40px;
+	padding-bottom: 10px;
+}
+
+.chat_container{
+	width:585px;
+	padding-left: 40px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius:5px;
+	-moz-box-shadow:0 0 5px #333333;
+	background:url("images/gradient.png") repeat-x scroll 0 -150px #2F251B;
+	border:1px solid #2F251B;
+	margin-bottom:15px;
+	margin-left:5px;
+	padding:7px;
+	width:615px;
+	position: relative;
+	float: left;
 }
 
 .blue_players, .red_players {
@@ -418,7 +435,7 @@ a#logo{
 }
 
 .blue_players li a img.avatar {
-	height:16;
+	height:16px;
 }
 
 .blue_players li.empty, .red_players li.empty {	cursor: pointer; }
@@ -450,6 +467,7 @@ a#logo{
   clear: both;
   margin-top: 3px;
   width: 150px;
+  margin-left: 10px;
 }
 
 .class_list li {
@@ -479,26 +497,50 @@ a#logo{
   height:16px;
 }
 
+.team_switch{
+	float: right;
+	width: 20px;
+	margin: 5px;
+	margin-right: 10px;
+}
+
 .join_spec, .join_red, .join_blu{
 	height: 16px;
-	width: 16px;
+	width: 18px;
 	border: 1px solid;
 	display: block;
 	float: left;
+	cursor: pointer;
+	-moz-box-shadow:0 0 2px #000 inset;
+}
+
+.join_spec{
+	background:url("images/gradient.png") repeat-x 0 -150px #333;
+	border-top: none;
+	border-bottom: none;
+	height: 18px;
 }
 
 .join_blu{
 	background:url("images/gradient.png") repeat-x 0 -150px #80a1c2;
-	-moz-border-radius: 3px 0 0 3px;
-	-webkit-border-radius: 3px 0 0 3px;
-	border-radius: 3px 0 0 3px; 
+	-moz-border-radius: 3px 3px 0 0;
+	-webkit-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0; 
 }
 
 .join_red{
 	background:url("images/gradient.png") repeat-x 0 -150px #c15143;
-	-moz-border-radius:0 3px 3px 0;
-	-webkit-border-radius:0 3px 3px 0;
-	border-radius:0 3px 3px 0;
+	-moz-border-radius:0 0 3px 3px;
+	-webkit-border-radius:0 0 3px 3px;
+	border-radius:0 0 3px 3px;
+}
+
+.join_active{
+	-moz-box-shadow:0 0 3px #DA8A4C inset;
+}
+
+.join_spec:hover, .join_red:hover, .join_blu:hover{
+	background-position: -100px;
 }
 
 a.friend_inv{
