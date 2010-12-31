@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function(){
 	refreshRate = 5000;
 	refreshInterval = setInterval('refreshUsers()', refreshRate);
 });
@@ -6,8 +6,8 @@ $(function(){
 function refreshUsers() {
 	
 	$.ajax({
-		data: {id: 1},
-		url: 'lobbyAjax.php',
+		data: {"id": 1, "request": "lobbydata"},
+		url: 'api.php',
 		success: function(data){
 			result = JSON.parse(data);
 			$bluUl = $('ul.blue_players').empty().append('<li class="teamname blu">BLU</li>');
