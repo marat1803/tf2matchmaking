@@ -3,7 +3,7 @@
 require_once 'includes/header.php';
 
 $id = $_GET['id'];
-$steamid = User:get_steamid($id);
+$steamid = User::get_steamid($id);
 
 $user = new User($id);
 

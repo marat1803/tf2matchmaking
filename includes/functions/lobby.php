@@ -172,9 +172,16 @@ function switchClass($id,$class) {
 	$query = mysql_query($sql);
 }
 
-function readystatus($id,$ready) {
-	$sql = 'UPDATE lobby_players SET ready = "'.$ready.'" WHERE id = '.mysql_real_escape_string($id);
-	$query = mysql_query($sql);
+function readystatus($id,$ready = false) {
+	if ($ready) {
+		$sql = 'UPDATE lobby_players SET ready = "'.$ready.'" WHERE id = '.mysql_real_escape_string($id);
+		$query = mysql_query($sql);
+	} else {
+		$sql = 'SELECT * FROM lobby_players WHERE id = '.mysql_real_escape_string($id);
+		$query = mysql_query($sql);
+		$result = mysql_fetch_assoc($query);
+		return $result['ready'];		
+	}
 }
 
 function freeslots($id,$team) {

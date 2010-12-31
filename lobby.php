@@ -57,7 +57,7 @@ echo '<ul id="sidebar">
 
 
 if ($start == 1) changeLobby($lid,status,ready);
-if ($ready == 1) readyStatus(getLPid($uid,$lid),1);
+if ($ready == 1) readyStatus(getLPid($uid,$lid),true);
 
 if(lobbystatus($lobby->lobbystatus($lid)) == "Finished" && isPlayerInLobby($uid) == $lid) {
 	echo "ratings";
