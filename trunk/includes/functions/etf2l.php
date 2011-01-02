@@ -35,8 +35,8 @@ $api = simplexml_load_string($xmlStr);
 $api2 = json_decode(json_encode(objectsIntoArray($api)));
 
 
-if(isset($api2->player)) {
-    foreach ($api2->player->teams->team as $team) {
+if(isset($api->player)) {
+    foreach ($api->player->teams->team as $team) {
         if (isset($team->comp) && $team->{'@attributes'}->type == '6on6') {
             foreach (array_reverse($team->comp) as $comp) {
                 if(isset($comp->{'@attributes'}->division)) {

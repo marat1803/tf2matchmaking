@@ -108,12 +108,20 @@ function grabLobbyPlayers($lobbyID, $lobbytype, $team) {
 function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
 	$lobbyPlayers = grabLobbyPlayers($lobbyID, $lobbytype, $team);
 	$display = '';
-	foreach ($lobbyPlayers as $data) {
-		$display .= '<li><a href="profile.php?id='.$data['id'].'" target="_blank"><img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'<img class="avatar" src='.$data['avatar'].' height="16"></a></li>';
-		$n++;
-	}
-	for($n; $n < teamplayers($lobbytype); $n++) {
-		$display .= '<li class="empty"><img src="theme/images/class/noclass.png" height="18">empty</li>';
+	if ($team != 0) {
+		foreach ($lobbyPlayers as $data) {
+			$display .= '<li><a href="profile.php?id='.$data['id'].'" target="_blank">
+			<img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'
+			<img class="avatar" src='.$data['avatar'].'></a></li>';
+			$n++;
+		}
+		for($n; $n < teamplayers($lobbytype); $n++) {
+			$display .= '<li class="empty"><img src="theme/images/class/noclass.png" height="18">empty</li>';
+		}
+	} else {
+		foreach ($lobbyPlayers as $data) {
+			$display .= '<li>'.$data['nickname'].'</li>';
+		}
 	}
 	return $display;
 }
@@ -172,11 +180,15 @@ function switchClass($id,$class) {
 	$query = mysql_query($sql);
 }
 
-function readystatus($id,$ready = false) {
-	if ($ready) {
-		$sql = 'UPDATE lobby_players SET ready = "'.$ready.'" WHERE id = '.mysql_real_escape_string($id);
+function readystatus($id,$show,$ready = false) {
+	if ($ready == 1 && !$show) {
+		$sql = 'UPDATE lobby_players SET ready = "1" WHERE id = '.mysql_real_escape_string($id);
 		$query = mysql_query($sql);
-	} else {
+	} elseif ($ready == 0 && !$show) {
+		$sql = 'UPDATE lobby_players SET ready = "0" WHERE id = '.mysql_real_escape_string($id);
+		$query = mysql_query($sql);
+	}
+	if ($show) {
 		$sql = 'SELECT * FROM lobby_players WHERE id = '.mysql_real_escape_string($id);
 		$query = mysql_query($sql);
 		$result = mysql_fetch_assoc($query);

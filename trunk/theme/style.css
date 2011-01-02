@@ -434,7 +434,7 @@ a#logo{
 	height: 18px;
 }
 
-.blue_players li a img.avatar {
+.blue_players li a img.avatar, .red_players li a img.avatar {
 	height:16px;
 }
 

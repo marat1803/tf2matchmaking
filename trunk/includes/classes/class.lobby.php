@@ -26,6 +26,7 @@ class lobby {
 		$this->type = $lobbyinfo['type'];
 		$this->region = $lobbyinfo['region'];
 		$this->map = $lobbyinfo['map'];
+		$this->players_spec = displayLobbyPlayers($this->id,$this->type,0);
 		$this->players_blu = displayLobbyPlayers($this->id,$this->type,1);
 		$this->players_red = displayLobbyPlayers($this->id,$this->type,2);
 		$this->rules = $lobbyinfo['rules'];
@@ -33,8 +34,23 @@ class lobby {
 		$this->division = $lobbyinfo['division'];
 		$this->date = $lobbyinfo['date'];	
 		$this->sid = $lobbyinfo['sid'];	
+		$this->leader = $lobbyinfo['leader'];
 	}
 
+	public function lobbyinfo() {
+		$info = array(
+			'id' => $this->id,
+			'name' => $this->name,
+			'type' => $this->type,
+			'region' => $this->ragion,
+			'map' => $this->map,
+			'division' => $this->division,
+			'date' => $this->date,
+			'server' => $this->sid,
+			'leader' => $this->leader
+			);
+		return $info;
+	}
 
 	public function lobbytype($id) {
 		if(!$id || $id == $this->id) {
@@ -105,7 +121,8 @@ function displayLobby($id) {
 						<span class="matchtype">' .type($lobby->type) .'</span>
 						<span class="playercount"><span class="currentplayers">'.countPlayers($lobby->id).'</span>/<span class="maxplayers">'. 2*(teamplayers($lobby->type)).'</span></span>
 			</div>
-				<li class="lobby_tooltip" id="lobby_tooltip:'.$lobby->id.'">
+			</li>
+				<li class="lobby_tooltip_big" id="lobby_tooltip:'.$lobby->id.'">
 			<ul class="blue_players">
 				<li class="teamname blu">BLU</li>
 				'.$lobby->players_blu .'
@@ -114,6 +131,8 @@ function displayLobby($id) {
 				<li class="teamname red">RED</li>
 				'.$lobby->players_red .'
 			</ul>
+			<h1 style="margin-top: 10px;  margin-right: 5px;">Spectators:</h1>
+			<ul style="margin-top: 10px; float: left;">'.$lobby->players_spec.'</ul>
 		</li>';
 }
 

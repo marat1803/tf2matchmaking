@@ -16,14 +16,14 @@ class User
 		$this->steamid = $userinfo['steamid'];
 		$this->rating = rating($this->id);
 		$this->avatar = APIGet($this->steamid,avatar);
-		$this->etf2lid = str_replace('STEAM', '', GetAuthID($this->steamid));
+		$this->etf2lid = str_replace('STEAM_', '', GetAuthID($this->steamid));
 	}
 
 	public function display_profile($id, $full = true) 
 	{
 		if ($full)
 			return '<h1>User Info</h1>
-					<img src=' . $this->avatar . ' width="32" height="32"></img>
+					<img class="small_avatar" src=' . $this->avatar . ' width="32" height="32"></img>
 					<span class="user_name">' . $this->nickname . '</span>
 					<span class="user_steamid">' . GetAuthID($this->steamid) . '</span>
 					<dl>

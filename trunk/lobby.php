@@ -4,8 +4,8 @@ require_once 'includes/header.php';
 
 $css = 'style.css';
 $js = 'lobby.js';
-$uid = esc_int($_SESSION['id']);
-$lid = esc_int($_REQUEST['id']);
+$uid = $_SESSION['id'];
+$lid = $_REQUEST['id'];
 $team = esc_int($_POST['team']);
 $start = esc_int($_POST['start']);
 $ready = esc_int($_POST['ready']);
@@ -21,15 +21,15 @@ echo '<ul id="sidebar">
 			<li class="button join_game">Start Game!</li>
 			<li id="lobby_info">
 				<dl>
-					<dt>Name</dt><dd>Test Server</dd>
-					<dt>IP</dt><dd>127.0.0.1</dd>
-					<dt>Team</dt><dd>
-						<span class="join_blu"></span>
-						<span class="join_spec"></span>
-						<span class="join_red"></span>
-					</dd>
-					<!--<dt>IP</dt><dd>127.0.0.1</dd>-->
+					<dt>Name:</dt><dd>Test Server</dd>
+					<dt>IP:</dt><dd>127.0.0.1</dd>
+					<dt>Location:</dt><dd>Amsterdam</dd>
+					<dt>Rules:</dt><dd>ETF2L 6 vs. 6</dd>	
 				</dl>	
+			</li>
+			<li class="profile_panel">';
+			echo $user->display_profile($uid) .'
+			<h1 style="margin-top: 10px;">Settings</h1>
 				<ul class="class_list">
 		            <li class="scout"><img src="theme/images/class/scout.png" /></li>
 		            <li class="soldier"><img src="theme/images/class/soldier.png" /></li>
@@ -42,13 +42,15 @@ echo '<ul id="sidebar">
 		            <li class="spy"><img src="theme/images/class/spy.png" /></li>
 		            <li class="random"><img src="theme/images/class/noclass.png" /></li>
          		</ul>
-			</li>
-			<li class="profile_panel">';
-			echo $user->display_profile($uid) .'
+				<span class="team_switch">
+					<span class="join_blu join_active"></span>
+					<span class="join_spec"></span>
+					<span class="join_red"></span>
+				</span>
 			</li>
 			<li class="friends_panel">
 				<h1>Friends</h1>
-				<ul>'; echo getfriends($user->id,true); echo '
+				<ul>'; echo getfriends($uid,true); echo '
 				</ul>
 			</li>
 		</ul>
