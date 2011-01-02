@@ -2,9 +2,9 @@
 // This is just a test
 require 'includes/header.php';
 
-if(isset($_SESSION['steamid'])) {
+if(isset($_SESSION['id'])) {
 
-$id = User::get_id($_SESSION['steamid']);
+$id = $_SESSION['id'];
 
 $user = new User($id);
 

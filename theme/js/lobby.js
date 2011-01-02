@@ -1,12 +1,15 @@
 $(document).ready(function(){
 	refreshRate = 5000;
 	refreshInterval = setInterval('refreshUsers()', refreshRate);
+	readystatus();
+	changeReady();
+	changeTeam();
 });
 
 function refreshUsers() {
 	
 	$.ajax({
-		data: {"id": 1, "request": "lobbydata"},
+		data: {"id": 1, "request": "lobbyplayers", "method": "read"},
 		url: 'api.php',
 		success: function(data){
 			result = JSON.parse(data);
@@ -67,8 +70,53 @@ function refreshUsers() {
 
 		}
 	});
+}
 
+function lobbyLeader(callback) {
+	$.ajax({
+		data: {"id": 1, "request": "lobbyinfo", "method": "read"},
+		url: 'api.php',
+		dataType: 'json',
+		complete: function(data){
+			callback(data.leader);
+		}
+	});
+}
 
+function readystatus() {
+	
+	$.ajax({
+		data: {"id": 1, "request": "userready", "method": "read"},
+		url: 'api.php',
+		dataType: 'json',
+		success: function(data){
+			if (data == 1) {
+				$("li.button.join_game").hide();
+				$("li.button.ready_up").hide();
+				$("li.button.ready_off").show();
+			} else {
+				$("li.button.ready_up").show();
+				$("li.button.ready_off").hide();
+				$("li.button.join_game").hide();
+			}
+		}
+	});
+}
 
+function changeReady() {
+	$('li.button.ready_off').click(function(){
+		alert('ready');
+	});
+}
 
+function changeTeam() {
+	$('span.join_blu.join_active').click(function(){
+		alert('blu');
+	});
+	$('span.join_spec').click(function(){
+		alert('spec');
+	});
+	$('span.join_red').click(function(){
+		alert('red');
+	});
 }
