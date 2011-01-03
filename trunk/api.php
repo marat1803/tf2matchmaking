@@ -3,17 +3,30 @@
 
 require_once 'includes/header.php';
 
-$uid = esc_int($_SESSION['id']);
-$lid = esc_int($_REQUEST['id']);
+$uid = $_SESSION['id'];
+$lid = $_GET['id'];
 $request = $_GET['request'];
 $method = $_GET['method'];
+$team = $_GET['team'];
+$class = $_GET['class'];
+$ready = $_GET['ready'];
+$id = getLPid($uid,$lid);
+
 
 if ($method == "read") {
 	if ($uid) $user = new User($uid);
 
 	if ($request == "lobbyinfo" && $lid) {
 		$lobby = new Lobby($lid);
-		echo json_encode($lobby->lobbyinfo());
+		$lobbyinfo = $lobby->lobbyinfo();
+		$lobbyplayers = $lobby->lobbyData();
+		$count = countPlayers($id);
+		$array = array(
+			'ready' => readyStatus($id,true),
+			'info' => $lobbyinfo,
+			'count' => $count,
+			'players' => $lobbyplayers);
+		echo json_encode($array);
 	}
 
 	if ($request == "lobbyplayers" && $lid) {
@@ -22,14 +35,29 @@ if ($method == "read") {
 	}
 
 	if ($request == "userready" && $lid && uid) {
-		$lpid = getLPid($uid,$lid);
-		$status = readyStatus($lpid,true);
-		echo json_encode($status);
+		$status = readyStatus($id,true);
+		$lobby = new Lobby($lid);
+		$leader = $lobby->lobbyLeader();
+		$array = array(
+			'ready' => $status,
+			'leader' => $leader);
+		echo json_encode($array);
 	}
 }
 
 if ($method == "write") {
+	if ($uid && $lid && isset($team) && $request == "changeTeam") {
+		joinTeam($id, $team);
+	}
+
+	if ($uid && $lid && isset($class) && $request == "switchClass") {
+		switchClass($id, $class);
+	}
 	
+	if ($uid && $lid && isset($ready) && $request = "readystatus") {
+		readystatus($id, false, $ready);
+	}
+
 }
 
 ?>
