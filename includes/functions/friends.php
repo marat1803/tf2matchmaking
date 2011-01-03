@@ -2,9 +2,10 @@
 
 function getOnline ($id)
 {
-	$sql = 'SELECT * FROM users WHERE id = '.mysql_real_escape_string($id);
-	$query = mysql_query($sql);
-	$users = mysql_fetch_assoc($query);
+	$db = Database::obtain();
+	$sql = 'SELECT * FROM users WHERE id = '.$db->escape($id);
+	$query = $db->query($sql);
+	$users = $db->fetch($query);
 	$lastseen = $users['lastseen'];
 	if ((time() - strtotime($lastseen)) > (5 * 60)) return "Offline";
 	else return "Online";
@@ -12,14 +13,15 @@ function getOnline ($id)
 
 
 function getfriends ($id,$invite = false) {
-	$query = 'SELECT friends FROM users WHERE id='.mysql_real_escape_string($id);
-	$result = mysql_query($query);
-	$friendsinfo = mysql_fetch_assoc($result);	
+	$db = Database::obtain();
+	$query = 'SELECT friends FROM users WHERE id='.$db->escape($id);
+	$result = $db->query($query);
+	$friendsinfo = $db->fetch($result);	
 	$fids = $friendsinfo['friends'];
 	if ($fids != "" && count($fids) > 0) {
-		$query = 'SELECT * FROM users WHERE id IN(' . mysql_real_escape_string($fids) .') ORDER BY lastseen DESC LIMIT 10';
-		$result = mysql_query($query);
-		while ($friend = mysql_fetch_array($result, MYSQL_ASSOC)) {
+		$query = 'SELECT * FROM users WHERE id IN(' . $db->escape($fids) .') ORDER BY lastseen DESC LIMIT 10';
+		$result = $db->query($query);
+		while ($friend = $db->fetch($result)) {
 			$online = getOnline($friend['id']);			
 			$nickname = $friend['nickname'];
 			$steamid = $friend['steamid'];
@@ -43,9 +45,10 @@ function getfriends ($id,$invite = false) {
 }
 
 function addFriend ($id,$target) {
-        $sql = 'SELECT friends FROM users WHERE id = '.mysql_real_escape_string($id);
-        $query = mysql_query($sql);
-        $result = mysql_fetch_assoc($query);
+	$db = Database::obtain();
+        $sql = 'SELECT friends FROM users WHERE id = '.$db->escape($id);
+        $query = $db->query($sql);
+        $result = $db->fetch($query);
         $friends = $result['friends'];
         $fids = explode(",", $friends);
         foreach($fids as $fid) {
@@ -55,8 +58,8 @@ function addFriend ($id,$target) {
                 else {
                         if ($friends == "") $friends .= $target; 
                         else $friends .= ','.$target;
-                        $sql = "UPDATE users SET friends = '".mysql_real_escape_string($friends)."' WHERE id = ".mysql_real_escape_string($id);
-                        $query = mysql_query($sql);
+                        $sql = "UPDATE users SET friends = '".$db->escape($friends)."' WHERE id = ".$db->escape($id);
+                        $query = $db->query($sql);
                 }
         }
                 else echo 'You already friend with this player.';

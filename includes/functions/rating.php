@@ -2,9 +2,10 @@
 
 function rating($id)
 {
-	$query =  'SELECT * FROM ratings WHERE id = '.mysql_real_escape_string($id);
-	$result = mysql_query($query);
-	$ratinginfo = mysql_fetch_assoc($result);
+	$db = Database::obtain();
+	$query =  'SELECT * FROM ratings WHERE id = '.$db->escape($id);
+	$result = $db->query($query);
+	$ratinginfo = $db->fetch($result);
 
 	if (($ratinginfo['plus'] + $ratinginfo['minus']) == 0)
 	$ratingscore = "0.45";
@@ -20,9 +21,10 @@ function rating($id)
 }
 
 function rate($source,$target,$value) {
-	$sql = 'SELECT rated FROM lobby_players WHERE id = '.mysql_real_escape_string($source);
-	$query = mysql_query($sql);
-	$rated = mysql_fetch_assoc($query);
+	$db = Database::obtain();
+	$sql = 'SELECT rated FROM lobby_players WHERE id = '.$db->escape($source);
+	$query = $db->query($sql);
+	$rated = $db->fetch($query);
 	$rated = $rated['rated'];
 	$rates = explode(',', $rated);
 	foreach ($rates as $rate) {
@@ -32,15 +34,15 @@ function rate($source,$target,$value) {
 	if ($allow) {
 			if ($rated == "") $rated .= $target; 
             else $rated .= ','.$target;
-            $rated = mysql_real_escape_string($rated);
+            $rated = $db->escape($rated);
 			$sql = 'UPDATE lobby_players SET rated = \''.$rated.'\' WHERE id = '.$source;
-			mysql_query($sql); 
+			$db->query($sql); 
 			if ($value == 1) {
 				$sql = 'UPDATE ratings SET plus = plus + 1 WHERE id = '.$target;		
 			} else {
 				$sql = 'UPDATE ratings SET minus = minus + 1 WHERE id = '.$target;
 			}
-			mysql_query($sql);
+			$db->query($sql);
 	} else echo 'You already rated this player';
 }
 

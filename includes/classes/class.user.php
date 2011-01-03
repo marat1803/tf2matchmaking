@@ -8,8 +8,9 @@ class User
 {
 	public function __construct($id) 
 	{
-		$result = mysql_query("SELECT id, nickname, steamid FROM users WHERE id = '$id' LIMIT 1");
-		$userinfo = mysql_fetch_assoc($result);
+		$db = Database::obtain();
+		$result = $db->query("SELECT id, nickname, steamid FROM users WHERE id = '$id' LIMIT 1");
+		$userinfo = $db->fetch($result);
 
 		$this->id = $userinfo['id'];
 		$this->nickname = $userinfo['nickname'];
@@ -46,15 +47,17 @@ class User
 
 	public static function get_id($steamid) 
 	{
-		$query = mysql_query("SELECT id FROM users WHERE steamid = '$steamid' LIMIT 1");
-		$result = mysql_fetch_array($query);
+		$db = Database::obtain();
+		$query = $db->query("SELECT id FROM users WHERE steamid = '$steamid' LIMIT 1");
+		$result = $db->fetch($query);
 		return $result['id'];
 	}
 
 	public static function get_steamid($id) 
 	{
-		$query = mysql_query("SELECT steamid FROM users WHERE id = '$id' LIMIT 1");
-		$result = mysql_fetch_array($query);
+		$db = Database::obtain();
+		$query = $db->query("SELECT steamid FROM users WHERE id = '$id' LIMIT 1");
+		$result = $db->fetch($query);
 		return $result['steamid'];
 	}
 }

@@ -147,6 +147,10 @@ a#logo{
 	background-color: #4c231c;
 }
 
+.button.join_game.locked {
+	background-color: gray;
+}
+
 
 .lobby_panel, .profile_panel, .friends_panel, #lobby_filter, #lobby_info {
 	padding: 7px;

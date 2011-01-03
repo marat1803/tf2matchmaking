@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	id = getQuerystring('id');
 	refreshPage(id);
-	refreshRate = 5000;
-//	refreshInterval = setInterval('refreshPage(id)', refreshRate);
+	refreshRate = 100;
+	refreshInterval = setInterval('refreshPage(id)', refreshRate);
 	changeReady(id);
 	changeTeam(id);
 	switchClass(id);
@@ -87,7 +87,7 @@ function refreshPage(id) {
 				$("li.button.ready_up").hide();
 				$("li.button.join_game").hide();
 				$("li.button.ready_off").show();
-				if (data.leader == id) {
+				if (data.info.leader == id) {
 					$("li.button.join_game").show();
 					$("li.button.ready_off").hide();
 				} else $("li.button.join_game").hide();
@@ -98,8 +98,17 @@ function refreshPage(id) {
 				$("li.button.join_game").hide();
 			}
 		
-
-		}
+			if (data.count == 12 && data.players.spec.size == "0") {
+				$('li.button.join_game').click(function(){
+					$.ajax({
+						data: {"id": id, "request": "startGame", "method": "write"},
+						url: 'api.php',
+						dataType: 'json',
+					});					
+				});
+			}
+			else $('li.button.join_game').addClass('locked');
+	}
 	});
 }
 
@@ -122,6 +131,7 @@ function changeReady(id) {
 		});
 	});
 }
+
 
 function changeTeam(id) {
 	$('body').delegate('span.join_blu, li.teamname.blu', 'click', function(){

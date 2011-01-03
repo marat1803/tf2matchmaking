@@ -80,17 +80,19 @@ function player_class($class)
 	}
 }
 function player($playerID) {
-	$sql = "SELECT * FROM users WHERE `id` = '".mysql_real_escape_string($playerID)."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$db = Database::obtain();
+	$sql = "SELECT * FROM users WHERE `id` = '".$db->escape($playerID)."' LIMIT 1";
+	$res = $db->query($sql) or die(mysql_error());
+	$row = $db->fetch($res);
 	return $row;
 }
 
 function grabLobbyPlayers($lobbyID, $lobbytype, $team) {
-	$sql = "SELECT * FROM lobby_players WHERE `lobbyID` = '".mysql_real_escape_string($lobbyID)."' AND `team` = '".$team."'"; 
-	$res = mysql_query($sql) or die(mysql_error());
+	$db = Database::obtain();
+	$sql = "SELECT * FROM lobby_players WHERE `lobbyID` = '".$db->escape($lobbyID)."' AND `team` = '".$team."'"; 
+	$res = $db->query($sql) or die(mysql_error());
 	$data = array();
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = $db->fetch($res)) {
 		$player = player($row["playerid"]);
 		$steamid = $player["steamid"];
 		$avatar = APIGet($steamid,avatar);
@@ -129,70 +131,80 @@ function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
 
 
 function countPlayers($lobbyid) {
-	$sql = 'SELECT * FROM lobby_players WHERE lobbyid = '.mysql_real_escape_string($lobbyid);
-	$res = mysql_query($sql);
+	$db = Database::obtain();
+	$sql = 'SELECT * FROM lobby_players WHERE lobbyid = '.$db->escape($lobbyid);
+	$res = $db->query($sql);
 	$count = mysql_num_rows($res);
 	return $count;
 }
 
 function countLobbies($status) {
-	$sql = 'SELECT * FROM lobbies WHERE status = "'.mysql_real_escape_string($status).'"';
-	$res = mysql_query($sql);
+	$db = Database::obtain();
+	$sql = 'SELECT * FROM lobbies WHERE status = "'.$db->escape($status).'"';
+	$res = $db->query($sql);
 	$count = mysql_num_rows($res);
 	return $count;
 }
 
 function countTeamPlayers($lid,$team) {
-	$sql = 'SELECT COUNT(*) AS `count` FROM lobby_players WHERE lobbyID = '.mysql_real_escape_string($lid).' AND team = '.mysql_real_escape_string($team);
-	$query = mysql_query($sql);
+	$db = Database::obtain();
+	$sql = 'SELECT COUNT(*) AS `count` FROM lobby_players WHERE lobbyID = '.$db->escape($lid).' AND team = '.$db->escape($team);
+	$query = $db->query($sql);
 	$row = mysql_fetch_row($query);
 	return $row[0];
 }
 
 function getLPid($pid,$lid) {
-	$sql = 'SELECT * FROM lobby_players WHERE playerid = '.mysql_real_escape_string($pid).' AND lobbyid = '.mysql_real_escape_string($lid);
-	$query = mysql_query($sql);
-	$id = mysql_fetch_assoc($query);
+	$db = Database::obtain();
+	$sql = 'SELECT * FROM lobby_players WHERE playerid = '.$db->escape($pid).' AND lobbyid = '.$db->escape($lid);
+	$query = $db->query($sql);
+	$id = $db->fetch($query);
 	return $id['id'];
 }
 
 function newLobby($name,$type,$region,$map,$division) {
-	$sql = 'INSERT INTO lobbies (name, type, region, map, division) VALUES ('.mysql_real_escape_string($name).', '.mysql_real_escape_string($type).', '.mysql_real_escape_string($region).', '.mysql_real_escape_string($map).', '.mysql_real_escape_string($division);
-	$query = mysql_query($sql);
+	$db = Database::obtain();
+	$sql = 'INSERT INTO lobbies (name, type, region, map, division) VALUES ('.$db->escape($name).', '.$db->escape($type).', '.$db->escape($region).', '.$db->escape($map).', '.$db->escape($division);
+	$query = $db->query($sql);
 }
 
 function joinLobby($id,$lid) {
-	$sql = 'INSERT INTO lobby_players (playerid, lobbyID) VALUES('.mysql_real_escape_string($id).', '.mysql_real_escape_string($lid).')';
-	$query = mysql_query($sql);
+	$db = Database::obtain();
+	$sql = 'INSERT INTO lobby_players (playerid, lobbyID) VALUES('.$db->escape($id).', '.$db->escape($lid).')';
+	$query = $db->query($sql);
 }
 
 function leaveLobby($id) {
-	$sql = 'DELETE FROM lobby_players WHERE id = '.mysql_real_escape_string($id);
-	$query = mysql_query($sql);
+	$db = Database::obtain();
+	$sql = 'DELETE FROM lobby_players WHERE id = '.$db->escape($id);
+	$query = $db->query($sql);
 }
 
 function joinTeam($id,$team) {
-	$sql = 'UPDATE lobby_players SET team = '.mysql_real_escape_string($team).' WHERE id = '.mysql_real_escape_string($id);
-	$query = mysql_query($sql);
+	$db = Database::obtain();
+	$sql = 'UPDATE lobby_players SET team = '.$db->escape($team).' WHERE id = '.$db->escape($id);
+	$query = $db->query($sql);
 }
 
 function switchClass($id,$class) {
-	$sql = 'UPDATE lobby_players SET class = '.mysql_real_escape_string($class).' WHERE id = '.mysql_real_escape_string($id);
-	$query = mysql_query($sql);
+	$db = Database::obtain();
+	$sql = 'UPDATE lobby_players SET class = '.$db->escape($class).' WHERE id = '.$db->escape($id);
+	$query = $db->query($sql);
 }
 
 function readystatus($id,$show,$ready = false) {
+	$db = Database::obtain();
 	if ($ready == 1 && !$show) {
-		$sql = 'UPDATE lobby_players SET ready = "1" WHERE id = '.mysql_real_escape_string($id);
-		$query = mysql_query($sql);
+		$sql = 'UPDATE lobby_players SET ready = "1" WHERE id = '.$db->escape($id);
+		$query = $db->query($sql);
 	} elseif ($ready == 0 && !$show) {
-		$sql = 'UPDATE lobby_players SET ready = "0" WHERE id = '.mysql_real_escape_string($id);
-		$query = mysql_query($sql);
+		$sql = 'UPDATE lobby_players SET ready = "0" WHERE id = '.$db->escape($id);
+		$query = $db->query($sql);
 	}
 	if ($show) {
-		$sql = 'SELECT * FROM lobby_players WHERE id = '.mysql_real_escape_string($id);
-		$query = mysql_query($sql);
-		$result = mysql_fetch_assoc($query);
+		$sql = 'SELECT * FROM lobby_players WHERE id = '.$db->escape($id);
+		$query = $db->query($sql);
+		$result = $db->fetch($query);
 		return $result['ready'];		
 	}
 }
@@ -205,20 +217,22 @@ function freeslots($id,$team) {
 }
 
 function startLobby($id) {
-	$sql = 'UPDATE lobbies SET status = 1 WHERE id = '.mysql_real_escape_string($id);
-	$query = mysql_query($sql);
+	$db = Database::obtain();
+	$sql = 'UPDATE lobbies SET status = "ingame" WHERE id = '.$db->escape($id);
+	$query = $db->query($sql);
 }
 
 function isPlayerInLobby($id) {
+	$db = Database::obtain();
 	$sql = "
 	SELECT l.id FROM lobby_players AS `lp`
 	LEFT JOIN lobbies AS `l`
 	ON l.id = lp.lobbyID
-	WHERE l.status != 'closed' AND lp.playerid = ".mysql_real_escape_string($id)."
+	WHERE l.status != 'closed' AND lp.playerid = ".$db->escape($id)."
 	GROUP BY lp.playerid;
 	";
-	$query = mysql_query($sql);
-	$row = mysql_fetch_assoc($query);
+	$query = $db->query($sql);
+	$row = $db->fetch($query);
 	if($row) {
 		return $row['id'];
 	} else {
@@ -227,7 +241,8 @@ function isPlayerInLobby($id) {
 }
 
 function changeLobby ($id,$setting,$into) {
-	$sql = "UPDATE lobbies SET `".$setting."` = '".$into. "' WHERE id = ".mysql_real_escape_string($id);
-	$query = mysql_query($sql);
+	$db = Database::obtain();
+	$sql = "UPDATE lobbies SET `".$setting."` = '".$into. "' WHERE id = ".$db->escape($id);
+	$query = $db->query($sql);
 }
 ?>

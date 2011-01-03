@@ -17,9 +17,10 @@ class lobby {
 	public $sid;
 
 	public function __construct($id) {
-		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
-		$query = mysql_query($sql);
-		$lobbyinfo = mysql_fetch_assoc($query);
+		$db = Database::obtain();
+		$sql = 'SELECT * FROM lobbies WHERE id = '.$db->escape($id);
+		$query = $db->query($sql);
+		$lobbyinfo = $db->fetch($query);
 		
 		$this->id = $lobbyinfo['id'];
 		$this->name = $lobbyinfo['name'];
@@ -46,6 +47,7 @@ class lobby {
 			'map' => $this->map,
 			'division' => $this->division,
 			'date' => $this->date,
+			'status' => $this->status,
 			'server' => $this->sid,
 			'leader' => $this->leader
 			);
@@ -60,9 +62,10 @@ class lobby {
 		if(!$id || $id == $this->id) {
 			return $this->type;
 		}
-		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
-		$query = mysql_query($sql);
-		$lobbyinfo = mysql_fetch_assoc($query);
+		$db = Database::obtain();
+		$sql = 'SELECT * FROM lobbies WHERE id = '.$db->escape($id);
+		$query = $db->query($sql);
+		$lobbyinfo = $db->fetch($query);
 		return $lobbyinfo['type'];		
 	}
 
@@ -70,9 +73,10 @@ class lobby {
 		if(!$id || $id == $this->id) {
 			return $this->status;
 		}
-		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
-		$query = mysql_query($sql);
-		$lobbyinfo = mysql_fetch_assoc($query);
+		$db = Database::obtain();
+		$sql = 'SELECT * FROM lobbies WHERE id = '.$db->escape($id);
+		$query = $db->query($sql);
+		$lobbyinfo = $db->fetch($query);
 		return $lobbyinfo['status'];	
 	}
 	
@@ -80,9 +84,10 @@ class lobby {
 		if(!$id || $id == $this->id) {
 			return $this->sid;
 		}
-		$sql = 'SELECT * FROM lobbies WHERE id = '.mysql_real_escape_string($id);
-		$query = mysql_query($sql);
-		$lobbyinfo = mysql_fetch_assoc($query);
+		$db = Database::obtain();
+		$sql = 'SELECT * FROM lobbies WHERE id = '.$db->escape($id);
+		$query = $db->query($sql);
+		$lobbyinfo = $db->fetch($query);
 		return $lobbyinfo['sid'];	
 	}
 
@@ -141,15 +146,19 @@ function displayLobby($id,$full = false) {
 			if ($full) echo '
 			<h1 style="margin-top: 10px;  margin-right: 5px;">Spectators:</h1>
 			<ul class="spec_players" style="margin-top: 10px; float: left;">'.$lobby->players_spec.'</ul>
-		</li>';
+		</li>
+					<div class="chat_container">
+				<h1>Chat</h1>
+			</div>';
 			else echo '<img class="start" src="theme/images/start.png"></li>';
 }
 
 function displaylobbies($type) {	
-	$query = 'SELECT * FROM lobbies WHERE status = "open" AND type = '.mysql_real_escape_string($type);
-	$result = mysql_query($query);
+	$db = Database::obtain();
+	$query = 'SELECT * FROM lobbies WHERE status = "open" AND type = '.$db->escape($type);
+	$result = $db->query($query);
 	
-	while ($lobbyinfo = mysql_fetch_assoc($result)) {
+	while ($lobbyinfo = $db->fetch($result)) {
 		$id = $lobbyinfo['id'];
 		displayLobby($id);
 	}
