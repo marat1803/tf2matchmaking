@@ -79,12 +79,7 @@ if(lobbystatus($lobby->lobbystatus($lid)) == "Finished" && isPlayerInLobby($uid)
 			redirect('lobby.php?id='.$lid,0);
 		}
 			elseif (lobbystatus($lobby->lobbystatus($lid)) == "Ready Phase" && isPlayerInLobby($uid) == $lid) {
-				displaylobby($lid); 
-				echo '
-						<form name="ready" action="lobby.php" method="post">
-						<input type="hidden" name="id" value="'.$lid.'">
-						<input type="submit" name="ready" value="1" />
-						</form>';
+				displaylobby($lid, true); 
 			}
 				else
 				{

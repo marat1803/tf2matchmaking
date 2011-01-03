@@ -1,24 +1,26 @@
 $(document).ready(function(){
+	id = getQuerystring('id');
+	refreshPage(id);
 	refreshRate = 5000;
-	refreshInterval = setInterval('refreshUsers()', refreshRate);
-	readystatus();
-	changeReady();
-	changeTeam();
+//	refreshInterval = setInterval('refreshPage(id)', refreshRate);
+	changeReady(id);
+	changeTeam(id);
+	switchClass(id);
 });
 
-function refreshUsers() {
+function refreshPage(id) {
 	
 	$.ajax({
-		data: {"id": 1, "request": "lobbyplayers", "method": "read"},
+		data: {"id": id, "request": "lobbyinfo", "method": "read"},
 		url: 'api.php',
+		dataType: 'json',
 		success: function(data){
-			result = JSON.parse(data);
 			$bluUl = $('ul.blue_players').empty().append('<li class="teamname blu">BLU</li>');
 			$redUl = $('ul.red_players').empty().append('<li class="teamname red">RED</li>');
 
-			for(var i=0;i<result.size;i++) {
-				if(!result.blu[i]) {
-					result.blu[i] = {
+			for(var i=0;i<data.players.size;i++) {
+				if(!data.players.blu[i]) {
+					data.players.blu[i] = {
 						id: 0,
 						class: null,
 						nickname: 'empty',
@@ -30,21 +32,21 @@ function refreshUsers() {
 				$a   = $('<a>');
 				$class = $('<img>');
 
-				$a.attr('href', 'profile.php?id=' + result.blu[i].id);
-				$class.attr('src', 'theme/images/class/' + (result.blu[i].class ? result.blu[i].class : 'noclass') + '.png');
-				$a.append($class).append(result.blu[i].nickname);
-				if(result.blu[i].avatar) {
+				$a.attr('href', 'profile.php?id=' + data.players.blu[i].id);
+				$class.attr('src', 'theme/images/class/' + (data.players.blu[i].class ? data.players.blu[i].class : 'noclass') + '.png');
+				$a.append($class).append(data.players.blu[i].nickname);
+				if(data.players.blu[i].avatar) {
 					$avatar = $('<img>').addClass('avatar');
-					$avatar.attr('src', (result.blu[i].avatar ? result.blu[i].avatar : ''));
+					$avatar.attr('src', (data.players.blu[i].avatar ? data.players.blu[i].avatar : ''));
 					$a.append($avatar);
 				}
 				$li.append($a);
 				$bluUl.append($li);
 			}
 
-			for(var i=0;i<result.size;i++) {
-				if(!result.red[i]) {
-					result.red[i] = {
+			for(var i=0;i<data.players.size;i++) {
+				if(!data.players.red[i]) {
+					data.players.red[i] = {
 						id: 0,
 						class: null,
 						nickname: 'empty',
@@ -56,67 +58,187 @@ function refreshUsers() {
 				$a   = $('<a>');
 				$class = $('<img>');
 
-				$a.attr('href', 'profile.php?id=' + result.red[i].id);
-				$class.attr('src', 'theme/images/class/' + (result.red[i].class ? result.red[i].class : 'noclass') + '.png');
-				$a.append($class).append(result.red[i].nickname);
-				if(result.red[i].avatar) {
+				$a.attr('href', 'profile.php?id=' + data.players.red[i].id);
+				$class.attr('src', 'theme/images/class/' + (data.players.red[i].class ? data.players.red[i].class : 'noclass') + '.png');
+				$a.append($class).append(data.players.red[i].nickname);
+				if(data.players.red[i].avatar) {
 					$avatar = $('<img>').addClass('avatar');
-					$avatar.attr('src', (result.red[i].avatar ? result.red[i].avatar : ''));
+					$avatar.attr('src', (data.players.red[i].avatar ? data.players.red[i].avatar : ''));
 					$a.append($avatar);
 				}
 				$li.append($a);
 				$redUl.append($li);
 			}
 
-		}
-	});
-}
+			spectators = [];
+			for (var i=0;i<data.players.size;i++) {
+				if (!data.players.spec[i]) {
+					data.players.spec[i] = {
+						id: 0,
+						nickname: null,
+					};
+					continue;
+				}
+				spectators.push(data.players.spec[i].nickname);
+			}
+			$('ul.spec_players').text(spectators.join(', '));
 
-function lobbyLeader(callback) {
-	$.ajax({
-		data: {"id": 1, "request": "lobbyinfo", "method": "read"},
-		url: 'api.php',
-		dataType: 'json',
-		complete: function(data){
-			callback(data.leader);
-		}
-	});
-}
-
-function readystatus() {
-	
-	$.ajax({
-		data: {"id": 1, "request": "userready", "method": "read"},
-		url: 'api.php',
-		dataType: 'json',
-		success: function(data){
-			if (data == 1) {
-				$("li.button.join_game").hide();
+			if (data.ready == 1) {
 				$("li.button.ready_up").hide();
+				$("li.button.join_game").hide();
 				$("li.button.ready_off").show();
+				if (data.leader == id) {
+					$("li.button.join_game").show();
+					$("li.button.ready_off").hide();
+				} else $("li.button.join_game").hide();
+
 			} else {
-				$("li.button.ready_up").show();
 				$("li.button.ready_off").hide();
+				$("li.button.ready_up").show();
 				$("li.button.join_game").hide();
 			}
+		
+
 		}
 	});
 }
 
-function changeReady() {
+
+
+
+function changeReady(id) {
 	$('li.button.ready_off').click(function(){
-		alert('ready');
+		$.ajax({
+			data: {"id": id, "request": "readystatus", "ready": "0", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});
+	$('li.button.ready_up').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "readystatus", "ready": "1", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
 	});
 }
 
-function changeTeam() {
-	$('span.join_blu.join_active').click(function(){
-		alert('blu');
+function changeTeam(id) {
+	$('body').delegate('span.join_blu, li.teamname.blu', 'click', function(){
+		$.ajax({
+			data: {"id": id, "request": "changeTeam", "team": "1", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+			success: function() {
+				refreshPage(id);
+			}
+		});
 	});
 	$('span.join_spec').click(function(){
-		alert('spec');
+		$.ajax({
+			data: {"id": id, "request": "changeTeam", "team": "0", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+			success: function() {
+				refreshPage(id);
+			}
+		});
 	});
-	$('span.join_red').click(function(){
-		alert('red');
+	$('body').delegate('span.join_red, li.teamname.red', 'click', function(){
+		$.ajax({
+			data: {"id": id, "request": "changeTeam", "team": "2", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+			success: function() {
+				refreshPage(id);
+			}
+		});
 	});
+}
+
+function switchClass (id) {
+	$('li.scout').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "switchClass", "class": "1", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});
+	$('li.soldier').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "switchClass", "class": "2", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});
+	$('li.pyro').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "switchClass", "class": "3", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});
+	$('li.demoman').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "switchClass", "class": "4", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});
+	$('li.heavy').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "switchClass", "class": "5", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});
+	$('li.engineer').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "switchClass", "class": "6", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});
+	$('li.medic').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "switchClass", "class": "7", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});
+	$('li.sniper').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "switchClass", "class": "8", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});
+	$('li.spy').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "switchClass", "class": "9", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});	
+	$('li.random').click(function(){
+		$.ajax({
+			data: {"id": id, "request": "switchClass", "class": "0", "method":"write"},
+			url: 'api.php',
+			dataType: 'json',
+		});
+	});
+	id = getQuerystring('id');
+	refreshPage(id);
+}
+
+function getQuerystring(key, default_)
+{
+  if (default_==null) default_=""; 
+  key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+  var qs = regex.exec(window.location.href);
+  if(qs == null)
+    return default_;
+  else
+    return qs[1];
 }

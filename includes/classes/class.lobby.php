@@ -52,6 +52,10 @@ class lobby {
 		return $info;
 	}
 
+	public function lobbyLeader() {
+		return $this->leader;
+	}
+
 	public function lobbytype($id) {
 		if(!$id || $id == $this->id) {
 			return $this->type;
@@ -92,6 +96,7 @@ class lobby {
 		$data = array(
 			'blu'  => grabLobbyPlayers($this->id, $this->type, 1),
 			'red'  => grabLobbyPlayers($this->id, $this->type, 2),
+			'spec' => grabLobbyPlayers($this->id, $this->type, 0),
 			'size' => teamplayers($this->type),
 		);
 		return $data;
@@ -99,7 +104,7 @@ class lobby {
 }
 
 
-function displayLobby($id) {
+function displayLobby($id,$full = false) {
 	$lobby = new lobby($id);
 	echo '<li class="lobby_panel" data-panel="lobby_tooltip-'.$lobby->id.'">
 			<img class="map_pic" src="theme/images/maps/' .$lobby->map .'.jpg">
@@ -121,8 +126,10 @@ function displayLobby($id) {
 						<span class="matchtype">' .type($lobby->type) .'</span>
 						<span class="playercount"><span class="currentplayers">'.countPlayers($lobby->id).'</span>/<span class="maxplayers">'. 2*(teamplayers($lobby->type)).'</span></span>
 			</div>
-			</li>
-				<li class="lobby_tooltip_big" id="lobby_tooltip:'.$lobby->id.'">
+			</li>';
+			if ($full) echo '<li class="lobby_tooltip_big" id="lobby_tooltip:'.$lobby->id.'">';
+			else echo '<li class="lobby_tooltip" id="lobby_tooltip:'.$lobby->id.'">';
+			echo '
 			<ul class="blue_players">
 				<li class="teamname blu">BLU</li>
 				'.$lobby->players_blu .'
@@ -130,10 +137,12 @@ function displayLobby($id) {
 			<ul class="red_players">
 				<li class="teamname red">RED</li>
 				'.$lobby->players_red .'
-			</ul>
+			</ul>';
+			if ($full) echo '
 			<h1 style="margin-top: 10px;  margin-right: 5px;">Spectators:</h1>
-			<ul style="margin-top: 10px; float: left;">'.$lobby->players_spec.'</ul>
+			<ul class="spec_players" style="margin-top: 10px; float: left;">'.$lobby->players_spec.'</ul>
 		</li>';
+			else echo '<img class="start" src="theme/images/start.png"></li>';
 }
 
 function displaylobbies($type) {	

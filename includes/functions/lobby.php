@@ -120,7 +120,8 @@ function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
 		}
 	} else {
 		foreach ($lobbyPlayers as $data) {
-			$display .= '<li>'.$data['nickname'].'</li>';
+			if ($display == "")	$display .= $data['nickname'];
+			else $display .= ', '.$data['nickname'];
 		}
 	}
 	return $display;
