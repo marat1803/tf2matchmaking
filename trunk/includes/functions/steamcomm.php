@@ -25,7 +25,7 @@ function APIGet ($steamid,$what)
                         $result = json_decode($api);
                         $avatar = $result->response->players->player[0]->avatarfull;
                         $filename = 'cache/avatars/'.$steamid.'.jpg';
-                       // copy($avatar, $filename);                       
+                        copy($avatar, $filename);                       
         }
         return 'cache/avatars/'.$steamid.'.jpg';
         } else {

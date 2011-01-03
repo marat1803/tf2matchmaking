@@ -54,8 +54,12 @@ if ($method == "write") {
 		switchClass($id, $class);
 	}
 	
-	if ($uid && $lid && isset($ready) && $request = "readystatus") {
+	if ($uid && $lid && isset($ready) && $request == "readystatus") {
 		readystatus($id, false, $ready);
+	}
+
+	if ($uid && lid && $request == "startGame") {
+		startLobby($id);
 	}
 
 }

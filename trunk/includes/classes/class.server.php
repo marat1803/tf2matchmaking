@@ -17,9 +17,10 @@ class server {
 	}
 
 	public function getServer($id) {
-		$sql = 'SELECT * FROM servers WHERE id = '.mysql_real_escape_string($id);
-		$query = mysql_query($sql);
-		$result = mysql_fetch_assoc($query);
+		$db = Database::obtain();
+		$sql = 'SELECT * FROM servers WHERE id = '.$db->escape($id);
+		$query = $db->query($sql);
+		$result = $db->fetch($query);
 		$this->id = $result['id'];
 		$this->ip = $result['ip'];
 		$this->port = $result['port'];
@@ -29,9 +30,9 @@ class server {
 	}
 
 	function isServerJoinable($id) {/*
-		$sql = 'SELECT status FROM servers WHERE id = '.mysql_real_escape_string($id);
-		$query = mysql_query($sql);
-		$result = mysql_fetch_assoc($query);
+		$sql = 'SELECT status FROM servers WHERE id = '.$db->escape($id);
+		$query = $db->query($sql);
+		$result = $db->fetch($query);
 		$status = $result['status'];*/
 		//return ($this->status == "online");
 		if ($status == "online") return true;
