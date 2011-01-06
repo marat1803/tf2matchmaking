@@ -210,9 +210,10 @@ function readystatus($id,$show,$ready = false) {
 }
 
 function freeslots($id,$team) {
-	$lobbyType = Lobby::lobbyType($id);
+	$lobby = new Lobby($id);
+	$lobbyType = $lobby->type;
 	$playerCount = countTeamPlayers($id, $team);
-	$maxPlayers = teamPlayers($lobbyType);//
+	$maxPlayers = teamPlayers($lobbyType);
 	return $maxPlayers - $playerCount;
 }
 
