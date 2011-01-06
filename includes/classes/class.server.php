@@ -25,7 +25,8 @@ class server {
 		$this->ip = $result['ip'];
 		$this->port = $result['port'];
 		$this->password = $result['password'];
-		$this->location = $result['location'];
+		$this->latitude = $result['latitude'];
+		$this->longitude = $result['longitude'];
 		$this->status = $result['status'];
 	}
 

@@ -19,4 +19,21 @@ function getOnlineServers() {
 	echo $serverlist;
 }
 
+
+function bestServer($latitude,$longitude,$server) {
+	for ($k=0;$k<count($server);$k++) {
+		for ($i=0;$i<count($latitude);$i++){
+			$sum = $sum + getDistance($latitude[$i],$longitude[$i],$server[$k]['latitude'],$server[$k]['longitude']);
+			if ($sum <= $min) {
+				$min = $sum;
+				$id = $k;
+			}
+		}
+	}
+	return $id;
+}
+
+
+
+
 ?>

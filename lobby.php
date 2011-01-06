@@ -4,60 +4,34 @@ require_once 'includes/header.php';
 
 $css = 'style.css';
 $js = 'lobby.js';
-$uid = $_SESSION['id'];
+
+$pid = $_SESSION['id'];
 $lid = $_REQUEST['id'];
-$team = esc_int($_POST['team']);
-$start = esc_int($_POST['start']);
-$ready = esc_int($_POST['ready']);
+$id = getLPid($pid,$lid);
 
 $lobby = new Lobby($lid);
-$user = new User($uid);
+$user = new User($pid);
 
 include_once 'includes/header.inc';
+include_once 'includes/pages/lobby.inc';
 
-echo '<ul id="sidebar">
-			<li class="button ready_up">Ready Up!</li>
-			<li class="button ready_off">Unready!</li>
-			<li class="button join_game">Start Game!</li>
-			<li id="lobby_info">
-				<dl>
-					<dt>Name:</dt><dd>Test Server</dd>
-					<dt>IP:</dt><dd>127.0.0.1</dd>
-					<dt>Location:</dt><dd>Amsterdam</dd>
-					<dt>Rules:</dt><dd>ETF2L 6 vs. 6</dd>	
-				</dl>	
-			</li>
-			<li class="profile_panel">';
-			echo $user->display_profile($uid) .'
-			<h1 style="margin-top: 10px;">Settings</h1>
-				<ul class="class_list">
-		            <li class="scout"><img src="theme/images/class/scout.png" /></li>
-		            <li class="soldier"><img src="theme/images/class/soldier.png" /></li>
-		            <li class="pyro"><img src="theme/images/class/pyro.png" /></li>
-		            <li class="demoman selected"><img src="theme/images/class/demo.png" /></li>
-		            <li class="heavy"><img src="theme/images/class/heavy.png" /></li>
-		            <li class="engineer"><img src="theme/images/class/engineer.png" /></li>
-		            <li class="medic"><img src="theme/images/class/medic.png" /></li>
-		            <li class="sniper"><img src="theme/images/class/sniper.png" /></li>
-		            <li class="spy"><img src="theme/images/class/spy.png" /></li>
-		            <li class="random"><img src="theme/images/class/noclass.png" /></li>
-         		</ul>
-				<span class="team_switch">
-					<span class="join_blu join_active"></span>
-					<span class="join_spec"></span>
-					<span class="join_red"></span>
-				</span>
-			</li>
-			<li class="friends_panel">
-				<h1>Friends</h1>
-				<ul>'; echo getfriends($uid,true); echo '
-				</ul>
-			</li>
-		</ul>
-		<div id="content">
-			<ul id="lobby_list">';
+switch ($lobby->status) {
+		case "open":
+			if (!isPlayerInLobby($pid)) joinLobby($pid,$lid);
+			break;
+		case "ready":
+			break;
+		case "ingame":
+			$server = new Server($lobby->lobbyserver($lid));
+			$server->joinServer($lobby->lobbyserver($lid));
+			break;
+		case "finished":
+			break;
+		case "closed":
+			break;
+}
 
-
+/*
 if ($start == 1) changeLobby($lid,status,ready);
 if ($ready == 1) readyStatus(getLPid($uid,$lid),true);
 
@@ -108,4 +82,6 @@ echo '
 </div>
 </body>
 </html>';
+
+*/
  ?>

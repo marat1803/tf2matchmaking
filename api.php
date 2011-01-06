@@ -11,6 +11,8 @@ $team = $_GET['team'];
 $class = $_GET['class'];
 $ready = $_GET['ready'];
 $id = getLPid($uid,$lid);
+$lat = $_GET['latitude'];
+$lon = $_GET['longitude'];
 
 
 if ($method == "read") {
@@ -43,11 +45,19 @@ if ($method == "read") {
 			'leader' => $leader);
 		echo json_encode($array);
 	}
+
+	if ($lid && $request == "distance" && $lat && $lon)
+		{
+			$lobby = new Lobby($id);
+			$server = new Server($lobby->lobbyserver($lid));
+			echo GetDistance($lat,$lon,$server->latitude,$server->longitude);
+		}
 }
 
 if ($method == "write") {
 	if ($uid && $lid && isset($team) && $request == "changeTeam") {
-		joinTeam($id, $team);
+		if (freeslots($lid,$team) > 0) joinTeam($id, $team);
+		echo freeslots($lid,$team);
 	}
 
 	if ($uid && $lid && isset($class) && $request == "switchClass") {

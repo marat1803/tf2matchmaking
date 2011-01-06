@@ -17,7 +17,6 @@ function refreshPage(id) {
 		success: function(data){
 			$bluUl = $('ul.blue_players').empty().append('<li class="teamname blu">BLU</li>');
 			$redUl = $('ul.red_players').empty().append('<li class="teamname red">RED</li>');
-
 			for(var i=0;i<data.players.size;i++) {
 				if(!data.players.blu[i]) {
 					data.players.blu[i] = {
@@ -71,12 +70,10 @@ function refreshPage(id) {
 			}
 
 			spectators = [];
-			for (var i=0;i<data.players.size;i++) {
+			for (var i=0;i<data.players.spec.length;i++) {
 				if (!data.players.spec[i]) {
-					data.players.spec[i] = {
-						id: 0,
-						nickname: null,
-					};
+					delete data.players.spec[i];
+					i--;
 					continue;
 				}
 				spectators.push(data.players.spec[i].nickname);
@@ -97,8 +94,9 @@ function refreshPage(id) {
 				$("li.button.ready_up").show();
 				$("li.button.join_game").hide();
 			}
-		
-			if (data.count == 12 && data.players.spec.size == "0") {
+
+			if (data.count == 2*data.players.size && data.players.spec.length == 0) {
+				$('li.button.join_game').removeClass('locked');
 				$('li.button.join_game').click(function(){
 					$.ajax({
 						data: {"id": id, "request": "startGame", "method": "write"},
