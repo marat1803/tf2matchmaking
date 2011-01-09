@@ -33,10 +33,8 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 
     /* Forms */
 
-    input {
-	}
-	label {
-	}
+    input { float: left;}
+	label { float: left; clear: left;}
 	input:focus {
 	}
 	
@@ -115,7 +113,7 @@ a#logo{
 
 .button, .play_now_button {
 	-moz-border-radius:5px; -webkit-border-radius: 5px; border-radius:5px;
-	-moz-box-shadow:0 2px 5px #333333;
+	-moz-box-shadow:0 2px 5px #333; -webkit-box-shadow:0 2px 5px #333; box-shadow:0 2px 5px #333;
 	background:url("images/gradient.png") repeat-x 0 -100px #FF970F;
 	border:1px solid #644640;
 	color:#FFFFFF;
@@ -130,7 +128,7 @@ a#logo{
 	padding:7px;
 	position:relative;
 	text-align:center;
-	text-shadow:0 2px 1px #000000;
+	text-shadow:0 2px 1px #000;
 	width:100%;
 	z-index: 10;
 }
@@ -151,11 +149,24 @@ a#logo{
 	background-color: gray;
 }
 
+.button.join{
+    background-color: #333333;
+    border: 1px solid #EEEEEE;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    margin-left: 10px;
+    margin-top: 15px;
+    padding: 3px;
+    width: 115px;
+}
 
-.lobby_panel, .profile_panel, .friends_panel, #lobby_filter, #lobby_info {
+
+.lobby_panel, .profile_panel, .friends_panel, #lobby_filter, #lobby_info, .panel {
 	padding: 7px;
 	-moz-border-radius: 5px;
 	-moz-box-shadow: 0 0 5px #333;
+	box-shadow: 0 0 5px #333;
+	border-radius: 5px
 	-webkit-border-radius: 5px;
 	-webkit-box-shadow: 0 0 5px #333;
 	float: left;
@@ -165,6 +176,11 @@ a#logo{
 	border:1px solid #2F251B;
 	position: relative;
 	z-index: 5;
+}
+
+.lobby_info{
+	float: right;
+	margin-right: 20px;
 }
 
 .login {
@@ -235,7 +251,7 @@ a#logo{
 }
 
 .lobby_panel:hover {
-	-moz-box-shadow: 0 0 10px #333;
+	-moz-box-shadow: 0 0 10px #333; 	box-shadow: 0 0 10px #333; 	-webkit-box-shadow: 0 0 10px #333;
 	cursor: pointer;
 	background:url("images/gradient.png") repeat-x scroll 0 -155px #2F251B;
 }
@@ -310,13 +326,17 @@ a#logo{
 	font-weight: bold;
 }
 
-.profile_panel h1, .friends_panel h1, .chat_container h1 {
+.profile_panel h1, .friends_panel h1, .chat_container h1, #lobby_info h1, .lobby_info h1 {
 	width: 100%;
 	border-bottom: 1px solid #da8a4c;
 	margin-bottom: 8px;
 	float: left;
 }
 
+#lobby_info h1, .lobby_info h1 {
+	margin-bottom: 3px;
+	margin-top: 5px;
+}
 .profile_panel img.small_avatar, .friends_panel img {
 	border: 1px solid #DA8A4C;
 	float: left;
@@ -339,7 +359,7 @@ a#logo{
 .user_name {
 	float: left;
 	width:170px;
-	color: #ECD1C1;
+	color: #F0E1BA;
 }
 
 .user_steamid, .user_steamon{
@@ -354,10 +374,10 @@ a#logo{
 	color: #aaa;
 }
 
-.profile_panel dd, #lobby_info dd {
+.profile_panel dd, #lobby_info dd, .lobby_info dd {
 	float: left;
 }
-.profile_panel dt, #lobby_info dt{
+.profile_panel dt, #lobby_info dt, .lobby_info dt{
 	width: 70px;
 	float: left;
 	clear: left;
@@ -367,7 +387,10 @@ a#logo{
 .lobby_tooltip, .lobby_tooltip_big {
 	-webkit-border-radius: 5px;
 	-moz-border-radius:5px;
+	border-radius: 5px;
 	-moz-box-shadow:0 0 5px #333333;
+	-webkit-box-shadow:0 0 5px #333333;
+	box-shadow:0 0 5px #333333;
 	background:url("images/gradient.png") repeat-x scroll 0 -150px #2F251B;
 	border:1px solid #2F251B;
 	margin-bottom:15px;
@@ -390,7 +413,10 @@ a#logo{
 	padding-left: 40px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius:5px;
+	border-radius: 5px;
 	-moz-box-shadow:0 0 5px #333333;
+	-webkit-box-shadow:0 0 5px #333333;
+	box-shadow:0 0 5px #333333;
 	background:url("images/gradient.png") repeat-x scroll 0 -150px #2F251B;
 	border:1px solid #2F251B;
 	margin-bottom:15px;
@@ -407,8 +433,9 @@ a#logo{
 
 .blue_players li, .red_players li {
 	padding: 3px;
-	-moz-border-radius:5px;
 	-webkit-border-radius: 5px;
+	-moz-border-radius:5px;
+	border-radius: 5px;
 	background: #3c352f;
 	margin: 3px;
 	width: 200px;
@@ -419,14 +446,27 @@ a#logo{
 
 .lobby_tooltip_big .blue_players li, .lobby_tooltip_big .red_players li {
 	padding: 5px;
-	-moz-border-radius:5px;
 	-webkit-border-radius: 5px;
+	-moz-border-radius:5px;
+	border-radius: 5px;
 	background: #3c352f;
 	margin: 3px;
 	width: 250px;
 	float: left;
 	clear: left;
 	line-height: 18px;
+}
+
+.lobby_tooltip_big .ready img.avatar{
+	-moz-box-shadow:0 0 4px lime;
+	-webkit-box-shadow:0 0 4px lime;
+	box-shadow:0 0 4px lime;
+}
+
+.lobby_tooltip_big .lobby_leader img.avatar{
+	-moz-box-shadow:0 0 4px gold;
+	-webkit-box-shadow:0 0 4px gold;
+	box-shadow:0 0 4px gold;
 }
 
 
@@ -453,6 +493,18 @@ a#logo{
 	float:right;
 	margin-left:3px;
 	border: 1px solid #DA8A4C;
+}
+
+.lobby_tooltip_big img.kick{
+	/* show to lobby leader on mouseover */
+    cursor: pointer;
+    float: right;
+    margin-top: 1px;
+	display: none;
+}
+
+.blue_players li:hover img.kick, .red_players li:hover img.kick {
+	display: block;
 }
 
 .teamname {
@@ -516,6 +568,8 @@ a#logo{
 	float: left;
 	cursor: pointer;
 	-moz-box-shadow:0 0 2px #000 inset;
+	-webkit-box-shadow:0 0 2px #000 inset;
+	box-shadow:0 0 2px #000 inset;
 }
 
 .join_spec{
@@ -541,6 +595,8 @@ a#logo{
 
 .join_active{
 	-moz-box-shadow:0 0 3px #DA8A4C inset;
+	-webkit-box-shadow:0 0 3px #DA8A4C inset;
+	box-shadow:0 0 3px #DA8A4C inset;
 }
 
 .join_spec:hover, .join_red:hover, .join_blu:hover{
@@ -549,7 +605,7 @@ a#logo{
 
 a.friend_inv{
 	-moz-border-radius:3px; -webkit-border-radius: 3px; border-radius:3px;
-	-moz-box-shadow:0 1px 2px #333333;
+	-moz-box-shadow:0 1px 2px #333333; -webkit-box-shadow:0 1px 2px #333333; box-shadow:0 1px 2px #333333;
 	background:url("images/gradient.png") repeat-x 0 -150px #2F251B;
 	border:1px solid #644640;
 	padding:1px;
@@ -566,7 +622,7 @@ a.friend_inv{
   width:221px;
   background:url(images/blueGradient.png) repeat-x bottom #312520;
   margin:4px;
-  -moz-border-radius:0.5em;
+  -moz-border-radius:0.5em; -webkit-border-radius:0.5em; border-radius:0.5em;
 }
 
 .teamlist.blue {
@@ -597,7 +653,7 @@ a.friend_inv{
   height: 45px;
   background:url(images/blueGradient.png) repeat-x bottom #312520;
   border:1px solid #1d1712;
-  -moz-border-radius:0.5em;
+  -moz-border-radius:0.5em; -webkit-border-radius:0.5em; border-radius:0.5em;
   float:left;
 }
 

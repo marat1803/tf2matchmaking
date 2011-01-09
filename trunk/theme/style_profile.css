@@ -33,10 +33,8 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 
     /* Forms */
 
-    input {
-	}
-	label {
-	}
+    input { float: left;}
+	label { float: left; clear: left; width: 100px; margin: 5px;}
 	input:focus {
 	}
 	
@@ -49,6 +47,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     blockquote { }
     strong { font-weight:bold; }
     em { font-style: italic; }
+	small {font-size: 0.8em;}
 
 	p {
 		padding: 5px 0 0 5px;
@@ -114,8 +113,8 @@ a#logo{
 /************/
 
 .button {
-	-moz-border-radius:5px 5px 5px 5px;
-	-moz-box-shadow:0 2px 5px #333333;
+	-moz-border-radius:5px; -webkit-border-radius: 5px; border-radius:5px;
+	-moz-box-shadow:0 2px 5px #333; -webkit-box-shadow:0 2px 5px #333; box-shadow:0 2px 5px #333;
 	background:url("images/gradient.png") repeat-x 0 -100px #FF970F;
 	border:1px solid #644640;
 	color:#FFFFFF;
@@ -135,29 +134,7 @@ a#logo{
 	z-index: 10;
 }
 
-.play_now_button {
-	-moz-border-radius:5px 5px 5px 5px;
-	-moz-box-shadow:0 2px 5px #333333;
-	background:url("images/gradient.png") repeat-x 0 -100px #FF970F;
-	border:1px solid #644640;
-	color:#FFFFFF;
-	cursor:pointer;
-	float:left;
-	font-family:TF2Build;
-	font-size:35px;
-	font-weight:bold;
-	line-height:1.2em;
-	margin-bottom:15px;
-	margin-left:-2px;
-	padding:7px;
-	position:relative;
-	text-align:center;
-	text-shadow:0 2px 1px #000000;
-	width:100%;
-	z-index: 10;
-}
-
-.play_now_button:hover, .button:hover {
+.button:hover {
 	background-position: 0 -70px;
 }
 
@@ -171,7 +148,7 @@ a#logo{
 }
 
 
-.lobby_panel, .profile_panel, .friends_panel, #lobby_filter, .big_panel, .avatar_panel, .nav_panel, .team_panel {
+.lobby_panel, .profile_panel, .friends_panel, #lobby_filter, .big_panel, .avatar_panel, .nav_panel, .team_panel, .panel {
 	padding: 7px;
 	-moz-border-radius: 5px;
 	-moz-box-shadow: 0 0 5px #333;
@@ -261,7 +238,7 @@ a#logo{
 	padding: 0 20px 5px 5px !important;
 }
 
- .big_panel .lobby_panel,  .big_panel .profile_panel, .big_panel .friends_panel, .big_panel #lobby_filter, .big_panel .avatar_panel, .big_panel .team_panel{
+ .big_panel .lobby_panel,  .big_panel .profile_panel, .big_panel .friends_panel, .big_panel #lobby_filter, .big_panel .avatar_panel, .big_panel .team_panel, .big_panel .panel{
 	padding: 7px;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
