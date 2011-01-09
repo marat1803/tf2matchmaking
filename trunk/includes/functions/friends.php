@@ -46,23 +46,24 @@ function getfriends ($id,$invite = false) {
 
 function addFriend ($id,$target) {
 	$db = Database::obtain();
-        $sql = 'SELECT friends FROM users WHERE id = '.$db->escape($id);
-        $query = $db->query($sql);
-        $result = $db->fetch($query);
-        $friends = $result['friends'];
-        $fids = explode(",", $friends);
-        foreach($fids as $fid) {
-                if ($fid == $target) $true = 1;  }
-        if ($true != 1) {
-                if ($target == $id) echo "You can't friend yourself.";
-                else {
-                        if ($friends == "") $friends .= $target; 
-                        else $friends .= ','.$target;
-                        $sql = "UPDATE users SET friends = '".$db->escape($friends)."' WHERE id = ".$db->escape($id);
-                        $query = $db->query($sql);
-                }
-        }
-                else echo 'You already friend with this player.';
+    $sql = 'SELECT friends FROM users WHERE id = '.$db->escape($id);
+    $query = $db->query($sql);
+    $result = $db->fetch($query);
+    $friends = $result['friends'];
+    $fids = explode(",", $friends);
+    foreach($fids as $fid) {
+            if ($fid == $target) $true = 1;  }
+    if ($true != 1) {
+            if ($target == $id) echo "You can't friend yourself.";
+            else {
+                    if ($friends == "") $friends .= $target; 
+                    else $friends .= ','.$target;
+                    $sql = "UPDATE users SET friends = '".$db->escape($friends)."' WHERE id = ".$db->escape($id);
+                    $query = $db->query($sql);
+                    echo 'Friend added.';
+            }
+    }
+            else echo 'You already friend with this player.';
 }
 
 ?>

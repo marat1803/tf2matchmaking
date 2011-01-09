@@ -11,7 +11,7 @@ $(document).ready(function(){
 function refreshPage(id) {
 	
 	$.ajax({
-		data: {"id": id, "request": "lobbyinfo", "method": "read"},
+		data: {"id": id, "request": "lobbyinfo"},
 		url: 'api.php',
 		dataType: 'json',
 		success: function(data){
@@ -110,31 +110,27 @@ function refreshPage(id) {
 	});
 }
 
-
-
-
 function changeReady(id) {
 	$('li.button.ready_off').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "readystatus", "ready": "0", "method":"write"},
+			data: {"id": id, "request": "readystatus", "ready": "0"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});
 	$('li.button.ready_up').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "readystatus", "ready": "1", "method":"write"},
+			data: {"id": id, "request": "readystatus", "ready": "1"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});
 }
 
-
 function changeTeam(id) {
 	$('body').delegate('span.join_blu, li.teamname.blu', 'click', function(){
 		$.ajax({
-			data: {"id": id, "request": "changeTeam", "team": "1", "method":"write"},
+			data: {"id": id, "request": "changeTeam", "team": "1"},
 			url: 'api.php',
 			dataType: 'json',
 			success: function() {
@@ -144,7 +140,7 @@ function changeTeam(id) {
 	});
 	$('span.join_spec').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "changeTeam", "team": "0", "method":"write"},
+			data: {"id": id, "request": "changeTeam", "team": "0"},
 			url: 'api.php',
 			dataType: 'json',
 			success: function() {
@@ -154,7 +150,7 @@ function changeTeam(id) {
 	});
 	$('body').delegate('span.join_red, li.teamname.red', 'click', function(){
 		$.ajax({
-			data: {"id": id, "request": "changeTeam", "team": "2", "method":"write"},
+			data: {"id": id, "request": "changeTeam", "team": "2"},
 			url: 'api.php',
 			dataType: 'json',
 			success: function() {
@@ -167,70 +163,70 @@ function changeTeam(id) {
 function switchClass (id) {
 	$('li.scout').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "switchClass", "class": "1", "method":"write"},
+			data: {"id": id, "request": "switchClass", "class": "1"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});
 	$('li.soldier').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "switchClass", "class": "2", "method":"write"},
+			data: {"id": id, "request": "switchClass", "class": "2"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});
 	$('li.pyro').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "switchClass", "class": "3", "method":"write"},
+			data: {"id": id, "request": "switchClass", "class": "3"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});
 	$('li.demoman').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "switchClass", "class": "4", "method":"write"},
+			data: {"id": id, "request": "switchClass", "class": "4"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});
 	$('li.heavy').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "switchClass", "class": "5", "method":"write"},
+			data: {"id": id, "request": "switchClass", "class": "5"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});
 	$('li.engineer').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "switchClass", "class": "6", "method":"write"},
+			data: {"id": id, "request": "switchClass", "class": "6"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});
 	$('li.medic').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "switchClass", "class": "7", "method":"write"},
+			data: {"id": id, "request": "switchClass", "class": "7"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});
 	$('li.sniper').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "switchClass", "class": "8", "method":"write"},
+			data: {"id": id, "request": "switchClass", "class": "8"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});
 	$('li.spy').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "switchClass", "class": "9", "method":"write"},
+			data: {"id": id, "request": "switchClass", "class": "9"},
 			url: 'api.php',
 			dataType: 'json',
 		});
 	});	
 	$('li.random').click(function(){
 		$.ajax({
-			data: {"id": id, "request": "switchClass", "class": "0", "method":"write"},
+			data: {"id": id, "request": "switchClass", "class": "0"},
 			url: 'api.php',
 			dataType: 'json',
 		});

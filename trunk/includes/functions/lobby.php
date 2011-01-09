@@ -101,6 +101,7 @@ function grabLobbyPlayers($lobbyID, $lobbytype, $team) {
 			'id'       => $player['id'],
 			'class'    => $class,
 			'nickname' => $player['nickname'],
+			'ready'    => readystatus($player['id'],true),
 			'avatar'   => $avatar
 		);
 	}
