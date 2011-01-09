@@ -171,7 +171,7 @@ a#logo{
 }
 
 
-.lobby_panel, .profile_panel, .friends_panel, #lobby_filter, .big_panel, .avatar_panel, .nav_panel {
+.lobby_panel, .profile_panel, .friends_panel, #lobby_filter, .big_panel, .avatar_panel, .nav_panel, .team_panel {
 	padding: 7px;
 	-moz-border-radius: 5px;
 	-moz-box-shadow: 0 0 5px #333;
@@ -191,7 +191,8 @@ a#logo{
 .stats_panel {
     float: left;
     margin-top: 10px;
-    width: 600px;
+    width: 250px;
+	margin-left: 5px;
 }
 
 .stats_panel dt {
@@ -244,10 +245,14 @@ a#logo{
 	float: left;
 	border: none;
     box-shadow: 0 0 3px #000000 inset;
+	-moz-box-shadow: 0 0 3px #000000 inset;
+	-webkit-box-shadow: 0 0 3px #000000 inset;
 }
 
 .nav_panel li.current{
     box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
 }
 
 
@@ -256,7 +261,7 @@ a#logo{
 	padding: 0 20px 5px 5px !important;
 }
 
- .big_panel .lobby_panel,  .big_panel .profile_panel, .big_panel .friends_panel, .big_panel #lobby_filter, .big_panel .avatar_panel{
+ .big_panel .lobby_panel,  .big_panel .profile_panel, .big_panel .friends_panel, .big_panel #lobby_filter, .big_panel .avatar_panel, .big_panel .team_panel{
 	padding: 7px;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
@@ -285,6 +290,26 @@ a#logo{
 
 .big_panel .friends_panel ul li {
 	width: 225px;
+	float: left;
+}
+
+.big_panel .team_panel {
+	width: 20%;
+	margin-left: 7px;
+}
+
+.big_panel .team_panel .user_name, .big_panel .team_panel .user_steamid{
+	width: 140px;
+}
+
+.big_panel .team_panel a{
+	font-weight: normal;
+	margin-left: 3px;
+	margin-top: 2px;
+}
+
+.big_panel .team_panel ul li {
+	width: 200px;
 	float: left;
 }
 
@@ -351,20 +376,42 @@ a#logo{
 	float: left;
 }
 
-.lobby_panel {
-	width: 626px;
+.recentlobby_panel {
+	width: 380px;
+	float: right;
+	margin-top: -5px;
+	margin-bottom: 20px;
 }
 
-.lobby_panel:hover {
-	-moz-box-shadow: 0 0 10px #333;
-	cursor: pointer;
-	background:url("images/gradient.png") repeat-x scroll 0 -155px #2F251B;
-}
-
-.lobby_panel img.map_pic {
+.recentlobby_panel li {
 	float: left;
-	border: 1px solid #644640;
-	height: 50px;
+	margin: 5px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.recentlobby_panel li span {
+	float: left;
+	border-bottom: 1px solid;
+	width: 170px;
+	background:url("images/gradient.png") repeat-x scroll 0 -155px #2F251B;
+	padding: 5px;
+	margin-bottom: -30px;
+	opacity: 0.8;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.recentlobby_panel img.map_pic {
+	float: left;
+	clear: left;
+	height: 100px;
+	width: 180px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 .panel_left{
@@ -431,14 +478,14 @@ a#logo{
 	font-weight: bold;
 }
 
-.profile_panel h1, .friends_panel h1 {
+.profile_panel h1, .friends_panel h1, .team_panel h1 {
 	width: 100%;
 	border-bottom: 1px solid #da8a4c;
 	margin-bottom: 3px;
 	float: left;
 }
 
-.profile_panel img, .friends_panel img {
+.profile_panel img, .friends_panel img, .team_panel img {
 	border: 1px solid #DA8A4C;
 	float: left;
 	margin: 2px;
@@ -460,6 +507,7 @@ a#logo{
 .user_name {
 	float: left;
 	width:170px;
+	color: #F0E1BA;
 }
 
 .user_steamid, .user_steamon{
