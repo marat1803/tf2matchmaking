@@ -150,7 +150,20 @@ function displayLobby($id,$full = false) {
 					<div class="chat_container">
 				<h1>Chat</h1>
 			</div>';
-			else echo '<img class="start" src="theme/images/start.png"></li>';
+			else echo '<div class="lobby_info">
+						<h1>Gameserver</h1>
+						<dl>
+							<dt>Name:</dt><dd>Test Server</dd>
+							<dt>IP:</dt><dd>127.0.0.1</dd>
+							<dt>Location:</dt><dd>Amsterdam</dd>
+						</dl>	
+						<h1>Mumble</h1>
+						<dl>
+							<dt>Name:</dt><dd>Test Server</dd>
+							<dt>IP:</dt><dd>127.0.0.1</dd>
+						</dl>
+						<div class="button join">Join</div>
+					</div>';
 }
 
 function displaylobbies($type) {	
