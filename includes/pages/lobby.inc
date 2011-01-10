@@ -3,12 +3,7 @@
 			<li class="button ready_off">Unready!</li>
 			<li class="button join_game">Start Game!</li>
 			<li id="lobby_info">
-				<dl>
-					<dt>Name:</dt><dd>Test Server</dd>
-					<dt>IP:</dt><dd>127.0.0.1</dd>
-					<dt>Location:</dt><dd>Amsterdam</dd>
-					<dt>Rules:</dt><dd>ETF2L 6 vs. 6</dd>	
-				</dl>	
+				<?php echo $server->showServer($sid); ?>
 			</li>
 			<li class="profile_panel">
 			<?php echo $user->display_profile($uid); ?>
