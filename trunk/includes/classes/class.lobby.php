@@ -111,6 +111,8 @@ class lobby {
 
 function displayLobby($id,$full = false) {
 	$lobby = new lobby($id);
+	$sid = $lobby->lobbyserver($id);
+	$server = new Server($sid);
 	echo '<li class="lobby_panel" data-panel="lobby_tooltip-'.$lobby->id.'">
 			<img class="map_pic" src="theme/images/maps/' .$lobby->map .'.jpg">
 			<div class="panel_left">
@@ -152,17 +154,8 @@ function displayLobby($id,$full = false) {
 			</div>';
 			else echo '<div class="lobby_info">
 						<h1>Gameserver</h1>
-						<dl>
-							<dt>Name:</dt><dd>Test Server</dd>
-							<dt>IP:</dt><dd>127.0.0.1</dd>
-							<dt>Location:</dt><dd>Amsterdam</dd>
-						</dl>	
-						<h1>Mumble</h1>
-						<dl>
-							<dt>Name:</dt><dd>Test Server</dd>
-							<dt>IP:</dt><dd>127.0.0.1</dd>
-						</dl>
-						<div class="button join">Join</div>
+						'.$server->showServer().'
+						<a href="lobby.php?id='.$lobby->id.'" class="button join">Join</a>
 					</div>';
 }
 

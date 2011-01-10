@@ -11,6 +11,8 @@ $id = getLPid($pid,$lid);
 
 $lobby = new Lobby($lid);
 $user = new User($pid);
+$sid = $lobby->lobbyserver($id);
+$server = new Server($sid);
 
 include_once 'includes/header.inc';
 include_once 'includes/pages/lobby.inc';

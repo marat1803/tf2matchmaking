@@ -73,4 +73,5 @@ if ($uid && $fid && $request == "addFriend") {
 	addFriend($uid,$fid);
 }
 
+
 ?>
