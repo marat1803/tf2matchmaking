@@ -63,62 +63,58 @@ if (isset($result) && ($steamid == $row['steamid']))
 				mysql_query($query) or die("Error in query: $result. ".mysql_error());
 				$sql = "INSERT INTO `ratings` (`id`) VALUES (".mysql_real_escape_string(User::get_id($steamid)).")";
 				mysql_query($sql);
-				echo '<p>Welcome, ' . $nickname . '</p>'
-					.'<p>Your account has been successfully created.</p>';
+				echo 'Your account has been successfully created.';
 					$_SESSION['steamid'] = $steamid;
 					$_SESSION['id'] = User::get_id($steamid);
 					
-					echo '<meta http-equiv="refresh" content="6;url=index.php">';
+					//echo '<meta http-equiv="refresh" content="6;url=index.php">';
 			} else {
 				//get default information from Steam API
 				//this will get nickname and things
 			$xml = simplexml_load_file('http://steamcommunity.com/profiles/'.$steamid.'?xml=1');
 	
-			echo '<style type="text/css">
-			fieldset{
-				margin:0px auto 0px auto;
-				width:500px;
-			}
-			input[type="text"]{
-				width:100%;
-			}
-			table{
-				margin-top:20px;
-			}
-			td{width:50%;vertical-align:top;}
-			tr td{
-				border-bottom:thin solid black;
-			}
-			tr:first-child td{border-top:thin solid black;}
-			tr:last-child td{
-				border-bottom:none;
-				text-align:center;
-			}
-			</style>
-			
-	<fieldset>
-	<legend>Welcome!</legend>
-	Thank you for using TF2MM! Since this is the first time you\'ve used TF2MM, we\'d like to know more about you. Entering this information is completely optional and not required, but will aid in better match making.
-	<form method="post" action="">
-	<input type="hidden" name="steamId64" value="' . $steamid . '">
-	<table>
-		<tr>
-			<td>Nickname:<br />(Cannot be blank)</td>
-			<td><input type="text" value="'.$xml->steamID.'" name="nickname"/></td>
-		</tr>
-		<tr>
-			<td>Email:<br />(Important messages and updates will be sent. Can opt-out at any time)</td>
-			<td><input type="text" name="email"/></td>
-		</tr>
-		<tr>
-			<td>Country:</td>
-			<td><input type="text" name="loc" value="'.APIGet($steamid,loccountrycode).'" /></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit" value="Submit" /></td>
-		</tr>
-	</table></form>
-	</fieldset>';
+			echo '
+			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>TF2 Matchmaking System</title>
+	<link href="theme/style_profile.css" rel="stylesheet" type="text/css" />
+	<link href="theme/uniform.default.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="background_image"></div>
+	<div id="wrapper">
+		<div id="header">
+			<a href="" id="logo">TF2 Matchmaking System</a>
+		</div>
+		<div id="content" class="big_panel">
+			<ul class="nav_panel">
+				<li><a href="index.html">Home</a></li>
+				<li class="current"> &raquo; Register</li>
+			</ul>
+		<h1 style="float: left; font-size: 3em; width: 90%; text-align: center; border-bottom: 1px solid; margin: 20px 5%; padding-bottom: 10px;">Welcome!</h1>
+		<form method="post" action="" style="margin-top: 10px;">
+		<input type="hidden" name="steamId64" value="' . $steamid . '">
+			<p style="margin: 10px 50px;">Thank you for using TF2MM! Since this is the first time you\'re using TF2MM, we\'d like to know more about you.</p>
+			<div class="panel" style="width: 500px; margin-left: 50px;">
+				<label>Nickname:</label>
+				<input type="text" value="' .$xml->steamID. '" name="nickname"/><small style="float: left;margin: 3px;">(Cannot be blank)</small>
+			</div>
+			<input type="submit" style="float: right; width: 250px; margin-right:54px;  margin-bottom: 0;" value="Submit" class="button submit" />
+			<div class="panel" style="width: 500px; margin-left: 50px;">
+				<label>Email:</label>
+				<input type="text" name="email"/><small style="float: left;margin: 3px;">(Can opt-out at any time)</small>
+				<label>Country:</label>
+				<input type="text" name="loc" value="'.APIGet($steamid,loccountrycode).'" />
+			</div>
+			<p style="float: right; width: 250px; margin-right:50px; margin-top: 0;">Entering this information is completely optional and not required, but will aid in better match making.</p>
+		</form>
+	</div>
+	<script src="theme/js/jquery.js" type="text/javascript"></script>
+	<script src="theme/js/jquery.uniform.min.js" type="text/javascript"></script>
+	<script src="theme/js/register.js" type="text/javascript"></script>
+</body>
+</html>';
 			}
 		}
 }
