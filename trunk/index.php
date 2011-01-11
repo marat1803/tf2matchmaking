@@ -8,6 +8,8 @@ $id = $_SESSION['id'];
 
 $user = new User($id);
 
+}
+
 $css = 'style.css';
 $js = 'main.js';
 
@@ -15,8 +17,9 @@ include_once 'includes/header.inc';
 
 		
 echo '
-		<ul id="sidebar">
-			<li class="play_now_button">Play Now!</li>
+		<ul id="sidebar">';
+			if ($id) {
+			echo '<li class="play_now_button">Play Now!</li>
 			<li id="lobby_filter">
 				<ul id="lobbys_opened">
 					<li>'.countLobbies(open).' open lobbies</li>
@@ -43,14 +46,20 @@ echo '
 					</select>
 				</form>
 			</li>
-			<li class="profile_panel">';
-			echo $user->display_profile($id) .'
+			<li class="profile_panel">'
+			.$user->display_profile($id) .'
 			</li>
 			<li class="friends_panel">
 				<h1>Friends</h1>
 				<ul>'; echo getfriends($user->id); echo '
 				</ul>
-			</li>
+			</li>'; }
+			else echo '
+			<li><a href="login.php" class="button sign_up">Sign up!</a></li>
+			<li id="lobby_info">
+				<img src="theme/images/login_small.png" style="margin-left: 25px;">
+			</li>';
+		echo '
 		</ul>
 		<div id="content">
 			<ul id="lobby_list">';
@@ -61,6 +70,4 @@ echo '
 </body>
 </html>
 ';
-}
-else header('Location: login.php');
 ?>
