@@ -13,8 +13,9 @@
 			<a href="" id="logo">TF2 Matchmaking System</a>
 		</div>
 		<ul id="sidebar">
+			<li class="button join_this">Join!</li> <!--If the user is in an other lobby, show him some kind of popup alert-->
 			<!--<li class="button ready_up">Ready Up!</li>-->
-			<li class="button ready_off">Unready!</li>
+			<!--<li class="button ready_off">Unready!</li>-->
 			<!--<li class="button join_game">Start Game!</li> -->
 			<li id="lobby_info">
 				<dl>
@@ -154,7 +155,19 @@
 			</ul>
 			<div class="chat_container">
 				<h1>Chat</h1>
-			</div>
+				<div id="chat_box">
+					 <dl>
+					 	<dt class="lobby_log">Hobbybash0r</dt><dd>joined the lobby.<span class="time">14:01</span></dd>
+					 	<dt>Hobbybash0r:</dt><dd>this is a fucking chat dummy message<span class="time">14:03</span></dd>
+						<dt>Hobbybash0r</dt><dd>this is a fucking chat dummy message<span class="time">14:05</span></dd>
+						<dt class="lobby_log">Nightbox</dt><dd>left the lobby.<span class="time">14:07</span></dd>
+						<dt>Hobbybash0r</dt><dd>this is a fucking chat dummy message<span class="time">14:08</span></dd>
+						<dt>Hobbybash0r</dt><dd>this is a fucking chat dummy message<span class="time">14:09</span></dd>
+						<dt class="lobby_log">Hobbybash0r</dt><dd>was kicked by the lobby leader.<span class="time">14:10</span></dd>
+					 </dl>
+				</div>
+				<input id="chat_new" name="chat_new"><a href="#chat_send" class="button small chat_send">Send</a>
+			</a>
 		</div>
 	</div>
 	<script src="js/jquery.js" type="text/javascript"></script>

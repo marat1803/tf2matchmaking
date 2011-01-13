@@ -149,6 +149,16 @@ a#logo{
 	background-color: gray;
 }
 
+.button.small{
+    background-color: #333333;
+    border: 1px solid #EEEEEE;
+    color: #FFFFFF;
+    padding: 3px 10px;
+    width: auto;
+	font-size: 1em;
+	margin: -3px 3px 0 3px;
+}
+
 .button.join{
     background-color: #333333;
     border: 1px solid #EEEEEE;
@@ -158,6 +168,12 @@ a#logo{
     margin-top: 15px;
     padding: 3px;
     width: 115px;
+}
+
+.button.join_this{
+    background-color: #333333;
+    border: 1px solid #EEEEEE;
+    color: #FFFFFF;
 }
 
 
@@ -427,6 +443,74 @@ a#logo{
 	float: left;
 }
 
+#chat_box{
+	background:url("images/gradient.png") repeat-x scroll 0 -150px #2F251B;
+	-webkit-border-radius: 5px;
+	-moz-border-radius:5px;
+	border-radius: 5px;
+	height: 170px;
+	width: 595px;
+	float: left;
+	padding: 5px;
+	margin: 0 5px 10px 5px;
+	overflow-y: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+}
+
+#chat_box dt{
+	float: left;
+	clear: left;
+	font-weight: bold;
+	margin-right: 3px;
+	line-height: 1.3em;
+	
+}
+
+#chat_box dt.lobby_log{
+	font-style: italic;
+	font-weight: normal;
+	color: #ccc;	
+}
+
+#chat_box dd{
+	float: left;
+	line-height: 1.3em;
+	color: #ECD1C1;
+}
+
+#chat_box dd span.time{
+	font-size: 0.8em;
+	color: #ccc;	
+	line-height: 1.1em;
+	float: right;
+	margin-left: 3px;
+	display: none;
+}
+
+#chat_box dd:hover span.time{
+	display: block;
+}
+
+#chat_new{
+	background:url("images/gradient.png") repeat-x scroll 0 -120px #2F251B;
+    border: 1px solid #EEE;
+    color: #FFFFFF;
+    padding: 3px 30px 3px 3px;
+    width: 530px;
+	font-size: 1em;
+	margin: -2px 5px 0 3px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius:5px;
+	border-radius: 5px;
+	height: 15px;
+	float: left;
+}
+
+.button.chat_send{
+	margin-left: -20px;
+}
+
 .blue_players, .red_players, .spec_players {
 	float: left;
 }
@@ -686,4 +770,3 @@ a.friend_inv{
     width:100%;
     clear:both;
 }
-
