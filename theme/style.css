@@ -157,6 +157,7 @@ a#logo{
     width: auto;
 	font-size: 1em;
 	margin: -3px 3px 0 3px;
+	font-weight: normal
 }
 
 .button.join{
@@ -685,6 +686,54 @@ a#logo{
 
 .join_spec:hover, .join_red:hover, .join_blu:hover{
 	background-position: -100px;
+}
+
+.rate_switch{
+	float: right;
+	margin: 3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #fff;
+	text-shadow: 0 1px 1px #000;
+}
+
+.rate_up, .rate_down{
+	height: 12px;
+	width: 14px;
+	display: block;
+	float: left;
+	cursor: pointer;
+	-moz-box-shadow:0 0 2px #000 ;
+	-webkit-box-shadow:0 0 2px #000;
+	box-shadow:0 0 2px #000;
+	line-height: 1em;
+	text-align: center;
+	background: #333;
+}
+
+.rate_down{
+	line-height: 8px;
+}
+
+.rate_up:hover, .rate_down:hover{
+	background-color: #444;
+}
+
+.rate_up.active, .rate_down.active{
+	background: #555;
+}
+
+.button.exit_lobby{
+	background:url("images/gradient.png") repeat-x 0 -150px #2F251B;
+	border:1px solid #2F251B;
+	padding: 5px;
+}
+
+.button.exit_lobby:hover{
+	background:url("images/gradient.png") repeat-x 0 -100px #2F251B;
 }
 
 a.friend_inv{
