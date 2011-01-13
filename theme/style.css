@@ -261,6 +261,7 @@ a#logo{
 	font-weight: bold;
 	line-height: 25px;
 	float: left;
+	clear: none
 }
 
 .lobby_panel {
@@ -726,13 +727,13 @@ a#logo{
 	background: #555;
 }
 
-.button.exit_lobby{
+.button.bottom_nav{
 	background:url("images/gradient.png") repeat-x 0 -150px #2F251B;
 	border:1px solid #2F251B;
 	padding: 5px;
 }
 
-.button.exit_lobby:hover{
+.button.bottom_nav:hover{
 	background:url("images/gradient.png") repeat-x 0 -100px #2F251B;
 }
 
