@@ -109,7 +109,7 @@ class lobby {
 }
 
 
-function displayLobby($id,$full = false) {
+function displayLobby($id,$full = false,$ready = false, $rate = false) {
 	$lobby = new lobby($id);
 	$sid = $lobby->lobbyserver($id);
 	$server = new Server($sid);
@@ -138,20 +138,27 @@ function displayLobby($id,$full = false) {
 			else echo '<li class="lobby_tooltip" id="lobby_tooltip:'.$lobby->id.'">';
 			echo '
 			<ul class="blue_players">
-				<li class="teamname blu">BLU</li>
-				'.$lobby->players_blu .'
+				<li class="teamname blu">BLU</li>';
+				if (!$ready && !$rate) $lobby->players_blu;
+				if ($ready && !$rate) echo displayLobbyPlayers($lobby->id,$lobby->type,1,true,false);
+				if (!$ready && $rate) echo displayLobbyPlayers($lobby->id,$lobby->type,1,false,true);
+					echo '
 			</ul>
 			<ul class="red_players">
-				<li class="teamname red">RED</li>
-				'.$lobby->players_red .'
+				<li class="teamname red">RED</li>';
+				if (!$ready && !$rate) $lobby->players_red;
+				if ($ready && !$rate) echo displayLobbyPlayers($lobby->id,$lobby->type,2,true,false);
+				if (!$ready && $rate) echo displayLobbyPlayers($lobby->id,$lobby->type,2,false,true);
+				echo '
 			</ul>';
 			if ($full) echo '
 			<h1 style="margin-top: 10px;  margin-right: 5px;">Spectators:</h1>
-			<ul class="spec_players" style="margin-top: 10px; float: left;">'.$lobby->players_spec.'</ul>
-		</li>
-					<div class="chat_container">
-				<h1>Chat</h1>
-			</div>';
+			<ul class="spec_players" style="margin-top: 10px; float: left;">'.$lobby->players_spec.'
+			</ul><h1 style="margin-top: 10px;  margin-right: 5px; clear: left;">Info:</h1>
+					<ul style="margin-top: 10px; float: left;">
+						<li>Lobby started at 14:23 and has now been running for <span class="time_run">13</span> minutes.</li>
+					</ul>
+		</li>';
 			else echo '<div class="lobby_info">
 						<h1>Gameserver</h1>
 						'.$server->showServer().'

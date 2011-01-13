@@ -3,7 +3,7 @@
 require_once 'includes/header.php';
 
 $css = 'style.css';
-$js = 'lobby.js';
+//$js = 'lobby.js';
 
 $pid = $_SESSION['id'];
 $lid = $_REQUEST['id'];
@@ -15,15 +15,18 @@ $sid = $lobby->lobbyserver($id);
 $server = new Server($sid);
 
 include_once 'includes/header.inc';
-include_once 'includes/pages/lobby.inc';
 
 switch ($lobby->status) {
 		case "open":
-			if (!isPlayerInLobby($pid)) joinLobby($pid,$lid);
+			include_once 'includes/pages/lobby.inc';
+			//if (!isPlayerInLobby($pid)) joinLobby($pid,$lid);
 			break;
 		case "ready":
+			include_once 'includes/pages/lobby.inc';
 			break;
 		case "ingame":
+			$js = 'lobby_start.js';
+			include_once 'includes/pages/lobby_start.inc';
 			$server = new Server($lobby->lobbyserver($lid));
 			$server->joinServer($lobby->lobbyserver($lid));
 			break;

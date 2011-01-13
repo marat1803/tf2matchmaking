@@ -108,14 +108,20 @@ function grabLobbyPlayers($lobbyID, $lobbytype, $team) {
 	return $data;
 }
 
-function displayLobbyPlayers($lobbyID, $lobbytype, $team) {
+function displayLobbyPlayers($lobbyID, $lobbytype, $team,$ready = false, $rate = false) {
 	$lobbyPlayers = grabLobbyPlayers($lobbyID, $lobbytype, $team);
 	$display = '';
 	if ($team != 0) {
 		foreach ($lobbyPlayers as $data) {
-			$display .= '<li><a href="profile.php?id='.$data['id'].'" target="_blank">
+			if (!$ready && !$rate) $display .= '<li><a href="profile.php?id='.$data['id'].'" target="_blank">
 			<img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'
 			<img class="avatar" src='.$data['avatar'].'></a></li>';
+			if ($ready) $display = '<li class="ready"><li><a href="profile.php?id='.$data['id'].'" target="_blank">
+			<img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'
+			<img class="avatar" src='.$data['avatar'].'></a></li></li>';
+			if ($rate)  $display .= '<li><a href="profile.php?id='.$data['id'].'" target="_blank">
+			<img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'
+			<img class="avatar" src='.$data['avatar'].'></a><span class="rate_switch"><a href="#rate_up:userid" class="rate_up active">+</a><a "#rate_down:userid" class="rate_down">-</a></span></li>';
 			$n++;
 		}
 		for($n; $n < teamplayers($lobbytype); $n++) {
