@@ -97,11 +97,12 @@ function grabLobbyPlayers($lobbyID, $lobbytype, $team) {
 		$steamid = $player["steamid"];
 		$avatar = APIGet($steamid,avatar);
 		$class = player_class($row["class"]);
+		$id = getLPid($player['id'],$lobbyID);
 		$data[] = array(
 			'id'       => $player['id'],
 			'class'    => $class,
 			'nickname' => $player['nickname'],
-			'ready'    => readystatus($player['id'],true),
+			'ready'    => readystatus($id,true),
 			'avatar'   => $avatar
 		);
 	}
