@@ -139,14 +139,14 @@ function displayLobby($id,$full = false,$ready = false, $rate = false) {
 			echo '
 			<ul class="blue_players">
 				<li class="teamname blu">BLU</li>';
-				if (!$ready && !$rate) $lobby->players_blu;
+				if (!$ready && !$rate) echo $lobby->players_blu;
 				if ($ready && !$rate) echo displayLobbyPlayers($lobby->id,$lobby->type,1,true,false);
 				if (!$ready && $rate) echo displayLobbyPlayers($lobby->id,$lobby->type,1,false,true);
 					echo '
 			</ul>
 			<ul class="red_players">
 				<li class="teamname red">RED</li>';
-				if (!$ready && !$rate) $lobby->players_red;
+				if (!$ready && !$rate) echo $lobby->players_red;
 				if ($ready && !$rate) echo displayLobbyPlayers($lobby->id,$lobby->type,2,true,false);
 				if (!$ready && $rate) echo displayLobbyPlayers($lobby->id,$lobby->type,2,false,true);
 				echo '

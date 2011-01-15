@@ -37,7 +37,6 @@ function city($latitude,$longitude) {
 	$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=".$latitude.",".$longitude."&sensor=false";
 	$file = file_get_contents($url);
 	$api = json_decode($file);
-	$api->results[0]->address_components[4]->short_name;
 	foreach($api->results[0]->address_components as $city) {
 		if ($city->types[0] == "locality") {
 			return $city->short_name;

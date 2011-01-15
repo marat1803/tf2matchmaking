@@ -1,8 +1,9 @@
 $(document).ready(function(){
 	id = getQuerystring('id');
 	refreshPage(id);
-	refreshRate = 100;
+	refreshRate = 2000;
 	refreshInterval = setInterval('refreshPage(id)', refreshRate);
+	joinGame(id);
 	changeReady(id);
 	changeTeam(id);
 	switchClass(id);
@@ -80,22 +81,38 @@ function refreshPage(id) {
 			}
 			$('ul.spec_players').text(spectators.join(', '));
 
-			if (data.ready == 1) {
-				$("li.button.ready_up").hide();
-				$("li.button.join_game").hide();
+			$("li.button.join_this")
+				.add($("li.button.ready_up"))
+				.add($("li.button.join_game"))
+				.add($("li.button.ready_off"))
+					.hide();
+
+			if (data.inlobby == 0) {
+				$("li.button.join_this").show();
+			} else if (data.ready == 1) {
+				$("li.button.join_this")
+					.add($("li.button.ready_up"))
+					.add($("li.button.join_game"))
+						.hide();
 				$("li.button.ready_off").show();
-				if (data.info.leader == id) {
+
+				if (data.info.leader == data.id) {
 					$("li.button.join_game").show();
 					$("li.button.ready_off").hide();
-				} else $("li.button.join_game").hide();
+				} else {
+					$("li.button.join_game").hide();
+				}
 
 			} else {
-				$("li.button.ready_off").hide();
-				$("li.button.ready_up").show();
-				$("li.button.join_game").hide();
+				$("li.button.join_this").show();
+				$("li.button.ready_off")
+					.add($("li.button.ready_up"))
+					.add($("li.button.join_game"))
+						.hide();
+				
 			}
 
-			if (data.count == 2*data.players.size && data.players.spec.length == 0) {
+			if (data.count == 2 * data.players.size && data.players.spec.length == 0) {
 				$('li.button.join_game').removeClass('locked');
 				$('li.button.join_game').click(function(){
 					$.ajax({
@@ -104,9 +121,24 @@ function refreshPage(id) {
 						dataType: 'json',
 					});					
 				});
+			} else {
+				$('li.button.join_game').addClass('locked');
 			}
-			else $('li.button.join_game').addClass('locked');
-	}
+		}
+	});
+}
+
+
+function joinGame(id) {
+	$("li.button.join_this").click(function() {
+		$.ajax({
+			data: {"id": id, "request": "joinGame"},
+			url: 'api.php',
+			dataType: 'json',
+			success: function() {
+				
+			}
+		});
 	});
 }
 
