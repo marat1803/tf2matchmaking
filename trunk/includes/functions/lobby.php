@@ -89,7 +89,7 @@ function player($playerID) {
 
 function grabLobbyPlayers($lobbyID, $lobbytype, $team) {
 	$db = Database::obtain();
-	$sql = "SELECT * FROM lobby_players WHERE `lobbyID` = '".$db->escape($lobbyID)."' AND `team` = '".$team."'"; 
+	$sql = "SELECT * FROM lobby_players WHERE `lobbyID` = '".$db->escape($lobbyID)."' AND `team` = '".$db->escape($team)."'"; 
 	$res = $db->query($sql) or die(mysql_error());
 	$data = array();
 	while ($row = $db->fetch($res)) {

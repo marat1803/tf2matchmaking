@@ -14,7 +14,7 @@ function colapseLobbies() {
 }
 
 var maps = [
-	'cp_well'//etc
+	'cp_well', 'cp_badlands', 'cp_granary', 'cp_freight'//etc
 ];//this will go in some other js file
 
 function newLobby() {

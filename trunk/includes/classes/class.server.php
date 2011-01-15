@@ -26,6 +26,7 @@ class server {
 		$this->name = $result['name'];
 		$this->ip = $result['ip'];
 		$this->port = $result['port'];
+		$this->port = $result['port'];
 		$this->password = $result['password'];
 		$this->latitude = $result['latitude'];
 		$this->longitude = $result['longitude'];
@@ -55,6 +56,19 @@ class server {
 		//return ($this->status == "online");
 		if ($status == "online") return true;
 		else return false;
+	}
+
+	public function loadConfig($players,$config) {
+		$server = $this->ip;
+		$port = $this->port;
+		$rcon = $this->rcon;
+		$players = $players/2;
+		$srcds_rcon = new srcds_rcon();
+		$getconfig = file_get_contents('configs/'.$players.'vs'.$players.'/'.$config.'.cfg');
+		$commands = explode("\n", $getconfig);
+		foreach ($commands as $command) {
+			$srcds_rcon->rcon_command($server, $port, $rcon, $command);
+		}
 	}
 
 	function joinServer() {
