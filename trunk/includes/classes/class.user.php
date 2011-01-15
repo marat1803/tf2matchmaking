@@ -9,7 +9,7 @@ class User
 	public function __construct($id) 
 	{
 		$db = Database::obtain();
-		$result = $db->query("SELECT id, nickname, steamid FROM users WHERE id = '$db->escape($id)' LIMIT 1");
+		$result = $db->query("SELECT id, nickname, steamid FROM users WHERE id = ".$db->escape($id)." LIMIT 1");
 		$userinfo = $db->fetch($result);
 
 		$this->id = $userinfo['id'];
@@ -48,7 +48,7 @@ class User
 	public static function get_id($steamid) 
 	{
 		$db = Database::obtain();
-		$query = $db->query("SELECT id FROM users WHERE steamid = '$db->escape($steamid)' LIMIT 1");
+		$query = $db->query("SELECT id FROM users WHERE steamid = ".$db->escape($steamid)." LIMIT 1");
 		$result = $db->fetch($query);
 		return $result['id'];
 	}
@@ -56,7 +56,7 @@ class User
 	public static function get_steamid($id) 
 	{
 		$db = Database::obtain();
-		$query = $db->query("SELECT steamid FROM users WHERE id = '$db->escape($id)' LIMIT 1");
+		$query = $db->query("SELECT steamid FROM users WHERE id = ".$db->escape($id)." LIMIT 1");
 		$result = $db->fetch($query);
 		return $result['steamid'];
 	}
