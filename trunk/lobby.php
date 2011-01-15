@@ -15,29 +15,27 @@ $sid = $lobby->lobbyserver($id);
 $server = new Server($sid);
 
 
-
 switch ($lobby->status) {
 		case "open":
 			$js = 'lobby.js';
+			$ready = false;
 			include_once 'includes/header.inc';
 			include_once 'includes/pages/lobby.inc';
-			//if (!isPlayerInLobby($pid)) joinLobby($pid,$lid);
 			break;
 		case "ready":
 			$js = 'lobby.js';
+			$ready = true;
 			include_once 'includes/header.inc';
 			include_once 'includes/pages/lobby.inc';
 			break;
 		case "ingame":
+		case "finished":
+		case "closed":
 			$js = 'lobby_start.js';
 			include_once 'includes/header.inc';
 			include_once 'includes/pages/lobby_start.inc';
 			$server = new Server($lobby->lobbyserver($lid));
 			$server->joinServer($lobby->lobbyserver($lid));
-			break;
-		case "finished":
-			break;
-		case "closed":
 			break;
 }
 

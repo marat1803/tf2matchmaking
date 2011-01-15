@@ -1,5 +1,5 @@
 <ul id="sidebar">
-			<li class="button connect_server">Connect!</li> <!--If the user is in an other lobby, show him some kind of popup alert-->
+			<a href="<?php echo $server->getUrl() ?>" class="button connect_server">Connect!</a> <!--If the user is in an other lobby, show him some kind of popup alert-->
 			<!--<li class="button ready_up">Ready Up!</li>-->
 			<!--<li class="button ready_off">Unready!</li>-->
 			<!--<li class="button join_game">Start Game!</li> -->
