@@ -82,6 +82,10 @@ function refreshPage(id) {
 			}
 			$('ul.spec_players').text(spectators.join(', '));
 
+			if (data.info.status == "ingame") {
+				location.reload();
+			}
+
 			$("li.button.join_this")
 				.add($("li.button.ready_up"))
 				.add($("li.button.join_game"))
