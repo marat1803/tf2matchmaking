@@ -83,12 +83,12 @@ if ($uid && $lid && $request == "joinGame") {
 	if (!isPlayerInLobby($uid)) joinLobby($uid,$lid);
 }
 
-if ($uid && $lid && $request == "joinGame") {
+if ($uid && $lid && $request == "leaveLobby") {
 	if (isPlayerInLobby($uid) == $lid) leaveLobby($id);
 }
 
 if($uid && $request == "newLobby") {
-	if (isPlayerInLobby($uid)) {
+	if (!isPlayerInLobby($uid)) {
 		$name = $_POST['name'];
 		$type = $_POST['type'];
 		$region = '';
