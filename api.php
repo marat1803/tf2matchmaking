@@ -83,6 +83,10 @@ if ($uid && $lid && $request == "joinGame") {
 	if (!isPlayerInLobby($uid)) joinLobby($uid,$lid);
 }
 
+if ($uid && $lid && $request == "joinGame") {
+	if (isPlayerInLobby($uid) == $lid) leaveLobby($id);
+}
+
 if($uid && $request == "newLobby") {
 	if (isPlayerInLobby($uid)) {
 		$name = $_POST['name'];

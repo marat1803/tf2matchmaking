@@ -142,6 +142,19 @@ function joinGame(id) {
 	});
 }
 
+function leaveGame(id) {
+	$("button.small.exit_lobby").click(function() {
+		$.ajax({
+			data: {"id": id, "request": "leaveGame"},
+			url: 'api.php',
+			dataType: 'json',
+			success: function() {
+				window.location = "./index.php";
+			}
+		});
+	});
+}
+
 function changeReady(id) {
 	$('li.button.ready_off').click(function(){
 		$.ajax({
