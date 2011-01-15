@@ -49,7 +49,7 @@ if ($request == "userready" && $lid && uid) {
 
 if ($lid && $request == "distance" && $lat && $lon)
 	{
-		$lobby = new Lobby($id);
+		$lobby = new Lobby($lid);
 		$server = new Server($lobby->lobbyserver($lid));
 		echo GetDistance($lat,$lon,$server->latitude,$server->longitude);
 	}
@@ -68,7 +68,11 @@ if ($uid && $lid && isset($ready) && $request == "readystatus") {
 }
 
 if ($uid && $lid && $request == "startGame") {
-	startLobby($id);
+	startLobby($lid);
+	$lobby = new Lobby($lid);
+	$server = new Server($lobby->lobbyserver($lid));
+	$players = teamplayers($lobby->type)*2;
+	$server->loadConfig($players,etf2l);
 }
 
 if ($uid && $fid && $request == "addFriend") {
@@ -86,7 +90,7 @@ if($uid && $request == "newLobby") {
 		$region = '';
 		$map  = $_POST['map'];
 		$division = '';
-		$sid = 0;
+		$sid = 2;
 		$lastInsertId = newLobby($name,$type,$region,$map,$division,$uid,$sid);
 		joinLobby($uid,$lastInsertId);
 		if($lastInsertId) {
