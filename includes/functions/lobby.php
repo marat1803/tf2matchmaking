@@ -253,9 +253,9 @@ function isPlayerInLobby($id) {
 	SELECT l.id FROM lobby_players AS `lp`
 	LEFT JOIN lobbies AS `l`
 	ON l.id = lp.lobbyID
-	WHERE l.status != 'closed' AND lp.playerid = ".$db->escape($id)."
+	WHERE l.status != 'ingame' AND lp.playerid = ".$db->escape($id)."
 	GROUP BY lp.playerid;
-	";
+	"; //change ingame to closed when you can close a lobby
 	$query = $db->query($sql);
 	$row = $db->fetch($query);
 	if($row) {

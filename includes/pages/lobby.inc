@@ -35,7 +35,7 @@
 		</ul>
 		<div id="content">
 			<ul id="lobby_list">
-			<?php displaylobby($lid,true); ?>
+			<?php displaylobby($lid,true,$ready); ?>
 		</div>
 </body>
 </html>
