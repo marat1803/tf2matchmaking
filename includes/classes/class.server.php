@@ -12,7 +12,7 @@ class server {
 	public $status;
 
 	public function __construct($id) {
-		if($id) {
+		if(isset($id)) {
 			$this->getServer($id);
 		}
 	}

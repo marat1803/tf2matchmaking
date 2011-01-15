@@ -1,4 +1,5 @@
 <ul id="sidebar">
+			<li class="button join_this">Join!</li>
 			<li class="button ready_up">Ready Up!</li>
 			<li class="button ready_off">Unready!</li>
 			<li class="button join_game">Start Game!</li>

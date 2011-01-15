@@ -21,9 +21,11 @@ if ($request == "lobbyinfo" && $lid) {
 	$lobby = new Lobby($lid);
 	$lobbyinfo = $lobby->lobbyinfo();
 	$lobbyplayers = $lobby->lobbyData();
-	$count = countPlayers($id);
+	$count = countPlayers($lid);
 	$array = array(
-		'ready' => readyStatus($id,true),
+		'id' => $uid,
+		'ready' => readystatus($id,true),
+		'inlobby' => isPlayerInLobby($uid),
 		'info' => $lobbyinfo,
 		'count' => $count,
 		'players' => $lobbyplayers);
@@ -36,7 +38,7 @@ if ($request == "lobbyplayers" && $lid) {
 }
 
 if ($request == "userready" && $lid && uid) {
-	$status = readyStatus($id,true);
+	$status = readystatus($id,true);
 	$lobby = new Lobby($lid);
 	$leader = $lobby->lobbyLeader();
 	$array = array(
@@ -65,7 +67,7 @@ if ($uid && $lid && isset($ready) && $request == "readystatus") {
 	readystatus($id, false, $ready);
 }
 
-if ($uid && lid && $request == "startGame") {
+if ($uid && $lid && $request == "startGame") {
 	startLobby($id);
 }
 
@@ -73,5 +75,35 @@ if ($uid && $fid && $request == "addFriend") {
 	addFriend($uid,$fid);
 }
 
+if ($uid && $lid && $request == "joinGame") {
+	if (!isPlayerInLobby($uid)) joinLobby($uid,$lid);
+}
+
+if($uid && $request == "newLobby") {
+	if (isPlayerInLobby($uid)) {
+		$name = $_POST['name'];
+		$type = $_POST['type'];
+		$region = '';
+		$map  = $_POST['map'];
+		$division = '';
+		$sid = 0;
+		$lastInsertId = newLobby($name,$type,$region,$map,$division,$uid,$sid);
+		joinLobby($uid,$lastInsertId);
+		if($lastInsertId) {
+			echo $lastInsertId;
+		}
+	} else {
+		echo '0';
+	}
+}
+
+if($uid && $request == "rate") {
+	$lid    = $_POST['lid'];
+	$id = getLPid($uid,$lid);
+	$target = $_POST['userid'];
+	$value  = $_POST['value'];
+	rate($id, $target, $value);
+
+}
 
 ?>

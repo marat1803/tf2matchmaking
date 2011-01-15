@@ -5,6 +5,7 @@
     <link href="theme/<?php echo $css; ?>" rel="stylesheet" type="text/css" />
     <link href="theme/uniform.default.css" rel="stylesheet" type="text/css" />
     <script src="theme/js/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script> 
     <script src="theme/js/jquery.uniform.min.js" type="text/javascript"></script>
     <script src="theme/js/<?php echo $js; ?>" type="text/javascript"></script>
     <script type="text/javascript">

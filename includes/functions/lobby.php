@@ -109,6 +109,8 @@ function grabLobbyPlayers($lobbyID, $lobbytype, $team) {
 }
 
 function displayLobbyPlayers($lobbyID, $lobbytype, $team,$ready = false, $rate = false) {
+	global $user;
+	$uid = $user->id;
 	$lobbyPlayers = grabLobbyPlayers($lobbyID, $lobbytype, $team);
 	$display = '';
 	if ($team != 0) {
@@ -121,7 +123,9 @@ function displayLobbyPlayers($lobbyID, $lobbytype, $team,$ready = false, $rate =
 			<img class="avatar" src='.$data['avatar'].'></a></li></li>';
 			if ($rate)  $display .= '<li><a href="profile.php?id='.$data['id'].'" target="_blank">
 			<img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'
-			<img class="avatar" src='.$data['avatar'].'></a><span class="rate_switch"><a href="#rate_up:userid" class="rate_up active">+</a><a "#rate_down:userid" class="rate_down">-</a></span></li>';
+			<img class="avatar" src='.$data['avatar'].'></a>'
+			.($uid != $data['id'] ? '<span class="rate_switch"><a href="#rate_up:userid" class="rate_up" data-id="'.$data['id'].'">+</a><a "#rate_down:userid" class="rate_down" data-id="'.$data['id'].'">-</a></span>' : '')
+			.'</li>';
 			$n++;
 		}
 		for($n; $n < teamplayers($lobbytype); $n++) {
@@ -169,10 +173,22 @@ function getLPid($pid,$lid) {
 	return $id['id'];
 }
 
-function newLobby($name,$type,$region,$map,$division) {
+function newLobby($name,$type,$region,$map,$division,$leader, $sid) {
 	$db = Database::obtain();
-	$sql = 'INSERT INTO lobbies (name, type, region, map, division) VALUES ('.$db->escape($name).', '.$db->escape($type).', '.$db->escape($region).', '.$db->escape($map).', '.$db->escape($division);
-	$query = $db->query($sql);
+	//$sql = 'INSERT INTO lobbies (name, type, region, map, division) VALUES ("'.$db->escape($name).'", "'.$db->escape($type).'", "'.$db->escape($region).'", "'.$db->escape($map).'", "'.$db->escape($division).'")';
+	$data = array(
+		'name'     => $name,
+		'type'     => $type,
+		'region'   => $region,
+		'map'      => $map,
+		'division' => $division,
+		'leader'   => $leader,
+		'sid'      => $sid,
+	);
+	$lastInsertId = $db->insert('lobbies', $data);
+
+	//$lastInsertId = $db->query($sql);
+	return $lastInsertId;
 }
 
 function joinLobby($id,$lid) {
@@ -201,6 +217,7 @@ function switchClass($id,$class) {
 
 function readystatus($id,$show,$ready = false) {
 	$db = Database::obtain();
+	if(!$id) return false;
 	if ($ready == 1 && !$show) {
 		$sql = 'UPDATE lobby_players SET ready = "1" WHERE id = '.$db->escape($id);
 		$query = $db->query($sql);
@@ -212,7 +229,7 @@ function readystatus($id,$show,$ready = false) {
 		$sql = 'SELECT * FROM lobby_players WHERE id = '.$db->escape($id);
 		$query = $db->query($sql);
 		$result = $db->fetch($query);
-		return $result['ready'];		
+		return $result['ready'];	
 	}
 }
 

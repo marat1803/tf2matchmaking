@@ -65,6 +65,9 @@ echo '
 			<ul id="lobby_list">';
 				echo displaylobbies(1); echo displaylobbies(2).'
 			</ul>
+		<div class="small button bottom_nav">
+				+ Create your own lobby
+			</div>
 		</div>
 	</div>
 </body>

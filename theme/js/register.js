@@ -8,9 +8,21 @@ $(document).ready(function(){
 
 function register(nickname,steamid,email,loc) {
 	$('input.button.submit').click(function() {
-		$.post("login.php", { "steamId64": steamid, "nickname": nickname, "email": email, "loc": loc },
-		function(data){
-			alert(data);
+		alert(nickname, steamid, email, loc);return false;
+		$.ajax({
+			url:"login.php",
+			type:'post',
+			data: {
+				steamId64: steamid,
+				nickname: nickname,
+				email: email,
+				loc: loc
+			},
+			success: function(data){
+				alert(data);
+			}
+			return false;
 		});
+		return false;
 	});
 }

@@ -21,15 +21,17 @@ function rating($id)
 }
 
 function rate($source,$target,$value) {
+	global $user;
 	$db = Database::obtain();
 	$sql = 'SELECT rated FROM lobby_players WHERE id = '.$db->escape($source);
 	$query = $db->query($sql);
 	$rated = $db->fetch($query);
 	$rated = $rated['rated'];
 	$rates = explode(',', $rated);
+	$allow = true;
 	foreach ($rates as $rate) {
-		if ($rate != $target) $allow = true;
-		else $allow = false;
+		if ($rate == $target) $allow = false;
+		if ($user->id == $target) $allow = false;
 	}
 	if ($allow) {
 			if ($rated == "") $rated .= $target; 

@@ -1,4 +1,4 @@
-<?php
+<?php //die("akhdglahsdklghalshdglah");
 //Maybe if I revert back to the original it'll be easier?
 require_once 'includes/header.php';
 require 'openid.inc';
