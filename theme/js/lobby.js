@@ -4,6 +4,7 @@ $(document).ready(function(){
 	refreshRate = 2000;
 	refreshInterval = setInterval('refreshPage(id)', refreshRate);
 	joinGame(id);
+	leaveGame(id);
 	changeReady(id);
 	changeTeam(id);
 	switchClass(id);
@@ -143,7 +144,7 @@ function joinGame(id) {
 }
 
 function leaveGame(id) {
-	$("button.small.exit_lobby").click(function() {
+	$("div.button.small.exit_lobby").click(function() {
 		$.ajax({
 			data: {"id": id, "request": "leaveGame"},
 			url: 'api.php',
