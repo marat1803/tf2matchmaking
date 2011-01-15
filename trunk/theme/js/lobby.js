@@ -88,7 +88,7 @@ function refreshPage(id) {
 				.add($("li.button.ready_off"))
 					.hide();
 
-			if (data.inlobby == 0) {
+			if (data.inlobby == null) {
 				$("li.button.join_this").show();
 			} else if (data.ready == 1) {
 				$("li.button.join_this")
@@ -105,9 +105,9 @@ function refreshPage(id) {
 				}
 
 			} else {
-				$("li.button.join_this").show();
+				$("li.button.join_this").hide();
+				$("li.button.ready_up").show();
 				$("li.button.ready_off")
-					.add($("li.button.ready_up"))
 					.add($("li.button.join_game"))
 						.hide();
 				

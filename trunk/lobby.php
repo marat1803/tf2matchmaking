@@ -11,7 +11,7 @@ $id = getLPid($pid,$lid);
 
 $lobby = new Lobby($lid);
 $user = new User($pid);
-$sid = $lobby->lobbyserver($id);
+$sid = $lobby->lobbyserver($lid);
 $server = new Server($sid);
 
 

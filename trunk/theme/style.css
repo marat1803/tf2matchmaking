@@ -598,6 +598,7 @@ a#logo{
 	text-align: center;
 	color: #fff;
 	text-shadow: 0 2px 2px #000;
+	cursor: pointer;
 }
 
 .teamname.blu { background: #80a1c2 !important }
