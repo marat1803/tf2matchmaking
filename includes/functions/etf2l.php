@@ -14,15 +14,12 @@ function etf2ldiv($etf2lsteamid) {
                 $last_comp = $team->comp[sizeof($team->comp) - 1];
                     if(isset($last_comp->attributes()->division)) {
                         $division = $last_comp->attributes()->division;
-                        if ($division == 'Premier Division') return 'Premier';
-                        else {
-                            $divnumber = preg_replace('#Division#', '', $division);
-                            return substr($divnumber,  0, -1);
-                        }
-                    }
-            }
+                        $divnumber = preg_replace('#Division#', '', $division);
+                        return 'Division '.substr($divnumber,  0, -1);
+                    } else return 'No division';
+            } else return 'No division';
         }
-    }
+    } else return 'No division';
 }
 
 ?>
