@@ -72,7 +72,7 @@ if ($uid && $lid && $request == "startGame") {
 	$lobby = new Lobby($lid);
 	$server = new Server($lobby->lobbyserver($lid));
 	$players = teamplayers($lobby->type)*2;
-	$server->loadConfig($players,etf2l);
+	$server->loadConfig($players,etf2l,$lobby->map);
 }
 
 if ($uid && $fid && $request == "addFriend") {

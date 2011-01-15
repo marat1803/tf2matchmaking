@@ -26,7 +26,7 @@ class server {
 		$this->name = $result['name'];
 		$this->ip = $result['ip'];
 		$this->port = $result['port'];
-		$this->port = $result['port'];
+		$this->rcon = $result['rcon'];
 		$this->password = $result['password'];
 		$this->latitude = $result['latitude'];
 		$this->longitude = $result['longitude'];
@@ -58,7 +58,8 @@ class server {
 		else return false;
 	}
 
-	public function loadConfig($players,$config) {
+
+	public function loadConfig($players,$config,$map) {
 		$server = $this->ip;
 		$port = $this->port;
 		$rcon = $this->rcon;
@@ -66,6 +67,8 @@ class server {
 		$srcds_rcon = new srcds_rcon();
 		$getconfig = file_get_contents('configs/'.$players.'vs'.$players.'/'.$config.'.cfg');
 		$commands = explode("\n", $getconfig);
+		$srcds_rcon->rcon_command($server,$port,$rcon, 'changelevel '.$map);
+		sleep(20);
 		foreach ($commands as $command) {
 			$srcds_rcon->rcon_command($server, $port, $rcon, $command);
 		}
