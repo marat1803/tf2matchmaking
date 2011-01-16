@@ -1,5 +1,7 @@
 <?php 
 
+require_once 'includes/header.php';
+
 $db = Database::obtain();
 
 if(isset($_POST['nickname'], $_POST['email'], $_POST['steamId64'])) {
@@ -41,7 +43,7 @@ echo '
 			</ul>
 		<h1 style="float: left; font-size: 3em; width: 90%; text-align: center; border-bottom: 1px solid; margin: 20px 5%; padding-bottom: 10px;">Welcome!</h1>
 		<form method="post" action="" style="margin-top: 10px;">
-		<input type="hidden" name="steamId64" value="' . $steamid . '">
+		<input type="hidden" name="steamId64" value="' . $_SESSION['steamid'] . '">
 			<p style="margin: 10px 50px;">Thank you for using TF2MM! Since this is the first time you\'re using TF2MM, we\'d like to know more about you.</p>
 			<div class="panel" style="width: 500px; margin-left: 50px;">
 				<label>Nickname:</label>

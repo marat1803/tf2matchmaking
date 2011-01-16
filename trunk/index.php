@@ -84,6 +84,7 @@ $db = Database::obtain();
 					$result = $db->fetch($query);
 					if (isset($result) && ($steamid == $result['steamid'])) {
 						$_SESSION['id'] = User::get_id($result['steamid']);
+						$_SESSION['steamid'] = $steamid;
 						redirect('index.php',0);
 					} else redirect('register.php',0);
 				} else {
