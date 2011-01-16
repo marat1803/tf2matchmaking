@@ -37,12 +37,18 @@ function rate($source,$target,$value) {
 			if ($rated == "") $rated .= $target; 
             else $rated .= ','.$target;
             $rated = $db->escape($rated);
-			$sql = 'UPDATE lobby_players SET rated = \''.$rated.'\' WHERE id = '.$source;
+			$data['rated'] = $rated;
+			$where = 'id = '.$db->escape($source);
+			$sql = $db->update('lobby_players',$data,$where);
 			$db->query($sql); 
 			if ($value == 1) {
-				$sql = 'UPDATE ratings SET plus = plus + 1 WHERE id = '.$target;		
+				$data['plus'] = 'INCREMENT(1)';
+				$where = 'id = '.$db->escape($target);
+				$sql = $db->update('ratings',$data,$where);
 			} else {
-				$sql = 'UPDATE ratings SET minus = minus + 1 WHERE id = '.$target;
+				$data['minus'] = 'INCREMENT(1)';
+				$where = 'id = '.$db->escape($target);
+				$sql = $db->update('ratings',$data,$where);
 			}
 			$db->query($sql);
 	} else echo 'You already rated this player';

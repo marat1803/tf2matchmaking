@@ -15,7 +15,7 @@ function getOnline ($id)
 function getfriends ($id,$invite = false) {
 	$db = Database::obtain();
 	$query = 'SELECT friends FROM users WHERE id='.$db->escape($id);
-	$result = $db->query($query);
+	$result = $db->query_first($query);
 	$friendsinfo = $db->fetch($result);	
 	$fids = $friendsinfo['friends'];
 	if ($fids != "" && count($fids) > 0) {
@@ -58,7 +58,9 @@ function addFriend ($id,$target) {
             else {
                     if ($friends == "") $friends .= $target; 
                     else $friends .= ','.$target;
-                    $sql = "UPDATE users SET friends = '".$db->escape($friends)."' WHERE id = ".$db->escape($id);
+                    $data['friends'] = $friends;
+                    $where = 'id = '.$db->escape($id);
+                    $sql = $db->update('users',$data,$where);
                     $query = $db->query($sql);
                     echo 'Friend added.';
             }

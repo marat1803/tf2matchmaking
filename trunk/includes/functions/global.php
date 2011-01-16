@@ -6,7 +6,9 @@ function redirect($url,$time=5){
 
 function lastseen($id) {
 	$db = Database::obtain();
-	$sql = "UPDATE users SET lastseen = \"".$db->escape(date('Y-m-d H:i:s'))."\" WHERE id = ".$db->escape($id);
+	$data['lastseen'] = date('Y-m-d H:i:s');
+	$where = 'id = '.$db->escape($id);
+	$sql = $db->update('users',$data,$where);
 	$db->query($sql);
 }
 
@@ -25,7 +27,10 @@ function error($error) {
 		echo "DEBUGGING ISN'T ON, OR ISN'T SET PROPERLY";
 	}
 	$db = Database::obtain();
-	$sql = "INSERT INTO error_log (error_text, user_id, page_url) VALUES ('".$error."',".$user_id.",'".$page_url."')";
+	$data = array('error_text'	=> $error,
+				  'user_id'		=> $user_id,
+				  'page_url'	=> $page_url);
+	$sql = $db->insert('error_log',$data);
 	$db->query($sql);
 }
 

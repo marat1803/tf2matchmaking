@@ -150,7 +150,7 @@ function joinGame(id) {
 function leaveGame(id) {
 	$("div.button.small.exit_lobby").click(function() {
 		$.ajax({
-			data: {"id": id, "request": "leaveGame"},
+			data: {"id": id, "request": "leaveLobby"},
 			url: 'api.php',
 			dataType: 'json',
 			success: function() {
