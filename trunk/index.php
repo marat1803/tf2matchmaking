@@ -1,26 +1,23 @@
 <?php
-// This is just a test
-require 'includes/header.php';
 
+require 'includes/header.php';
+$css = 'style.css';
+$js = 'main.js';
 if(isset($_SESSION['id'])) {
 
 $id = $_SESSION['id'];
 
 $user = new User($id);
+include_once 'includes/header.inc';
 
 }
 
-$css = 'style.css';
-$js = 'main.js';
+
 $db = Database::obtain();
 
-include_once 'includes/header.inc';
-
-		
-echo '
-		<ul id="sidebar">';
 			if ($id) {
-			echo '<li class="play_now_button">Play Now!</li>
+			echo '<ul id="sidebar">
+			<li class="play_now_button">Play Now!</li>
 			<li id="lobby_filter">
 				<ul id="lobbys_opened">
 					<li>'.countLobbies(open).' open lobbies</li>
@@ -54,45 +51,49 @@ echo '
 				<h1>Friends</h1>
 				<ul>'; echo getfriends($user->id); echo '
 				</ul>
-			</li>'; }
-			else {
-			require 'openid.inc';
-				try {
-				    if(!isset($_GET['openid_mode'])) {
-				        if(isset($_GET['login'])) {
-				            $openid = new LightOpenID;
-				            $openid->identity = 'https://steamcommunity.com/openid';
-				            header('Location: ' . $openid->authUrl());
-				        }
+			</li>';
+			} else {
+			 	require 'openid.inc';
+			 	try {
+			    if(!isset($_GET['openid_mode'])) {
+			        if(isset($_GET['login'])) {
+			            $openid = new LightOpenID;
+			            $openid->identity = 'https://steamcommunity.com/openid';
+			            header('Location: ' . $openid->authUrl());
+			        }
 
-				    } elseif($_GET['openid_mode'] == 'cancel') {
-				        echo 'User has canceled authentication!';
-				    } else {
-				        $openid = new LightOpenID;
-						$openid->validate();
-						$steamid = basename($openid->identity);
-						if(!$steamid) {
-							echo 'Auth failed';
-							exit;
-						}
-				    }
+			    } elseif($_GET['openid_mode'] == 'cancel') {
+			        echo 'User has canceled authentication!';
+			    } else {
+			        $openid = new LightOpenID;
+					$openid->validate();
+					$steamid = basename($openid->identity);
+					if(!$steamid) {
+						echo 'Auth failed';
+						exit;
+					}
+			    }
 				} catch(ErrorException $e) {
 				    echo $e->getMessage();
 				}
 				$steamid = basename($openid->identity);
-				if ($steamid == "") {
-				echo '
-			<li><form action="?login" method="post"><div class="button sign_up">Sign up!</div></li>
+				include_once 'includes/header.inc';
+				if ($steamid != "") {
+					$sql = "SELECT * FROM users WHERE steamid = ". $db->escape($steamid);
+					$query = $db->query($sql); 
+					$result = $db->fetch($query);
+					if (isset($result) && ($steamid == $result['steamid'])) {
+						$_SESSION['id'] = User::get_id($result['steamid']);
+						redirect('index.php',0);
+					} else redirect('register.php',0);
+				} else {
+					echo '<ul id="sidebar">
+			<li><form action="?login" method="post"><input type="submit" class="button sign_up" value="Sign up!" /></form></li>
 			<li id="lobby_info">
 				<img src="theme/images/login_small.png" style="margin-left: 25px;">
 			</li>';
-				else {
-					$sql = "SELECT * FROM users WHERE steamid = ". $db->escape($steamid);
-					$query = $db->query_first($sql); 
-					$result = $db->fetch($query);
-					if (isset($result) && $steamid == $result['steamid']) $_SESSION['id'] = User::get_id($steamid['steamid']);
-					else redirect('register.php',0);
 				}
+			}
 		echo '
 		</ul>
 		<div id="content">
@@ -107,5 +108,5 @@ echo '
 </body>
 </html>
 ';
-}
+
 ?>
