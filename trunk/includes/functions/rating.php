@@ -40,7 +40,6 @@ function rate($source,$target,$value) {
 			$data['rated'] = $rated;
 			$where = 'id = '.$db->escape($source);
 			$sql = $db->update('lobby_players',$data,$where);
-			$db->query($sql); 
 			if ($value == 1) {
 				$data['plus'] = 'INCREMENT(1)';
 				$where = 'id = '.$db->escape($target);
@@ -50,7 +49,6 @@ function rate($source,$target,$value) {
 				$where = 'id = '.$db->escape($target);
 				$sql = $db->update('ratings',$data,$where);
 			}
-			$db->query($sql);
 	} else echo 'You already rated this player';
 }
 

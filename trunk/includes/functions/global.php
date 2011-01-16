@@ -5,11 +5,12 @@ function redirect($url,$time=5){
 }
 
 function lastseen($id) {
-	$db = Database::obtain();
-	$data['lastseen'] = date('Y-m-d H:i:s');
-	$where = 'id = '.$db->escape($id);
-	$sql = $db->update('users',$data,$where);
-	$db->query($sql);
+	if ($id) {
+		$db = Database::obtain();
+		$data['lastseen'] = date('Y-m-d H:i:s');
+		$where = 'id = '.$db->escape($id);
+		$sql = $db->update('users',$data,$where);
+	}
 }
 
 function error($error) { 
@@ -31,7 +32,6 @@ function error($error) {
 				  'user_id'		=> $user_id,
 				  'page_url'	=> $page_url);
 	$sql = $db->insert('error_log',$data);
-	$db->query($sql);
 }
 
 function esc_int ($input) {
