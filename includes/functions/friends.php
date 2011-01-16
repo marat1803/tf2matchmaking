@@ -15,7 +15,7 @@ function getOnline ($id)
 function getfriends ($id,$invite = false) {
 	$db = Database::obtain();
 	$query = 'SELECT friends FROM users WHERE id='.$db->escape($id);
-	$result = $db->query_first($query);
+	$result = $db->query($query);
 	$friendsinfo = $db->fetch($result);	
 	$fids = $friendsinfo['friends'];
 	if ($fids != "" && count($fids) > 0) {
