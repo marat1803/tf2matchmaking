@@ -194,7 +194,6 @@ function joinLobby($id,$lid) {
 	$data = array('playerid' => $id,
 				  'lobbyID'  => $lid);
 	$sql = $db->insert('lobby_players',$data);
-	$query = $db->query($sql);
 }
 
 function leaveLobby($id) {
@@ -208,7 +207,6 @@ function joinTeam($id,$team) {
 	$data['team'] = $team;
 	$where = 'id = '.$db->escape($id);
 	$sql = $db->update('lobby_players',$data,$where);
-	$query = $db->query($sql);
 }
 
 function switchClass($id,$class) {
@@ -216,7 +214,6 @@ function switchClass($id,$class) {
 	$data['class'] = $class;
 	$where = 'id = '.$db->escape($id);
 	$sql = $db->update('lobby_players',$data,$where);
-	$query = $db->query($sql);
 }
 
 function readystatus($id,$show,$ready = false) {
@@ -226,12 +223,10 @@ function readystatus($id,$show,$ready = false) {
 		$data['ready'] = 1;
 		$where = 'id = '.$db->escape($id);
 		$sql = $db->update('lobby_players',$data,$where);
-		$query = $db->query($sql);
 	} elseif ($ready == 0 && !$show) {
 		$data['ready'] = 0;
 		$where = 'id = '.$db->escape($id);
 		$sql = $db->update('lobby_players',$data,$where);
-		$query = $db->query($sql);
 	}
 	if ($show) {
 		$sql = 'SELECT * FROM lobby_players WHERE id = '.$db->escape($id);
@@ -254,7 +249,6 @@ function startLobby($id) {
 	$data['status'] = 'ingame';
 	$where = $db->escape($id);
 	$sql = $db->update('lobbies',$data,$where);
-	$query = $db->query($sql);
 }
 
 function isPlayerInLobby($id) {
@@ -280,6 +274,5 @@ function changeLobby ($id,$setting,$into) {
 	$data[$setting] = $into;
 	$where = 'id = '.$db->escape($id);
 	$sql = $db->update('lobbies',$data,$where);
-	$query = $db->query($sql);
 }
 ?>

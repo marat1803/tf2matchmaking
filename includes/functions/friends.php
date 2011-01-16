@@ -61,7 +61,6 @@ function addFriend ($id,$target) {
                     $data['friends'] = $friends;
                     $where = 'id = '.$db->escape($id);
                     $sql = $db->update('users',$data,$where);
-                    $query = $db->query($sql);
                     echo 'Friend added.';
             }
     }
