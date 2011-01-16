@@ -141,6 +141,7 @@ function joinGame(id) {
 			url: 'api.php',
 			dataType: 'json',
 			success: function() {
+				refreshPage(id);
 				
 			}
 		});
@@ -166,6 +167,9 @@ function changeReady(id) {
 			data: {"id": id, "request": "readystatus", "ready": "0"},
 			url: 'api.php',
 			dataType: 'json',
+			success: function() {
+				refreshPage(id);
+			}
 		});
 	});
 	$('li.button.ready_up').click(function(){
@@ -173,6 +177,9 @@ function changeReady(id) {
 			data: {"id": id, "request": "readystatus", "ready": "1"},
 			url: 'api.php',
 			dataType: 'json',
+			success: function () {
+				refreshPage(id);
+			}
 		});
 	});
 }

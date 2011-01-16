@@ -245,10 +245,7 @@ function freeslots($id,$team) {
 }
 
 function startLobby($id) {
-	$db = Database::obtain();
-	$data['status'] = 'ingame';
-	$where = $db->escape($id);
-	$sql = $db->update('lobbies',$data,$where);
+	changeLobby ($id,'status','ingame');
 }
 
 function isPlayerInLobby($id) {
