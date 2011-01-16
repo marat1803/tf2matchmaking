@@ -12,7 +12,7 @@ function getOnlineServers() {
 	$db = Database::obtain();
 	$sql = 'SELECT * FROM servers WHERE status = "online"';
 	$query = $db->query($sql);
-	while ($servers = mysql_fetch_array($query, MYSQL_ASSOC)) {
+	while ($servers = $db->fetch_array($query)) {
 		if ($serverlist == "") $serverlist .= $servers['id'];
 		else $serverlist .= ','.$servers['id'];
 	}
