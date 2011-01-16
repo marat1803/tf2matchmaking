@@ -23,8 +23,8 @@ function newLobby() {
 	
 	$label = $('<label>').text('Name');
 	$textbox = $('<input type="text" name="name">');
-	$label.append($textbox);
-	$form.append($label);
+	$label.after($textbox);
+	$form.append($label).append($textbox);
 
 	$label = $('<label>').text('Server');
 	$select = $('<select>').attr('name', 'server');
@@ -34,8 +34,7 @@ function newLobby() {
 	$option = $('<option>').text('My Own');//TODO: stuff
 	$option.val(1);
 	$select.append($option);
-	$label.append($select);
-	$form.append($label); 
+	$form.append($label).append($select); 
 
 	$label = $('<label>').text('Type');
 	$select = $('<select>').attr('name', 'type');
@@ -45,8 +44,7 @@ function newLobby() {
 	$option = $('<option>').text('9vs9');
 	$option.val(2);
 	$select.append($option);
-	$label.append($select);
-	$form.append($label); 
+	$form.append($label).append($select); 
 
 	$label = $('<label>').text('Map');
 	$select = $('<select>').attr('name', 'map');
@@ -55,15 +53,18 @@ function newLobby() {
 		$option.val(maps[key]);
 		$select.append($option);
 	}
-	$label.append($select);
-	$form.append($label);
+	$form.append($label).append($select);
 
-	$submit = $('<input type="submit" />');
+	$submit = $('<input type="submit" class="button small" style="margin-top: 10px; margin-left: 115px;" value="Create!" />');
 	$submit.click(addNewLobby);
 	$form.append($submit);
 	$popup.append($form);
 
-	$popup.dialog();
+	$popup.dialog({
+		title: 'New Lobby',
+		closeText: 'X',
+		modal: true
+		});
 }
 
 function addNewLobby() {

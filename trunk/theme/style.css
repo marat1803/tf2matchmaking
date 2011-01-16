@@ -821,3 +821,54 @@ a.friend_inv{
     width:100%;
     clear:both;
 }
+
+.ui-dialog{
+	background: url("images/gradient.png") repeat-x scroll 0 -150px #2F251B;
+    border: 1px solid #2F251B;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 10px #000;
+    float: left;
+    margin-bottom: 15px;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    z-index: 5;
+}
+
+.ui-dialog-titlebar{
+	width: 100%;
+	border-bottom: 1px solid #da8a4c;
+	margin-bottom: 8px;
+	float: left;
+	 color: #F77D3A;
+	 font-family: "TF2Build";
+	 cursor: move
+}
+
+.ui-dialog-titlebar-close{
+	display: block;
+	float: right;
+	color: #F0E1BA;
+	cursor: pointer;
+}
+
+.ui-widget-overlay {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+	background: #333;
+	opacity: 0.8;
+}
+
+.ui-dialog input, .ui-dialog select {
+	float: left;
+	margin: 3px;
+}
+
+.ui-dialog label{
+	margin: 3px;
+	clear: both;
+	width: 100px;
+}
