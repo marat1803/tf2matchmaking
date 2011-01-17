@@ -4,6 +4,21 @@ require_once('includes/functions/friends.php');
 require_once('includes/functions/steamcomm.php');
 require_once('includes/functions/etf2l.php');
 
+function mainclass($id) {
+	$db = Database::obtain();
+	$id = $db->escape($id);
+	$sql = 'SELECT class, COUNT(*) FROM lobby_players WHERE playerid = '.$id.' GROUP BY class';
+	$results = $db->fetch_array($sql);
+	foreach ($results as $result) {
+		$i = $result['class'];
+		$class[$i] = $result['COUNT(*)'];
+	}
+	arsort($class);
+	$class = array_flip($class);
+	if ($class[0] == 0) return $class[1];
+	else return $class[0];
+}
+
 class User
 {
 	public function __construct($id) 
@@ -16,6 +31,7 @@ class User
 		$this->nickname = $userinfo['nickname'];
 		$this->steamid = $userinfo['steamid'];
 		$this->rating = rating($this->id);
+		$this->mainclass = mainclass($this->id);
 		$this->avatar = APIGet($this->steamid,avatar);
 		$this->etf2lid = str_replace('STEAM_', '', GetAuthID($this->steamid));
 	}
@@ -28,7 +44,7 @@ class User
 					<span class="user_name">' . $this->nickname . '</span>
 					<span class="user_steamid">' . GetAuthID($this->steamid) . '</span>
 					<dl>
-						<dt>Mainclass:</dt><dd><img style="float: left;" class="class_icon" src="theme/images/class/demo.png" height="14"><span style="float: left; margin-left: 3px;">Demoman</span></dd>
+						<dt>Mainclass:</dt><dd><img style="float: left;" class="class_icon" src="theme/images/class/'.player_class($this->mainclass).'.png" height="14"><span style="float: left; margin-left: 3px;">'.displayClass($this->mainclass).'</span></dd>
 						<dt>Skilllevel:</dt><dd>'.etf2ldiv($this->etf2lid).'</dd>
 						<dt>Rating:</dt><dd>' . $this->rating . '</dd>
 					</dl>';
@@ -38,12 +54,13 @@ class User
 						<span class="user_name">' . $this->nickname . '</span><br />
 						<span class="user_steamid">' . GetAuthID($this->steamid) . '</span>
 						<dl>
-							<dt>Mainclass:</dt><dd><img style="float: left;" class="class_icon" src="theme/images/class/demo.png" height="14"><span style="float: left; margin-left: 3px;">Demoman</span></dd>
+							<dt>Mainclass:</dt><dd><img style="float: left;" class="class_icon" src="theme/images/class/'.player_class($this->mainclass).'.png" height="14"><span style="float: left; margin-left: 3px;">'.displayClass($this->mainclass).'</span></dd>
 							<dt>Skilllevel:</dt><dd>' . etf2ldiv($this->etf2lid) . '</dd>
 							<dt>Rating:</dt><dd>' . $this->rating . '</dd>
 						</dl>
 					</div>';
 	}
+
 
 	public static function get_id($steamid) 
 	{

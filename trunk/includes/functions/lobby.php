@@ -79,6 +79,42 @@ function player_class($class)
 	break;
 	}
 }
+
+function displayClass($class) {
+	switch ($class) {
+		case 0:
+			return "Unknown";
+			break;
+		case 1:
+			return "Scout";
+			break;
+		case 2:
+			return "Soldier";
+			break;
+		case 3:
+			return "Pyro";
+			break;
+		case 4:
+			return "Demoman";
+			break;
+		case 5:
+			return "Heavy";
+			break;
+		case 6:
+			return "Engineer";
+			break;
+		case 7:
+			return "Medic";
+			break;
+		case 8:
+			return "Sniper";
+			break;
+		case 9:
+			return "Spy";
+			break;
+	}
+}
+
 function player($playerID) {
 	$db = Database::obtain();
 	$sql = "SELECT * FROM users WHERE `id` = ".$db->escape($playerID);
