@@ -13,14 +13,12 @@ if(isset($_POST['nickname'], $_POST['email'], $_POST['steamId64'])) {
 				  'email'	 => $email,
 				  'country'	 => $_POST['loc']);
 	$sql = $db->insert('users',$data);
-	$sql = "INSERT INTO `ratings` (`id`) VALUES (".mysql_real_escape_string(User::get_id($steamid)).")";
-	$data['id'] = $sql;
-	$sql = $db->insert('ratings',$data);
+	$data2['id'] = $sql;
+	$sql2 = $db->insert('ratings',$data2);
 	$_SESSION['id'] = User::get_id($steamid);
 	echo 'Your account has been successfully created.';
 	redirect('index.php',3);
 } else {
-$xml = simplexml_load_file('http://steamcommunity.com/profiles/'.$steamid.'?xml=1');
 	
 echo '
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -47,7 +45,7 @@ echo '
 			<p style="margin: 10px 50px;">Thank you for using TF2MM! Since this is the first time you\'re using TF2MM, we\'d like to know more about you.</p>
 			<div class="panel" style="width: 500px; margin-left: 50px;">
 				<label>Nickname:</label>
-				<input type="text" value="' .$xml->steamID. '" name="nickname"/><small style="float: left;margin: 3px;">(Cannot be blank)</small>
+				<input type="text" value="' .APIGet($steamid,personaname). '" name="nickname"/><small style="float: left;margin: 3px;">(Cannot be blank)</small>
 			</div>
 			<input type="submit" style="float: right; width: 250px; margin-right:54px;  margin-bottom: 0;" value="Submit" class="button submit" />
 			<div class="panel" style="width: 500px; margin-left: 50px;">
