@@ -13,10 +13,12 @@ function mainclass($id) {
 		$i = $result['class'];
 		$class[$i] = $result['COUNT(*)'];
 	}
-	arsort($class);
 	$class = array_flip($class);
+	arsort($class);
 	if ($class[0] == 0) return $class[1];
-	else return $class[0];
+	else {		
+		return $class[0];
+	}
 }
 
 class User

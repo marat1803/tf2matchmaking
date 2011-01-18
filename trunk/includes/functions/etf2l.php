@@ -2,10 +2,7 @@
 
 
 function etf2ldiv($etf2lsteamid) {
-
-    $xmlUrl = 'http://etf2l.org/feed/player/?steamid='.$etf2lsteamid; // XML feed file/URL
-    $xmlStr = file_get_contents($xmlUrl);
-    $api = new SimpleXMLElement($xmlStr);
+    $api = simplexml_load_file('http://etf2l.org/feed/player/?steamid='.$etf2lsteamid);
 
 
     if(isset($api->player)) {
