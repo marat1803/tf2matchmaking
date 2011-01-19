@@ -149,6 +149,10 @@ a#logo{
 	background-color: gray;
 }
 
+.button.sign_up{
+	width: 226px;
+}
+
 .button.small{
     background-color: #333333;
     border: 1px solid #EEEEEE;
@@ -871,4 +875,22 @@ a.friend_inv{
 	margin: 3px;
 	clear: both;
 	width: 100px;
+}
+
+.win_icon, .date_icon{
+	float: left;
+	width:auto;
+	background-position: left;
+	padding: 2px;
+	padding-left: 20px;
+	background-repeat: no-repeat;
+	margin-right: 10px;
+}
+
+.win_icon{
+	background-image: url("images/star_gold.png");
+}
+
+.date_icon{
+	background-image: url("images/time_red.png");
 }

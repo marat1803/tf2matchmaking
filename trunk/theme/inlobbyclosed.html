@@ -12,14 +12,14 @@
 			<a href="" id="logo">TF2 Matchmaking System</a>
 		</div>
 		<ul id="sidebar">
-			<li class="button join_this">Join!</li> <!--If the user is in an other lobby, show him some kind of popup alert-->
+			<li class="button connect_server">Connect!</li> <!--If the user is in an other lobby, show him some kind of popup alert-->
 			<!--<li class="button ready_up">Ready Up!</li>-->
 			<!--<li class="button ready_off">Unready!</li>-->
 			<!--<li class="button join_game">Start Game!</li> -->
 			<li id="lobby_info">
 				<dl>
 					<dt>Name:</dt><dd>Test Server</dd>
-					<dt>IP:</dt><dd><a href="steam://connectlinkdiesdas">127.0.0.1</a></dd>
+					<dt>IP:</dt><dd>127.0.0.1</dd>
 					<dt>Location:</dt><dd>Amsterdam</dd>
 					<dt>Rules:</dt><dd>ETF2L 6 vs. 6</dd>
 					<!--<dt>IP</dt><dd>127.0.0.1</dd>-->
@@ -27,7 +27,7 @@
 				<h1>Mumble</h1>
 				<dl>
 					<dt>Name:</dt><dd>Test Server</dd>
-					<dt>IP:</dt><dd><a href="mumble://connectlinkdiesdas">127.0.0.1</a></dd>
+					<dt>IP:</dt><dd>127.0.0.1</dd>
 				</dl>
 			</li>
 			<li class="profile_panel">
@@ -40,24 +40,6 @@
 					<dt>Skilllevel:</dt><dd>Division 4</dd>
 					<dt>Rating:</dt><dd>+++</dd>
 				</dl>
-				<h1 style="margin-top: 10px;">Settings</h1>
-				<ul class="class_list">
-		            <li class="scout"><img src="images/class/scout.png" /></li>
-		            <li class="soldier"><img src="images/class/soldier.png" /></li>
-		            <li class="pyro"><img src="images/class/pyro.png" /></li>
-		            <li class="demoman selected"><img src="images/class/demo.png" /></li>
-		            <li class="heavy"><img src="images/class/heavy.png" /></li>
-		            <li class="engineer"><img src="images/class/engineer.png" /></li>
-		            <li class="medic"><img src="images/class/medic.png" /></li>
-		            <li class="sniper"><img src="images/class/sniper.png" /></li>
-		            <li class="spy"><img src="images/class/spy.png" /></li>
-		            <li class="random"><img src="images/class/noclass.png" /></li>
-         		</ul>
-				<span class="team_switch">
-					<span class="join_blu join_active"></span>
-					<span class="join_spec"></span>
-					<span class="join_red"></span>
-				</span>
 			</li>
 			<li class="friends_panel">
 				<h1>Friends</h1>
@@ -67,21 +49,18 @@
 						<span class="user_name">Hobbybash0r is good!</span>
 						<span class="user_steamid">STEAM_0:0:15052674</span>
 						<span class="user_steamon">Online</span>
-						<a class="friend_inv" href="#invite" title="Invite to Lobby">Inv+</a>
 					</li>
 					<li>
 						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
 						<span class="user_name">Hobbybash0r is good!</span>
 						<span class="user_steamid">STEAM_0:0:15052674</span>
 						<span class="user_steamon">Online</span>
-						<a class="friend_inv" href="#invite" title="Invite to Lobby">Inv+</a>
 					</li>
 					<li>
 						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
 						<span class="user_name">Hobbybash0r is good!</span>
 						<span class="user_steamid">STEAM_0:0:15052674</span>
 						<span class="user_steamon">Online</span>
-						<a class="friend_inv" href="#invite" title="Invite to Lobby">Inv+</a>
 					</li>
 					<li>
 						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
@@ -97,7 +76,6 @@
 						<span class="user_steamon">Offline</span>
 					</li>
 					<li class="friend_offline">
-
 						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
 						<span class="user_name">Hobbybash0r is good!</span>
 						<span class="user_steamid">STEAM_0:0:15052674</span>
@@ -132,37 +110,56 @@
 				<li class="lobby_tooltip_big">
 					<ul class="blue_players">
 						<li class="teamname blu">BLU</li>
-						<li class="lobby_leader"><img src="images/class/demo.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16"></li>
-						<li class="empty"><img src="images/class/noclass.png" height="18">empty</li>
-						<li class="empty"><img src="images/class/noclass.png" height="18">empty</li>
-						<li class="empty"><img src="images/class/noclass.png" height="18">empty</li>
-						<li class="empty"><img src="images/class/noclass.png" height="18">empty</li>
-						<li class="empty"><img src="images/class/noclass.png" height="18">empty</li>
+						<li class="lobby_leader"><img src="images/class/demo.png" height="18">Hobbybash0r is good!<img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
+						<li><img src="images/class/heavy.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
+						<li><img src="images/class/medic.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
+						<li><img src="images/class/scout.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
+						<li><img src="images/class/scout.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
+						<li><img src="images/class/soldier.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
 					</ul>
 					<ul class="red_players">
 						<li class="teamname red">RED</li>
-						<li class="ready"><img src="images/class/demo.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16"><img class="kick" src="images/bullet_cross.png"></li>
-						<li class="empty"><img src="images/class/noclass.png" height="18">empty</li>
-						<li class="empty"><img src="images/class/noclass.png" height="18">empty</li>
-						<li class="empty"><img src="images/class/noclass.png" height="18">empty</li>
-						<li class="empty"><img src="images/class/noclass.png" height="18">empty</li>
-						<li class="empty"><img src="images/class/noclass.png" height="18">empty</li>
+						<li><img src="images/class/demo.png" height="18">Hobbybash0r is good!<img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
+						<li><img src="images/class/heavy.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
+						<li><img src="images/class/medic.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
+						<li><img src="images/class/scout.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
+						<li><img src="images/class/scout.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
+						<li><img src="images/class/soldier.png" height="18">Hobbybash0r is good! <img class="avatar" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg" height="16">
+						</li>
 					</ul>
-					<h1 style="margin-top: 10px;  margin-right: 5px;">Spectators:</h1>
-					<ul style="margin-top: 10px; float: left;"><li>Nightbox</li></ul>
+					<ul style="margin-top: 10px; float: left;">
+						<li class="date_icon">19-01-2011 at 14:01</li>
+						<li class="win_icon"><span class="team_name">RED</span> won this lobby</li>
+					</ul>
 				</li>
 			</ul>
 			<div class="chat_container">
-				<h1>Chat</h1>
-				<div id="chat_box">
+				<h1>Chat Log</h1>
+				<div id="chat_box" style="height: auto;">
 					 <dl>
-					 	<dt class="lobby_log">Notice:</dt><dd>The in-lobby chat isn't implemented yet.<!--<span class="time">14:01</span>--></dd>
+					 	<dt class="lobby_log">Hobbybash0r</dt><dd>joined the lobby.<span class="time">14:01</span></dd>
+					 	<dt>Hobbybash0r:</dt><dd>this is a fucking chat dummy message<span class="time">14:03</span></dd>
+						<dt>Hobbybash0r</dt><dd>this is a fucking chat dummy message<span class="time">14:05</span></dd>
+						<dt class="lobby_log">Nightbox</dt><dd>left the lobby.<span class="time">14:07</span></dd>
+						<dt>Hobbybash0r</dt><dd>this is a fucking chat dummy message<span class="time">14:08</span></dd>
+						<dt>Hobbybash0r</dt><dd>this is a fucking chat dummy message<span class="time">14:09</span></dd>
+						<dt class="lobby_log">Hobbybash0r</dt><dd>was kicked by the lobby leader.<span class="time">14:10</span></dd>
 					 </dl>
 				</div>
-				<input id="chat_new" name="chat_new"><a href="#chat_send" class="button small chat_send">Send</a>
 			</div>
-			<div class="button small exit_lobby">
-				&laquo; Leave Lobby
+			<div class="button small bottom_nav">
+				&laquo; Exit 
 			</div>
 		</div>
 	</div>
