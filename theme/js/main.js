@@ -67,6 +67,17 @@ function newLobby() {
 		});
 }
 
+function joinGame(id) {
+		$.ajax({
+			data: {"id": id, "request": "joinGame"},
+			url: 'api.php',
+			dataType: 'json',
+			success: function() {
+				window.location = "./lobby.php?id="+id;
+			}
+		});
+}
+
 function addNewLobby() {
 	$.ajax({
 		url: 'api.php?request=newLobby',

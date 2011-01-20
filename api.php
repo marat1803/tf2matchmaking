@@ -37,7 +37,7 @@ if ($request == "lobbyplayers" && $lid) {
 		echo json_encode($lobby->lobbyData());
 }
 
-if ($request == "userready" && $lid && uid) {
+if ($request == "userready" && $lid && $uid) {
 	$status = readystatus($id,true);
 	$lobby = new Lobby($lid);
 	$leader = $lobby->lobbyLeader();
