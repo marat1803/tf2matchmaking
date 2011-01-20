@@ -162,7 +162,7 @@ function displayLobby($id,$full = false,$ready = false, $rate = false) {
 			else echo '<div class="lobby_info">
 						<h1>Gameserver</h1>
 						'.$server->showServer().'
-						<a href="lobby.php?id='.$lobby->id.'" class="button join">Join</a>
+						<a href="lobby.php?id='.$lobby->id.'" class="button join" onclick="joinGame('.$lobby->id.')">Join</a>
 					</div>';
 }
 
