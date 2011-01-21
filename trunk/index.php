@@ -102,10 +102,11 @@ $db = Database::obtain();
 		<div id="content">
 			<ul id="lobby_list">';
 				echo displaylobbies(1); echo displaylobbies(2).'
-			</ul>
+			</ul>'; if ($id) echo '
 		<div class="small button bottom_nav">
 				+ Create your own lobby
-			</div>
+			</div>';
+			echo '
 		</div>
 	</div>
 </body>
