@@ -553,6 +553,12 @@ a#logo{
 	box-shadow:0 0 4px lime;
 }
 
+.lobby_tooltip_big .not_ready img.avatar{
+	-moz-box-shadow:0 0 4px red;
+	-webkit-box-shadow:0 0 4px red;
+	box-shadow:0 0 4px red;
+}
+
 .lobby_tooltip_big .lobby_leader img.avatar{
 	-moz-box-shadow:0 0 4px gold;
 	-webkit-box-shadow:0 0 4px gold;

@@ -28,8 +28,14 @@ function refreshPage(id) {
 						avatar: null
 					};
 				}
-
-				$li  = $('<li>');
+				if (data.info.status == "ready") {
+					if (data.players.blu[i].ready == 0) $li  = $('<li class="not_ready">');
+					if (data.players.blu[i].ready == 1) $li  = $('<li class="ready">');
+					if (data.info.leader == data.players.blu[i].id) $li = $('<li class="lobby_leader">');
+				} else {
+					if (data.info.leader == data.players.blu[i].id) $li = $('<li class="lobby_leader">');
+					else $li  = $('<li>');
+				}
 				$a   = $('<a>');
 				$class = $('<img>');
 
@@ -55,7 +61,14 @@ function refreshPage(id) {
 					};
 				}
 
-				$li  = $('<li>');
+				if (data.info.status == "ready") {
+					if (data.players.red[i].ready == 0) $li  = $('<li class="not_ready">');
+					if (data.players.red[i].ready == 1) $li  = $('<li class="ready">');
+					if (data.info.leader == data.players.red[i].id) $li = $('<li class="lobby_leader">');
+				} else {
+					if (data.info.leader == data.players.red[i].id) $li = $('<li class="lobby_leader">');
+					else $li  = $('<li>');
+				}
 				$a   = $('<a>');
 				$class = $('<img>');
 
