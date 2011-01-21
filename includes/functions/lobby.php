@@ -272,6 +272,13 @@ function readystatus($id,$show,$ready = false) {
 	}
 }
 
+function updateLobbyReady($lid) {
+	$lobby = new Lobby($lid);
+	$cond = (countPlayers($lid) == 2*(teamplayers($lobby->type)));
+	if ($cond && $lobby->status == "open") changeLobby ($lid,'status','ready')
+	if ($lobby->status == "ready" && !$cond) changeLobby ($lid,'status','open');
+}
+
 function freeslots($id,$team) {
 	$lobby = new Lobby($id);
 	$lobbyType = $lobby->type;
