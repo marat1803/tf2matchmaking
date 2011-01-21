@@ -238,6 +238,12 @@ function leaveLobby($id) {
 	$query = $db->query($sql);
 }
 
+function deleteLobby($id) {
+	$db = Database::obtain();
+	$sql = 'DELETE FROM lobbies WHERE id = '.$db->escape($id);
+	$query = $db->query($sql);
+}
+
 function joinTeam($id,$team) {
 	$db = Database::obtain();
 	$data['team'] = $team;

@@ -16,10 +16,10 @@ $message = $_POST['message'];
 
 
 if ($uid) $user = new User($uid);
+if ($lid) $lobby = new Lobby($lid);
 if ($lid) $id = getLPid($uid,$lid);
 
 if ($request == "lobbyinfo" && $lid) {
-	$lobby = new Lobby($lid);
 	$lobbyinfo = $lobby->lobbyinfo();
 	$lobbyplayers = $lobby->lobbyData();
 	$count = countPlayers($lid);
@@ -35,13 +35,11 @@ if ($request == "lobbyinfo" && $lid) {
 }
 
 if ($request == "lobbyplayers" && $lid) {
-		$lobby = new Lobby($lid);
 		echo json_encode($lobby->lobbyData());
 }
 
 if ($request == "userready" && $lid && $uid) {
 	$status = readystatus($id,true);
-	$lobby = new Lobby($lid);
 	$leader = $lobby->lobbyLeader();
 	$array = array(
 		'ready' => $status,
@@ -51,7 +49,6 @@ if ($request == "userready" && $lid && $uid) {
 
 if ($lid && $request == "distance" && $lat && $lon)
 	{
-		$lobby = new Lobby($lid);
 		$server = new Server($lobby->lobbyserver($lid));
 		echo GetDistance($lat,$lon,$server->latitude,$server->longitude);
 	}
@@ -71,7 +68,6 @@ if ($uid && $lid && isset($ready) && $request == "readystatus") {
 
 if ($uid && $lid && $request == "startGame") {
 	startLobby($lid);
-	$lobby = new Lobby($lid);
 	$server = new Server($lobby->lobbyserver($lid));
 	$players = teamplayers($lobby->type)*2;
 	$server->loadConfig($players,etf2l,$lobby->map);
@@ -82,11 +78,12 @@ if ($uid && $fid && $request == "addFriend") {
 }
 
 if ($uid && $lid && $request == "joinGame") {
-	if (!isPlayerInLobby($uid)) joinLobby($uid,$lid);
+	if (!isPlayerInLobby($uid) && (countPlayers($lid) != 2*(teamplayers($lobby->type)))) joinLobby($uid,$lid);
 }
 
 if ($uid && $lid && $request == "leaveLobby") {
 	if (isPlayerInLobby($uid) == $lid) leaveLobby($id);
+	if ($lobby->leader == $uid && countPlayers($lid) == 1) deleteLobby($lid);
 }
 
 if($uid && $request == "newLobby") {
