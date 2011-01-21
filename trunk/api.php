@@ -12,6 +12,7 @@ $ready = $_GET['ready'];
 $lat = $_GET['latitude'];
 $lon = $_GET['longitude'];
 $fid = $_GET['fid'];
+$message = $_POST['message'];
 
 
 if ($uid) $user = new User($uid);
@@ -22,6 +23,7 @@ if ($request == "lobbyinfo" && $lid) {
 	$lobbyinfo = $lobby->lobbyinfo();
 	$lobbyplayers = $lobby->lobbyData();
 	$count = countPlayers($lid);
+	updateLobbyReady($lid);
 	$array = array(
 		'id' => $uid,
 		'ready' => readystatus($id,true),
@@ -112,6 +114,14 @@ if($uid && $request == "rate") {
 	$value  = $_POST['value'];
 	rate($id, $target, $value);
 
+}
+
+if ($uid && $lid && $message && $request == "newMessage") {
+	newMessage($uid,$lid,$message);
+}
+
+if ($uid && $lid && $message && $request == "showChat") {
+	displayChat($lid);
 }
 
 ?>

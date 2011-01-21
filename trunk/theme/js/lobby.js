@@ -136,6 +136,7 @@ function refreshPage(id) {
 
 function joinGame(id) {
 	$("li.button.join_this").click(function() {
+		$("li.button.join_this").addClass('locked');
 		$.ajax({
 			data: {"id": id, "request": "joinGame"},
 			url: 'api.php',
