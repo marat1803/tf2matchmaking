@@ -4,6 +4,12 @@ $(document).ready(function(){
 	refreshRate = 6000;
 	refreshIntervalPage = setInterval('refreshPage(id)', refreshRate);
 	refreshIntervalChat = setInterval('refreshChat(id)', refreshRate);
+	enterChat(id);
+	joinGame(id);
+	leaveGame(id);
+	changeReady(id);
+	changeTeam(id);
+	switchClass(id);
 });
 
 function refreshPage(id) {
@@ -150,6 +156,15 @@ function newChatMessage(id) {
 				url: 'api.php'
 			});
 		}
+}
+
+function enterChat(id) {
+	$('#chat_new').keyup(function(e) {
+		if(e.keyCode == 13) {
+			newChatMessage(id);
+		}
+});
+
 }
 
 function refreshChat(id) {

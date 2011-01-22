@@ -42,7 +42,7 @@
 				 <dl>
 				 </dl>
 			</div>
-			<input id="chat_new" name="chat_new"><a href="#" class="button small chat_send" onclick="newChatMessage(<?php echo $lobby->id ?>)">Send</a>
+			<input id="chat_new" name="chat_new"><div class="button small chat_send" onclick="newChatMessage(<?php echo $lobby->id ?>)">Send</div>
 		</div>
 		<div class="button small exit_lobby">
 			&laquo; Exit 
