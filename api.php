@@ -12,7 +12,7 @@ $ready = $_GET['ready'];
 $lat = $_GET['latitude'];
 $lon = $_GET['longitude'];
 $fid = $_GET['fid'];
-$message = $_POST['message'];
+$message = $_GET['message'];
 
 
 if ($uid) $user = new User($uid);
@@ -117,8 +117,8 @@ if ($uid && $lid && $message && $request == "newMessage") {
 	newMessage($uid,$lid,$message);
 }
 
-if ($uid && $lid && $message && $request == "showChat") {
-	displayChat($lid);
+if ($uid && $lid && $request == "showChat") {
+	echo displayChat($lid);
 }
 
 ?>

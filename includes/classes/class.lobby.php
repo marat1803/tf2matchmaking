@@ -1,6 +1,7 @@
 <?php
 
 require_once('includes/functions/lobby.php');
+require_once('includes/functions/chat.php');
 
 class lobby {
 	public $id;
