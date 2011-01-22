@@ -3,7 +3,7 @@
 function displayChat($lobbyid) {
 	$db = Database::obtain();
 	$lobbyid = $db->escape($lobbyid);
-	$sql = 'SELECT * FROM chat WHERE lobbyid = '.$lobbyid.' AND date >= NOW() - INTERVAL 5 SECOND';
+	$sql = 'SELECT * FROM chat WHERE lobbyid = '.$lobbyid.' AND date >= NOW() - INTERVAL 1 SECOND';
 	$results = $db->fetch_array($sql);
 	$return = '';
 	foreach ($results as $result) {
@@ -16,6 +16,7 @@ function displayChat($lobbyid) {
 
 function newMessage($id,$lobby,$message) {
 	$db = Database::obtain();
+	$message = stripslashes($message);
 	$data = array('playerid' => $id,
 				  'lobbyid' => $lobby,
 				  'text' => $message);

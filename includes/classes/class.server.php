@@ -40,12 +40,7 @@ class server {
 					<dt>IP:</dt><dd>'.$this->ip.'</dd>
 					<dt>Location:</dt><dd>'.city($this->latitude,$this->longitude).'</dd>
 					<dt>Rules:</dt><dd>ETF2L 6 vs. 6</dd>	
-				</dl>
-			<h1>Mumble</h1>
-					<dl>
-						<dt>Name:</dt><dd>Test Server</dd>
-						<dt>IP:</dt><dd>127.0.0.1</dd>
-					</dl>	';
+				</dl>';
 	}
 
 	function isServerJoinable($id) {/*
@@ -68,7 +63,7 @@ class server {
 		$getconfig = file_get_contents('configs/'.$players.'vs'.$players.'/'.$config.'.cfg');
 		$commands = explode("\n", $getconfig);
 		$srcds_rcon->rcon_command($server,$port,$rcon, 'changelevel '.$map);
-		sleep(20);
+		sleep(5);
 		foreach ($commands as $command) {
 			$srcds_rcon->rcon_command($server, $port, $rcon, $command);
 		}
@@ -89,6 +84,7 @@ class server {
 	}
 
 }
+
 
 require_once('includes/functions/server.php');
 

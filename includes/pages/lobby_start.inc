@@ -4,7 +4,7 @@
 			<!--<li class="button ready_off">Unready!</li>-->
 			<!--<li class="button join_game">Start Game!</li> -->
 			<li id="lobby_info">
-				<?php echo $server->showServer($sid); ?>
+				<?php echo $server->showServer($sid).$mumble->showServer($mid); ?>
 			</li>
 			<li class="profile_panel">
 			<?php echo $user->display_profile($uid); ?>

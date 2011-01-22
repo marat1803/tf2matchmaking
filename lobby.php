@@ -15,7 +15,9 @@ if ($pid) {
 	$lobby = new Lobby($lid);
 	$user = new User($pid);
 	$sid = $lobby->lobbyserver($lid);
+	$mid = $lobby->mid;
 	$server = new Server($sid);
+	$mumble = new Mumble($mid);
 
 	switch ($lobby->status) {
 			case "open":
