@@ -40,17 +40,9 @@
 			<h1>Chat</h1>
 			<div id="chat_box">
 				 <dl>
-				 	<dt class="lobby_log">Hobbybash0r</dt><dd>joined the lobby.<span class="time">14:01</span></dd>
-				 	<dt>Hobbybash0r:</dt><dd>this is a fucking chat dummy message<span class="time">14:03</span></dd>
-					<dt>Hobbybash0r</dt><dd>this is a fucking chat dummy message<span class="time">14:05</span></dd>
-					<dt class="lobby_log">Nightbox</dt><dd>left the lobby.<span class="time">14:07</span></dd>
-					<dt>Hobbybash0r</dt><dd>this is a fucking chat dummy message<span class="time">14:08</span></dd>
-					<dt>Hobbybash0r</dt><dd>this is a fucking chat dummy message<span class="time">14:09</span></dd>
-					<dt class="lobby_log">Hobbybash0r</dt><dd>was kicked by the lobby leader.<span class="time">14:10</span></dd>
-					<dt>Nightbox</dt><dd>Notice: Chat doesn't work yet...</dd>
 				 </dl>
 			</div>
-			<input id="chat_new" name="chat_new"><a href="#chat_send" class="button small chat_send">Send</a>
+			<input id="chat_new" name="chat_new"><a href="#" class="button small chat_send" onclick="newChatMessage(<?php echo $lobby->id ?>)">Send</a>
 		</div>
 		<div class="button small exit_lobby">
 			&laquo; Exit 

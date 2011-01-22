@@ -1,13 +1,9 @@
 $(document).ready(function(){
 	id = getQuerystring('id');
 	refreshPage(id);
-	refreshRate = 2000;
-	refreshInterval = setInterval('refreshPage(id)', refreshRate);
-	joinGame(id);
-	leaveGame(id);
-	changeReady(id);
-	changeTeam(id);
-	switchClass(id);
+	refreshRate = 6000;
+	refreshIntervalPage = setInterval('refreshPage(id)', refreshRate);
+	refreshIntervalChat = setInterval('refreshChat(id)', refreshRate);
 });
 
 function refreshPage(id) {
@@ -134,7 +130,7 @@ function refreshPage(id) {
 				$('li.button.join_game').removeClass('locked');
 				$('li.button.join_game').click(function(){
 					$.ajax({
-						data: {"id": id, "request": "startGame", "method": "write"},
+						data: {"id": id, "request": "startGame"},
 						url: 'api.php',
 						dataType: 'json',
 					});					
@@ -146,6 +142,26 @@ function refreshPage(id) {
 	});
 }
 
+function newChatMessage(id) {
+		var message = $('#chat_new').val();
+		if (message != "") {
+			$.ajax({
+				data: {"id": id, "message": message, "request": "newMessage"},
+				url: 'api.php'
+			});
+		}
+}
+
+function refreshChat(id) {
+	$.ajax({
+		data: {"id": id, "request": "showChat"},
+		url: 'api.php',
+		dataType: 'html',
+		success: function(data) {
+			$('#chat_box dl').append(data);
+		}
+	});
+}
 
 function joinGame(id) {
 	$("li.button.join_this").click(function() {
