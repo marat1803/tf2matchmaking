@@ -1,9 +1,10 @@
 $(document).ready(function(){
 	id = getQuerystring('id');
 	refreshPage(id);
-	refreshRate = 6000;
-	refreshIntervalPage = setInterval('refreshPage(id)', refreshRate);
-	refreshIntervalChat = setInterval('refreshChat(id)', refreshRate);
+	refreshRatePage = 6000;
+	refreshRateChat = 1500;
+	refreshIntervalPage = setInterval('refreshPage(id)', refreshRatePage);
+	refreshIntervalChat = setInterval('refreshChat(id)', refreshRateChat);
 	enterChat(id);
 	joinGame(id);
 	leaveGame(id);
@@ -153,9 +154,12 @@ function newChatMessage(id) {
 		if (message != "") {
 			$.ajax({
 				data: {"id": id, "message": message, "request": "newMessage"},
-				url: 'api.php'
-			});
-		}
+				url: 'api.php',
+			success: function() {
+				$('#chat_new').attr('value', '');
+			}
+		});
+		}	
 }
 
 function enterChat(id) {

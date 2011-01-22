@@ -36,6 +36,7 @@ class lobby {
 		$this->division = $lobbyinfo['division'];
 		$this->date = $lobbyinfo['date'];	
 		$this->sid = $lobbyinfo['sid'];	
+		$this->mid = $lobbyinfo['mid'];
 		$this->leader = $lobbyinfo['leader'];
 	}
 
