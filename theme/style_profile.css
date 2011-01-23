@@ -34,6 +34,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     /* Forms */
 
     input { float: left;}
+	select {float: left;}
 	label { float: left; clear: left; width: 100px; margin: 5px;}
 	input:focus {
 	}
@@ -455,7 +456,7 @@ a#logo{
 	font-weight: bold;
 }
 
-.profile_panel h1, .friends_panel h1, .team_panel h1 {
+.profile_panel h1, .friends_panel h1, .team_panel h1, .panel h1 {
 	width: 100%;
 	border-bottom: 1px solid #da8a4c;
 	margin-bottom: 3px;
@@ -499,10 +500,10 @@ a#logo{
 	color: #aaa;
 }
 
-.profile_panel dd {
+.profile_panel dd, .panel dd {
 	float: left;
 }
-.profile_panel dt{
+.profile_panel dt, .panel dt{
 	width: 70px;
 	float: left;
 	clear: left;
@@ -567,4 +568,36 @@ a#logo{
     display:block;
     width:100%;
     clear:both;
+}
+
+.user_center .panel{
+	margin-left: 20px;
+	width: auto;
+}
+
+.user_center h1 small{
+	color: #aaa;
+	float: right;
+}
+
+.user_center .friend_del{
+	height: 16px;
+	width: 16px;
+	overflow: hidden;
+	text-indent: -9000px;
+	display: block;
+	position: absolute;
+	background: url("images/bullet_cross.png") no-repeat;
+	margin-left: 200px;
+}
+
+.button.small{
+    background-color: #333333;
+    border: 1px solid #EEEEEE;
+    color: #FFFFFF;
+    padding: 3px 10px;
+    width: auto;
+	font-size: 1em;
+	margin: 10px;
+	font-weight: normal
 }
