@@ -19,7 +19,7 @@ class Mumble extends Server {
 
 	public function getUrl() {
 		return 'mumble://' . $this->ip
-			. ($this->port ? ':' . $this->port : '');
+			. ($this->port ? ':' . $this->port : '').'/?version=1.2.0';
 	}
 
 	public function showServer() {
