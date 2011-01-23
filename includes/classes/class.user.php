@@ -11,13 +11,13 @@ function mainclass($id) {
 	$results = $db->fetch_array($sql);
 	foreach ($results as $result) {
 		$i = $result['class'];
-		$class[$i] = $result['COUNT(*)'];
+		$counts[$i] = $result['COUNT(*)'];
+		$class[$counts[$i]] = $result['class'];
 	}
-	$class = array_flip($class);
-	arsort($class);
-	if ($class[0] == 0) return $class[1];
-	else {		
-		return $class[0];
+	if ($class[0] == max($counts))return $results[1]['class'];
+	else {
+		$count = max($counts);
+		return $class[$count];
 	}
 }
 
