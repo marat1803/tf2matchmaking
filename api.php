@@ -83,7 +83,7 @@ if ($uid && $lid && $request == "joinGame") {
 
 if ($uid && $lid && $request == "leaveLobby") {
 	if (isPlayerInLobby($uid) == $lid) leaveLobby($id);
-	if ($lobby->leader == $uid && countPlayers($lid) == 1) deleteLobby($lid);
+	if ($lobby->leader == $uid && countPlayers($lid) == 0) deleteLobby($lid);
 }
 
 if($uid && $request == "newLobby") {

@@ -162,9 +162,16 @@ function displayLobbyPlayers($lobbyID, $lobbytype, $team,$ready = false, $rate =
 				if ($readystatus == 1 && $lobby->leader != $data['id']) $class = '<li class="ready">';
 				if ($readystatus == 0 && $lobby->leader != $data['id']) $class = '<li class="not_ready">';
 				if ($lobby->leader == $data['id']) $class = '<li class="lobby_leader">';
-				$display .= $class.'<a href="profile.php?id='.$data['id'].'" target="_blank">
+				if (!$data['id']) {
+					$link = '<a href="profile.php?id='.$data['id'].'" target="_blank">';
+					$linkend = '</a>';
+				} else { 
+					$link = '<div onclick="joinGame('.$lobby->ID.')">';
+					$linkend = '</div>';
+				}
+				$display .= $class.$link.'
 							<img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'
-							<img class="avatar" src='.$data['avatar'].'></a></li>';
+							<img class="avatar" src='.$data['avatar'].'>'.$linkend.'/li>';
 			}
 			if ($rate)  $display .= '<li><a href="profile.php?id='.$data['id'].'" target="_blank">
 			<img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'
