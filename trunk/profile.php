@@ -17,6 +17,7 @@ echo '
             <ul class="nav_panel">
                 <li><a href="index.php">Home</a></li>
                 <li class="current"> &raquo; Profile</li>
+                <li><a href="usercenter.php"> &raquo; Control Center</a></li>
             </ul>
             <div class="avatar_panel">
                 <img class="avatar_big" src="'.APIGet($steamid,avatar).'">

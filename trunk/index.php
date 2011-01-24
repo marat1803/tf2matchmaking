@@ -91,9 +91,12 @@ $db = Database::obtain();
 					}
 				} else {
 					echo '<ul id="sidebar">
-			<li><form action="?login" method="post"><input type="submit" class="button sign_up" value="Sign up!" /></form></li>
+			<form action="?login" method="post"><li><input type="submit" value="Sign in!" class="button sign_up"></form></li>
 			<li id="lobby_info">
-				<img src="theme/images/login_small.png" style="margin-left: 25px;">
+				<p style="margin-bottom:5px; padding: 3px; border-bottom: 1px solid #333;">
+					Register or Login to get started
+				</p>
+				<img src="theme/images/login_small.png" style="margin-left: 25px;" />
 			</li>';
 				}
 			}
