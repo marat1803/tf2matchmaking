@@ -72,8 +72,9 @@ function joinGame(id) {
 			data: {"id": id, "request": "joinGame"},
 			url: 'api.php',
 			dataType: 'json',
-			success: function() {
-				window.location = "./lobby.php?id="+id;
+			success: function(data) {
+				if (data != 0) window.location = "./lobby.php?id="+id;
+				else alert('You are already in a lobby.');	
 			}
 		});
 }
@@ -88,10 +89,10 @@ function addNewLobby() {
 			map:  $('#popup select[name="map"]').val()
 		},
 		success: function(data){
-			if(parseInt(data)) {
+			if(data != 0) {
 				window.location = "./lobby.php?id="+data;
 			} else {
-				alert('NOOO');
+				alert('You can\'t create a new lobby');
 			}
 		}
 	});

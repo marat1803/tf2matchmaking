@@ -144,6 +144,9 @@ function refreshPage(id) {
 				});
 			} else {
 				$('li.button.join_game').addClass('locked');
+				$('li.button.join_game').click(function(){
+					alert('The Lobby is not ready.');
+				}
 			}
 		}
 	});
@@ -189,9 +192,9 @@ function joinGame(id) {
 			data: {"id": id, "request": "joinGame"},
 			url: 'api.php',
 			dataType: 'json',
-			success: function() {
-				refreshPage(id);
-				
+			success: function(data) {
+				if (data != 0) refreshPage(id);
+				else alert('You are already in a lobby.');	
 			}
 		});
 	});

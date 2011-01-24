@@ -67,8 +67,12 @@ if ($uid && $lid && isset($ready) && $request == "readystatus") {
 }
 
 if ($uid && $lid && $request == "startGame") {
-	startLobby($lid);
 	$server = new Server($lobby->lobbyserver($lid));
+	if ($server == 1) {
+		$location = getPlayersLocation($lid);
+		$server = new Server(bestServer($location['latitude'],$location['longitude'],$servers));
+	}
+	startLobby($lid);	
 	$players = teamplayers($lobby->type)*2;
 	$server->loadConfig($players,etf2l,$lobby->map);
 }
@@ -79,6 +83,7 @@ if ($uid && $fid && $request == "addFriend") {
 
 if ($uid && $lid && $request == "joinGame") {
 	if (!isPlayerInLobby($uid) && (countPlayers($lid) != 2*(teamplayers($lobby->type)))) joinLobby($uid,$lid);
+	if (isPlayerInLobby($uid)) echo '0';
 }
 
 if ($uid && $lid && $request == "leaveLobby") {

@@ -21,12 +21,26 @@ function mainclass($id) {
 	}
 }
 
+function updateLocation($id,$ip) {
+	if ($id) {
+		$user = new User($id);
+		if (!$user->hasLocation()) {
+			$file = simplexml_load_file('http://api.ipinfodb.com/v2/ip_query.php?key=ca24e42293944a1bff78a2e8833baefb68fa34e2cb997c0becc7aaf4208a7706&ip='.$ip);
+			$db = Database::Obtain();
+			$data['latitude'] = $file->Latitude;
+			$data['longitude'] = $file->Longitude;
+			$where = 'id = '.$db->escape($id);
+			$db->update('users',$data,$where);
+		}
+	}
+}
+
 class User
 {
 	public function __construct($id) 
 	{
 		$db = Database::obtain();
-		$result = $db->query("SELECT id, nickname, steamid FROM users WHERE id = ".$db->escape($id)." LIMIT 1");
+		$result = $db->query("SELECT * FROM users WHERE id = ".$db->escape($id)." LIMIT 1");
 		$userinfo = $db->fetch($result);
 
 		$this->id = $userinfo['id'];
@@ -36,6 +50,8 @@ class User
 		$this->mainclass = mainclass($this->id);
 		$this->avatar = APIGet($this->steamid,avatar);
 		$this->etf2lid = str_replace('STEAM_', '', GetAuthID($this->steamid));
+		$this->latitude = $userinfo['latitude'];
+		$this->longitude = $userinfo['longitude'];
 	}
 
 	public function display_profile($id, $full = true) 
@@ -78,6 +94,11 @@ class User
 		$query = $db->query("SELECT steamid FROM users WHERE id = ".$db->escape($id)." LIMIT 1");
 		$result = $db->fetch($query);
 		return $result['steamid'];
+	}
+
+	public function hasLocation() {
+		if ($this->latitude && $this->longitude) return true;
+		else return false;	
 	}
 }
 ?>

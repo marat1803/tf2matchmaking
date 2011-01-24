@@ -1,0 +1,125 @@
+<div id="content" class="big_panel user_center">
+			<ul class="nav_panel">
+				<li><a href="index.php">Home</a></li>
+				<li><a href="profile.php"> &raquo; Profile</a></li>
+				<li class="current"> &raquo; Control Center</li>
+			</ul>
+		<form method="post" action="usercenter.php">
+			<div class="avatar_panel">
+				<img class="avatar_big" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169_full.jpg">
+			</div>
+			<div class="left" style="width: 300px; float: left;">
+				<div class="panel" style="width: 300px;">
+					<h1>Edit Info:</h1>
+					<label>Nickname:</label>
+					<input type="text" value="Hobbybash0r is good!" name="nickname"/>
+					<label>Email:</label>
+					<input type="text" name="email"/>
+					<label>Country:</label>
+					<select type="text" name="loc">
+						<option selected="selected">Germany</option>
+						<option>USA</option>
+					</select>
+				</div>
+				<div class="panel" style="width: 300px;">
+					<h1>Settings:</h1>
+					<label>Dummy:</label>
+					<input type="checkbox" value="dummy" name="dummy"/>
+					<label>Newsletter:</label>
+					<input type="checkbox" value="newsletter" name="newsletter"/>
+				</div>
+			</div>
+			<div class="right" style="float: right; width: 300px;">
+				<p style="width: 300px; float: right; margin-bottom: 10px;">Those accounts are connected to your TF2MM Profile:</p>
+				<div class="panel" style="width: 300px; float: right;">
+					<h1>Steam<small><a href="#update_steam"><img src="images/arrow_refresh_small.png" style="height: 12px;" /></a></small></h1>
+					<dl>
+						<dt>Name:</dt><dd>Hobbybash0r is good!</dd>
+						<dt>STEAM_ID:</dt><dd>STEAM_0:0:15052674</dd>
+						<dt>Profile:</dt><dd><a href="http://steamcommunity.com/id/bash/">/id/bash/</a></dd>
+					</dl>
+				</div>
+				<div class="panel" style="width: 300px; float: right;">
+					<h1>ETF2L<small><a href="#update_etf2l"> <img src="images/arrow_refresh_small.png" style="height: 12px;" /></a></small></h1>
+					<dl>
+						<dt>Name:</dt><dd>Hobbybash0r</dd>
+						<dt>User ID:</dt><dd>4513</dd>
+						<dt>Profile:</dt><dd><a href="http://etf2l.org/forum/user/4513/">/user/4513/</a></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="profile_panel" style="float: left; clear: left; margin: 0 20px 10px;">
+				<dl>
+					<dt>Mainclass:</dt><dd>Demoman <img class="class_icon" src="images/class/demo.png" height="10"></dd>
+					<dt>Skilllevel:</dt><dd>Division 4</dd>
+					<dt>Rating:</dt><dd>+++</dd>
+				</dl>
+				<input type="submit" class="button small" value="Edit Profile!" />
+			</div>
+			<div class="friends_panel" style="width: 450px; margin-left: 30px;">
+				<h1>Friends</h1>
+				<ul>
+					<li>
+						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
+						<span class="user_name">Hobbybash0r is good!</span>
+						<span class="user_steamid">STEAM_0:0:15052674</span>
+						<span class="user_steamon">Online</span>
+						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
+					</li>
+					<li>
+						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
+						<span class="user_name">Hobbybash0r is good!</span>
+						<span class="user_steamid">STEAM_0:0:15052674</span>
+						<span class="user_steamon">Online</span>
+						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
+					</li>
+					<li>
+						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
+						<span class="user_name">Hobbybash0r is good!</span>
+						<span class="user_steamid">STEAM_0:0:15052674</span>
+						<span class="user_steamon">Online</span>
+						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
+					</li>
+					<li>
+						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
+						<span class="user_name">Hobbybash0r is good!</span>
+						<span class="user_steamid">STEAM_0:0:15052674</span>
+						<span class="user_steamon">Online</span>
+						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
+					</li>
+					<li class="friend_offline">
+						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
+						<span class="user_name">Hobbybash0r is good!</span>
+						<span class="user_steamid">STEAM_0:0:15052674</span>
+						<span class="user_steamon">Offline</span>
+						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
+					</li>
+					<li class="friend_offline">
+						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
+						<span class="user_name">Hobbybash0r is good!</span>
+						<span class="user_steamid">STEAM_0:0:15052674</span>
+						<span class="user_steamon">Offline</span>
+						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
+					</li>
+				</ul>
+			</div>
+			<div class="team_panel">
+				<h1>Team<small>(from ETF2L)</small></h1>
+				<ul>
+					<li>
+						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
+						<span class="user_name">The Good Guys!</span><input type="radio" name="teamid" value="teamid1" checked="checked" />
+						<span class="user_steamid"><a href="http://good.hobbygaming.de/">good.hobbygaming.de</a></span>
+					</li>
+					<li>
+						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
+						<span class="user_name">The Bad Guys!</span><input type="radio" name="teamid" value="teamid2" />
+						<span class="user_steamid"><a href="http://good.hobbygaming.de/">good.hobbygaming.de</a></span>
+					</li>
+				</ul>
+			</div>
+		</form>
+		</div>
+	</div>
+</body>
+</html>

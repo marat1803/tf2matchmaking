@@ -1,1 +1,1 @@
-<?phpsession_name('TF2MM');session_start();//$_SESSION gets set right here, if a previous page created session varsrequire_once('./config.php');require_once('classes.php');lastseen($_SESSION['id']);?>
+<?phpsession_name('TF2MM');session_start();//$_SESSION gets set right here, if a previous page created session varsrequire_once('./config.php');require_once('classes.php');lastseen($_SESSION['id']);updateLocation($_SESSION['id'],$_SERVER['REMOTE_ADDR']);?>
