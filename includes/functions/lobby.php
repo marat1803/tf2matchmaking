@@ -259,6 +259,18 @@ function deleteLobby($id) {
 	$query = $db->query($sql);
 }
 
+function getPlayersLocation($id) {
+	$sql = 'SELECT playerID FROM lobby_players WHERE `lobbyID` = '.$db->escape($id);
+	$result = $db->fetch_array($sql);
+	$ids = $result['player'];
+	foreach ($ids as $id) {
+		$player = player($id);
+		$ploc[$id]['latitude'] = $player['latitude'];
+		$ploc[$id]['longitude'] = $player['longitude'];
+	}
+	return $ploc;
+}
+
 function joinTeam($id,$team) {
 	$db = Database::obtain();
 	$data['team'] = $team;
