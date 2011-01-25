@@ -11,12 +11,12 @@ function isServerJoinable($id) {
 function getOnlineServers() {
 	$db = Database::obtain();
 	$sql = 'SELECT * FROM servers WHERE status = "online"';
-	$query = $db->query($sql);
-	while ($servers = $db->fetch_array($query)) {
-		if ($serverlist == "") $serverlist .= $servers['id'];
-		else $serverlist .= ','.$servers['id'];
+	$servers = $db->fetch_array($sql);
+	foreach ($servers as $server) {
+		$i = $server['id'];
+		$return[$i] = $i;
 	}
-	echo $serverlist;
+	return $return;
 }
 
 

@@ -27,14 +27,25 @@ function newLobby() {
 	$form.append($label).append($textbox);
 
 	$label = $('<label>').text('Server');
-	$select = $('<select>').attr('name', 'server');
+	$select1 = $('<select>').attr('name', 'server');
 	$option = $('<option>').text("Auto");
 	$option.val(0);
-	$select.append($option);
+	$select1.append($option);
 	$option = $('<option>').text('My Own');//TODO: stuff
 	$option.val(1);
-	$select.append($option);
-	$form.append($label).append($select); 
+	$select1.append($option);
+	$select1.change(function(e) { 
+		if( $(this).find('option:selected').val() == 1) {
+			$label = $('<label>').text('RCON');
+			$textbox = $('<input type="text" name="rcon">');
+			$label.after($textbox).insertAfter($select1);
+			$label = $('<label>').text('Address');
+			$textbox = $('<input type="text" name="address">');
+			$label.after($textbox).insertAfter($select1);
+		}
+	});	
+	
+	$form.append($label).append($select1); 
 
 	$label = $('<label>').text('Type');
 	$select = $('<select>').attr('name', 'type');
@@ -67,6 +78,7 @@ function newLobby() {
 		});
 }
 
+
 function joinGame(id) {
 		$.ajax({
 			data: {"id": id, "request": "joinGame"},
@@ -89,7 +101,7 @@ function addNewLobby() {
 			map:  $('#popup select[name="map"]').val()
 		},
 		success: function(data){
-			if(data != 0) {
+			if(data != "0") {
 				window.location = "./lobby.php?id="+data;
 			} else {
 				alert('You can\'t create a new lobby');
