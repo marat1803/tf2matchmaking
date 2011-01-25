@@ -146,7 +146,7 @@ function refreshPage(id) {
 				$('li.button.join_game').addClass('locked');
 				$('li.button.join_game').click(function(){
 					alert('The Lobby is not ready.');
-				}
+				})
 			}
 		}
 	});

@@ -70,6 +70,7 @@ if ($uid && $lid && $request == "startGame") {
 	$server = new Server($lobby->lobbyserver($lid));
 	if ($server == 1) {
 		$location = getPlayersLocation($lid);
+		$servers = getOnlineServers();
 		$server = new Server(bestServer($location['latitude'],$location['longitude'],$servers));
 	}
 	startLobby($lid);	
@@ -83,7 +84,7 @@ if ($uid && $fid && $request == "addFriend") {
 
 if ($uid && $lid && $request == "joinGame") {
 	if (!isPlayerInLobby($uid) && (countPlayers($lid) != 2*(teamplayers($lobby->type)))) joinLobby($uid,$lid);
-	if (isPlayerInLobby($uid)) echo '0';
+	if (isPlayerInLobby($uid) != $lid) echo '0';
 }
 
 if ($uid && $lid && $request == "leaveLobby") {
