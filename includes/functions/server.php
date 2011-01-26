@@ -24,9 +24,21 @@ function newServer($ip,$port,$rcon) {
 	$file = simplexml_load_file('http://api.ipinfodb.com/v2/ip_query.php?key=ca24e42293944a1bff78a2e8833baefb68fa34e2cb997c0becc7aaf4208a7706&ip='.$ip);
 	$latitude = $file->Latitude;
 	$longitude = $file->Longitude;
-	$data = array('ip' => $ip,
+	$srcds_rcon = new srcds_rcon();
+	$hostname = $srcds_rcon->rcon_command($ip,$port,$rcon, 'hostname');
+	$replace = array('"hostname" = "','" ( def. "" )
+          - Hostname for server.');
+	$hostname = str_replace($replace,'',$hostname);
+	$password = $srcds_rcon->rcon_command($ip,$port,$rcon, 'sv_password');
+	$replace = array('"sv_password" = "','" ( def. "" )
+ notify
+ - Server password for entry into multiplayer games');
+	$password = str_replace($replace,'',$password);
+	$data = array('name' => $hostname,
+				  'ip' => $ip,
 				  'port' => $port,
 				  'rcon' => $rcon,
+				  'password' => $password,
 				  'latitude' => $latitude,
 				  'longitude' => $longitude);
 	$insert = $db->insert('servers',$data);

@@ -99,8 +99,8 @@ function addNewLobby() {
 			name: $('#popup input[name="name"]').val(),
 			type: $('#popup select[name="type"]').val(),
 			map:  $('#popup select[name="map"]').val(),
-			address: $('#popup select[name="address"]').val(),
-			rcon: $('#popup select[name="rcon"]').val()
+			address: $('#popup input[name="address"]').val(),
+			rcon: $('#popup input[name="rcon"]').val()
 		},
 		success: function(data){
 			if(data != "0") {

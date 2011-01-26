@@ -99,12 +99,12 @@ if($uid && $request == "newLobby") {
 		$address = $_POST['address'];
 		$rcon = $_POST['rcon'];
 		$address = explode(':',$address);
-		$ip = $address[0];
+		$ip = gethostbyname($address[0]);
 		$port = $address[1];
 		$region = '';
 		$map  = $_POST['map'];
 		$division = '';
-		if (isset($address)) newServer($ip,$port,$rcon);
+		if (isset($address)) $sid = newServer($ip,$port,$rcon);
 		else $sid = 1;
 		$lastInsertId = newLobby($name,$type,$region,$map,$division,$uid,$sid);
 		joinLobby($uid,$lastInsertId);
