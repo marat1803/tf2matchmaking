@@ -29,13 +29,13 @@ function newLobby() {
 	$label = $('<label>').text('Server');
 	$select1 = $('<select>').attr('name', 'server');
 	$option = $('<option>').text("Auto");
-	$option.val(0);
-	$select1.append($option);
-	$option = $('<option>').text('My Own');//TODO: stuff
 	$option.val(1);
 	$select1.append($option);
+	$option = $('<option>').text('My Own');//TODO: stuff
+	$option.val(2);
+	$select1.append($option);
 	$select1.change(function(e) { 
-		if( $(this).find('option:selected').val() == 1) {
+		if( $(this).find('option:selected').val() == 2) {
 			$label = $('<label>').text('RCON');
 			$textbox = $('<input type="text" name="rcon">');
 			$label.after($textbox).insertAfter($select1);
@@ -98,7 +98,9 @@ function addNewLobby() {
 		data: {
 			name: $('#popup input[name="name"]').val(),
 			type: $('#popup select[name="type"]').val(),
-			map:  $('#popup select[name="map"]').val()
+			map:  $('#popup select[name="map"]').val(),
+			address: $('#popup select[name="address"]').val(),
+			rcon: $('#popup select[name="rcon"]').val()
 		},
 		success: function(data){
 			if(data != "0") {

@@ -19,6 +19,20 @@ function getOnlineServers() {
 	return $return;
 }
 
+function newServer($ip,$port,$rcon) {
+	$db = Database::obtain();
+	$file = simplexml_load_file('http://api.ipinfodb.com/v2/ip_query.php?key=ca24e42293944a1bff78a2e8833baefb68fa34e2cb997c0becc7aaf4208a7706&ip='.$ip);
+	$latitude = $file->Latitude;
+	$longitude = $file->Longitude;
+	$data = array('ip' => $ip,
+				  'port' => $port,
+				  'rcon' => $rcon,
+				  'latitude' => $latitude,
+				  'longitude' => $longitude);
+	$insert = $db->insert('servers',$data);
+	return $insert;
+}
+
 
 function bestServer($latitude,$longitude,$server) {
 	for ($k=0;$k<count($server);$k++) {
