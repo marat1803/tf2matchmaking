@@ -96,10 +96,16 @@ if($uid && $request == "newLobby") {
 	if (!isPlayerInLobby($uid)) {
 		$name = $_POST['name'];
 		$type = $_POST['type'];
+		$address = $_POST['address'];
+		$rcon = $_POST['rcon'];
+		$address = explode(':',$address);
+		$ip = $address[0];
+		$port = $address[1];
 		$region = '';
 		$map  = $_POST['map'];
 		$division = '';
-		$sid = 2;
+		if (isset($address)) newServer($ip,$port,$rcon);
+		else $sid = 1;
 		$lastInsertId = newLobby($name,$type,$region,$map,$division,$uid,$sid);
 		joinLobby($uid,$lastInsertId);
 		if($lastInsertId) {
