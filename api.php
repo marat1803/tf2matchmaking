@@ -24,6 +24,7 @@ if ($request == "lobbyinfo" && $lid) {
 	$lobbyplayers = $lobby->lobbyData();
 	$count = countPlayers($lid);
 	updateLobbyReady($lid);
+	//if ($lobby->status == "ready") checkOnlineUsers($lid);
 	$array = array(
 		'id' => $uid,
 		'ready' => readystatus($id,true),
@@ -67,11 +68,12 @@ if ($uid && $lid && isset($ready) && $request == "readystatus") {
 }
 
 if ($uid && $lid && $request == "startGame") {
-	$server = new Server($lobby->lobbyserver($lid));
-	if ($server == 1) {
+	$server =  new Server($lobby->lobbyserver($lid));
+	if ($server->id == 1) {
 		$location = getPlayersLocation($lid);
 		$servers = getOnlineServers();
-		$server = new Server(bestServer($location['latitude'],$location['longitude'],$servers));
+		$server = new Server(bestServer($location,$servers));
+		updateLobbyServer($lid,$server->id);
 	}
 	startLobby($lid);	
 	$players = teamplayers($lobby->type)*2;
@@ -104,7 +106,7 @@ if($uid && $request == "newLobby") {
 		$region = '';
 		$map  = $_POST['map'];
 		$division = '';
-		if (isset($address)) $sid = newServer($ip,$port,$rcon);
+		if (isset($_POST['address'])) $sid = newServer($ip,$port,$rcon);
 		else $sid = 1;
 		$lastInsertId = newLobby($name,$type,$region,$map,$division,$uid,$sid);
 		joinLobby($uid,$lastInsertId);
@@ -132,5 +134,6 @@ if ($uid && $lid && $message && $request == "newMessage") {
 if ($uid && $lid && $request == "showChat") {
 	echo displayChat($lid);
 }
+
 
 ?>

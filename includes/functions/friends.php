@@ -7,7 +7,7 @@ function getOnline ($id)
 	$query = $db->query($sql);
 	$users = $db->fetch($query);
 	$lastseen = $users['lastseen'];
-	if ((time() - strtotime($lastseen)) > (5 * 60)) return "Offline";
+	if ((time() - strtotime($lastseen)) > 60) return "Offline";
 	else return "Online";
 }
 
