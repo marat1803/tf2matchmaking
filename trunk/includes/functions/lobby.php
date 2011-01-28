@@ -260,15 +260,23 @@ function deleteLobby($id) {
 }
 
 function getPlayersLocation($id) {
+	$db = Database::obtain();
 	$sql = 'SELECT playerID FROM lobby_players WHERE `lobbyID` = '.$db->escape($id);
-	$result = $db->fetch_array($sql);
-	$ids = $result['player'];
+	$ids = $db->fetch_array($sql);
 	foreach ($ids as $id) {
+		$id = $id['playerID'];
 		$player = player($id);
 		$ploc[$id]['latitude'] = $player['latitude'];
 		$ploc[$id]['longitude'] = $player['longitude'];
 	}
 	return $ploc;
+}
+
+function updateLobbyServer($lid,$sid) {
+	$db = Database::obtain();
+	$data['sid'] = $sid;
+	$where = 'id = '.$db->escape($lid);
+	$sql = $db->update('lobbies',$data,$where);
 }
 
 function joinTeam($id,$team) {

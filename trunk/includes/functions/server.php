@@ -12,11 +12,15 @@ function getOnlineServers() {
 	$db = Database::obtain();
 	$sql = 'SELECT * FROM servers WHERE status = "online"';
 	$servers = $db->fetch_array($sql);
+	$return_array = array();
 	foreach ($servers as $server) {
-		$i = $server['id'];
-		$return[$i] = $i;
+		$return = array();
+		$return['id'] = $server['id'];
+		$return['latitude'] = $server['latitude'];
+		$return['longitude'] = $server['longitude'];
+		$return_array[] = $return;
 	}
-	return $return;
+	return $return_array;
 }
 
 function newServer($ip,$port,$rcon) {
@@ -46,13 +50,27 @@ function newServer($ip,$port,$rcon) {
 }
 
 
-function bestServer($latitude,$longitude,$server) {
+function bestServer2($latitude,$longitude,$server) {
 	for ($k=0;$k<count($server);$k++) {
 		for ($i=0;$i<count($latitude);$i++){
 			$sum = $sum + getDistance($latitude[$i],$longitude[$i],$server[$k]['latitude'],$server[$k]['longitude']);
 			if ($sum <= $min) {
 				$min = $sum;
 				$id = $k;
+			}
+		}
+	}
+	return $id;
+}
+
+function bestServer($location,$server) {
+
+	foreach($server as $k => $s){
+		foreach($location as $i => $loc) { 
+			$sum = $sum + getDistance($loc['latitutde'],$loc['longitude'],$s['latitude'],$s['longitude']);
+			if ($sum <= $min || !$min) {
+				$min = $sum;
+				$id = $s['id'];
 			}
 		}
 	}
