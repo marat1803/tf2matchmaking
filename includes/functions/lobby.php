@@ -328,6 +328,26 @@ function freeslots($id,$team) {
 	return $maxPlayers - $playerCount;
 }
 
+function checkOfflinePlayers($id) {
+	$lobby = new Lobby($id);
+	$players = $lobby->lobbyData();
+	foreach ($players as $team) {
+		if ($players['size'] == $team) continue;
+		foreach ($team as $player) {
+			if (getOnline($player['id']) == "Offline") {
+				$array[] = $player['id'];
+			}
+		}		
+	}
+	return $array;
+}
+
+function removeOfflinePlayers($players) {
+	foreach ($players as $player) {
+		leaveLobby($player['id']);
+	}
+}
+
 function startLobby($id) {
 	changeLobby ($id,'status','ingame');
 }

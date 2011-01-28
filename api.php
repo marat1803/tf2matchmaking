@@ -24,7 +24,7 @@ if ($request == "lobbyinfo" && $lid) {
 	$lobbyplayers = $lobby->lobbyData();
 	$count = countPlayers($lid);
 	updateLobbyReady($lid);
-	//if ($lobby->status == "ready") checkOnlineUsers($lid);
+	if ($lobby->status == "ready") removeOfflinePlayers(checkOfflinePlayers($lid));
 	$array = array(
 		'id' => $uid,
 		'ready' => readystatus($id,true),
