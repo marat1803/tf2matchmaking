@@ -344,7 +344,7 @@ function checkOfflinePlayers($id) {
 
 function removeOfflinePlayers($players) {
 	foreach ($players as $player) {
-		leaveLobby(getLPid($player['id'],isPlayerInLobby($id));
+		leaveLobby(getLPid($player['id'],isPlayerInLobby($player['id'])));
 	}
 }
 

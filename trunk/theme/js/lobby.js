@@ -77,7 +77,7 @@ function refreshPage(id) {
 				$class = $('<img>');
 
 				if (data.players.red[i].id == 0) $a = $('<a onclick=changeTeam(2)>');
-				else $a.attr('href', 'profile.php?id=' + data.players.blu[i].id);
+				else $a.attr('href', 'profile.php?id=' + data.players.red[i].id);
 				$class.attr('src', 'theme/images/class/' + (data.players.red[i].class ? data.players.red[i].class : 'noclass') + '.png');
 				$a.append($class).append(data.players.red[i].nickname);
 				if(data.players.red[i].avatar) {

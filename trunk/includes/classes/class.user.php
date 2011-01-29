@@ -52,6 +52,7 @@ class User
 		$this->etf2lid = str_replace('STEAM_', '', GetAuthID($this->steamid));
 		$this->latitude = $userinfo['latitude'];
 		$this->longitude = $userinfo['longitude'];
+		$this->status = $userinfo['status'];
 	}
 
 	public function display_profile($id, $full = true) 

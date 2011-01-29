@@ -36,12 +36,16 @@ function newLobby() {
 	$select1.append($option);
 	$select1.change(function(e) { 
 		if( $(this).find('option:selected').val() == 2) {
-			$label = $('<label>').text('RCON');
-			$textbox = $('<input type="text" name="rcon">');
-			$label.after($textbox).insertAfter($select1);
+			$field = $('<fieldset>').attr('id', 'own_server');
 			$label = $('<label>').text('Address');
 			$textbox = $('<input type="text" name="address">');
-			$label.after($textbox).insertAfter($select1);
+			$field.append($label).append($textbox);
+			$label = $('<label>').text('RCON');
+			$textbox = $('<input type="text" name="rcon">');
+			$field.append($label).append($textbox);
+			$field.insertAfter($select1);
+		} else if ( $(this).find('option:selected').val() == 1) {
+			$('#own_server').remove();
 		}
 	});	
 	
