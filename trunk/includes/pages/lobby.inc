@@ -29,8 +29,7 @@
 			</li>
 			<li class="friends_panel">
 				<h1>Friends</h1>
-				<ul><?php echo getfriends($pid,true); ?>
-				</ul>
+				<ul><?php echo getfriends($pid,'invite'); ?></ul>
 			</li>
 		</ul>
 		<div id="content">

@@ -6,18 +6,18 @@
 			</ul>
 		<form method="post" action="usercenter.php">
 			<div class="avatar_panel">
-				<img class="avatar_big" src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169_full.jpg">
+				<img class="avatar_big" src="<?php echo APIGet($user->steamid,'avatar'); ?>">
 			</div>
 			<div class="left" style="width: 300px; float: left;">
 				<div class="panel" style="width: 300px;">
 					<h1>Edit Info:</h1>
 					<label>Nickname:</label>
-					<input type="text" value="Hobbybash0r is good!" name="nickname"/>
+					<input type="text" value="<?php echo $user->nickname; ?>" name="nickname"/>
 					<label>Email:</label>
-					<input type="text" name="email"/>
+					<input type="text" value="<?php echo $user->email; ?>" name="email"/>
 					<label>Country:</label>
 					<select type="text" name="loc">
-						<option selected="selected">Germany</option>
+						<option selected="selected"><?php echo $user->country; ?></option>
 						<option>USA</option>
 					</select>
 				</div>
@@ -30,77 +30,35 @@
 				</div>
 			</div>
 			<div class="right" style="float: right; width: 300px;">
-				<p style="width: 300px; float: right; margin-bottom: 10px;">Those accounts are connected to your TF2MM Profile:</p>
 				<div class="panel" style="width: 300px; float: right;">
-					<h1>Steam<small><a href="#update_steam"><img src="images/arrow_refresh_small.png" style="height: 12px;" /></a></small></h1>
+					<h1>Steam<small><a href="#update_steam"><img src="theme/images/arrow_refresh_small.png" style="height: 12px;" /></a></small></h1>
 					<dl>
-						<dt>Name:</dt><dd>Hobbybash0r is good!</dd>
-						<dt>STEAM_ID:</dt><dd>STEAM_0:0:15052674</dd>
-						<dt>Profile:</dt><dd><a href="http://steamcommunity.com/id/bash/">/id/bash/</a></dd>
+						<dt>Name:</dt><dd><?php echo APIGet($user->steamid,'personaname'); ?></dd>
+						<dt>STEAM_ID:</dt><dd><?php echo GetAuthID($user->steamid); ?></dd>
+						<dt>Profile:</dt><dd><a href="<?php echo APIGet($user->steamid,'profileurl'); ?>"><?php echo str_replace('http://steamcommunity.com', '', APIGet($user->steamid,'profileurl')); ?></a></dd>
 					</dl>
 				</div>
 				<div class="panel" style="width: 300px; float: right;">
-					<h1>ETF2L<small><a href="#update_etf2l"> <img src="images/arrow_refresh_small.png" style="height: 12px;" /></a></small></h1>
+					<h1>ETF2L<small><a href="#update_etf2l"> <img src="theme/images/arrow_refresh_small.png" style="height: 12px;" /></a></small></h1>
 					<dl>
-						<dt>Name:</dt><dd>Hobbybash0r</dd>
-						<dt>User ID:</dt><dd>4513</dd>
-						<dt>Profile:</dt><dd><a href="http://etf2l.org/forum/user/4513/">/user/4513/</a></dd>
+						<dt>Name:</dt><dd><?php echo etf2l($user->steamid, 'displayname'); ?></dd>
+						<dt>User ID:</dt><dd><?php echo etf2l($user->steamid, 'id'); ?></dd>
+						<dt>Profile:</dt><dd><a href="<?php echo etf2l($user->steamid, 'url'); ?>"><?php echo str_replace('http://etf2l.org/forum/user','', etf2l($user->steamid, 'url')); ?></a></dd>
 					</dl>
 				</div>
 			</div>
 			<div class="profile_panel" style="float: left; clear: left; margin: 0 20px 10px;">
 				<dl>
-					<dt>Mainclass:</dt><dd>Demoman <img class="class_icon" src="images/class/demo.png" height="10"></dd>
-					<dt>Skilllevel:</dt><dd>Division 4</dd>
-					<dt>Rating:</dt><dd>+++</dd>
+					<dt>Mainclass:</dt><dd><?php echo displayClass($user->mainclass); ?><img class="class_icon" src="theme/images/class/<?php echo player_class($user->mainclass); ?>.png" height="14"></dd>
+					<dt>Skilllevel:</dt><dd><?php echo $user->division; ?></dd>
+					<dt>Rating:</dt><dd><?php echo $user->rating; ?></dd>
 				</dl>
 				<input type="submit" class="button small" value="Edit Profile!" />
 			</div>
 			<div class="friends_panel" style="width: 450px; margin-left: 30px;">
 				<h1>Friends</h1>
 				<ul>
-					<li>
-						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
-						<span class="user_name">Hobbybash0r is good!</span>
-						<span class="user_steamid">STEAM_0:0:15052674</span>
-						<span class="user_steamon">Online</span>
-						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
-					</li>
-					<li>
-						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
-						<span class="user_name">Hobbybash0r is good!</span>
-						<span class="user_steamid">STEAM_0:0:15052674</span>
-						<span class="user_steamon">Online</span>
-						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
-					</li>
-					<li>
-						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
-						<span class="user_name">Hobbybash0r is good!</span>
-						<span class="user_steamid">STEAM_0:0:15052674</span>
-						<span class="user_steamon">Online</span>
-						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
-					</li>
-					<li>
-						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
-						<span class="user_name">Hobbybash0r is good!</span>
-						<span class="user_steamid">STEAM_0:0:15052674</span>
-						<span class="user_steamon">Online</span>
-						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
-					</li>
-					<li class="friend_offline">
-						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
-						<span class="user_name">Hobbybash0r is good!</span>
-						<span class="user_steamid">STEAM_0:0:15052674</span>
-						<span class="user_steamon">Offline</span>
-						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
-					</li>
-					<li class="friend_offline">
-						<img src="http://media.steampowered.com/steamcommunity/public/images/avatars/4b/4be5d08ac4dde632773f3b9f28663cae74d02169.jpg">
-						<span class="user_name">Hobbybash0r is good!</span>
-						<span class="user_steamid">STEAM_0:0:15052674</span>
-						<span class="user_steamon">Offline</span>
-						<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>
-					</li>
+					<?php echo getfriends($user->id,'remove'); ?>
 				</ul>
 			</div>
 			<div class="team_panel">

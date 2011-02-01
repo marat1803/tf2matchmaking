@@ -19,4 +19,13 @@ function etf2ldiv($etf2lsteamid) {
     } else return 'No division';
 }
 
+function etf2l($steamid, $detail) {
+    $steamid = str_replace('STEAM_', '', GetAuthID($steamid));
+    $api = simplexml_load_file('http://etf2l.org/feed/player/?steamid='.$steamid);
+    if ($detail == 'displayname') return $api->player->displayname;
+    if ($detail == 'id') return $api->player->attributes()->id;
+    if ($detail == 'url') return 'http://etf2l.org/forum/user/'.$api->player->attributes()->id.'/';
+
+}
+
 ?>
