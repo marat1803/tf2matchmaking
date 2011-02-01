@@ -12,7 +12,7 @@ function getOnline ($id)
 }
 
 
-function getfriends ($id,$invite = false) {
+function getfriends ($id,$extra = 'simple') {
 	$db = Database::obtain();
 	$query = 'SELECT friends FROM users WHERE id='.$db->escape($id);
 	$result = $db->query($query);
@@ -28,14 +28,16 @@ function getfriends ($id,$invite = false) {
 			$uid = $friend['id'];
 			if ($online == "Online") $status = '<li>';
 				else $status = '<li class="friend_offline">';
-			if ($invite && $online == "Online") 
-			$invitelink = '<a class="friend_inv" href="#invite" title="Invite to Lobby">Inv+</a>';
+			if ($extra == 'invite' && $online == 'Online') 
+				$extrahtml = '<a class="friend_inv" href="#invite" title="Invite to Lobby">Inv+</a>';
+			if ($extra == 'remove')
+				$extrahtml = '<a class="friend_del" href="#del" title="Remove from Friendlist">Remove from Friendlist</a>';
 			$return = $status.'<a href = "profile.php?id='.$uid.'">
 			<img src='.APIGet($steamid,avatar).' width="32" height="32"></img>'.
 			'<span class="user_name">'.$nickname.'</span>'.
 			'<span class="user_steamid">'.GetAuthID($steamid).'</span>'.
 			'<span class="user_steamon">'.$online.'</span><br />
-			'.$invitelink.'
+			'.$extrahtml.'
 			</a></li>';
 			echo $return;
 		

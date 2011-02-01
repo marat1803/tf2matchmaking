@@ -3,9 +3,11 @@
 require_once 'includes/header.php';
 
 $id = $_GET['id'];
-$steamid = User::get_steamid($id);
+if (!$id) $id = $_SESSION['id'];
+if (!$id) header('Location: index.php');
 
 $user = new User($id);
+
 
 $css = 'style_profile.css';
 $js = 'profile.js';
@@ -20,7 +22,8 @@ echo '
                 <li><a href="usercenter.php"> &raquo; Control Center</a></li>
             </ul>
             <div class="avatar_panel">
-                <img class="avatar_big" src="'.APIGet($steamid,avatar).'">
+                <img class="avatar_big" src="'.APIGet($user->steamid,avatar).'">';
+                if ($id != $user->id) echo'
                 <div class="friend_add button">+ Add</div>';
             echo '</div>
             '.$user->display_profile($id, false).'
