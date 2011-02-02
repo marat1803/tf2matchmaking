@@ -15,7 +15,7 @@
 			</li>
 			<li class="friends_panel">
 				<h1>Friends</h1>
-				<ul><?php echo getfriends($pid,true); ?>
+				<ul><?php echo getfriends($pid); ?>
 				</ul>
 			</li>
 		</ul>

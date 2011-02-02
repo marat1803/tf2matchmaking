@@ -35,6 +35,18 @@ function updateLocation($id,$ip) {
 	}
 }
 
+function newUser($nickname,$steamid,$email,$country) {
+	$db = Database::obtain();
+	$data = array('steamid'  => $steamid,
+				  'nickname' => $nickname,
+				  'email'	 => $email,
+				  'country'	 => $country);
+	$sql = $db->insert('users',$data);
+	$data2['id'] = $sql;
+	$sql2 = $db->insert('ratings',$data2);
+	return $sql;
+}
+
 class User
 {
 	public function __construct($id) 
@@ -109,6 +121,57 @@ class User
 		$db = Database::obtain();
 		$where = 'id = '.$db->escape($this->id);
 		$db->update('users',$details,$where);
+
+	}
+
+	public function countrySelect() {
+		$html = '';
+		$countries = array(
+			'AT' => 'Austria',
+			'BY' => 'Belarus',
+  			'BE' => 'Belgium',
+  			'BA' => 'Bosnia Herzegovina',
+			'BG' => 'Bulgaria',
+			'HR' => 'Croatia',
+			'CZ' => 'Czech Republic',
+			'DK' => 'Denmark',
+			'EE' => 'Estonia',
+			'FI' => 'Finland',
+			'FR' => 'France',
+			'DE' => 'Germany',
+			'GR' => 'Greece',
+			'HU' => 'Hungary',
+			'IS' => 'Iceland',
+			'IE' => 'Ireland',
+			'IL' => 'Israel',
+			'IT' => 'Italy',
+			'LV' => 'Latvia',
+			'LT' => 'Lithuania',
+			'LU' => 'Luxembourg',
+			'MK' => 'Macedonia',
+			'MT' => 'Malta',
+			'NL' => 'Netherlands',
+			'PL' => 'Poland',
+			'PT' => 'Portugal',
+			'RO' => 'Romania',
+			'RU' => 'Russia',
+			'RS' => 'Serbia',
+			'SK' => 'Slovakia',
+			'SI' => 'Slovenia',
+			'ES' => 'Spain',
+			'SE' => 'Sweden',
+			'CH' => 'Switzerland',
+			'TR' => 'Turkey',
+			'UK' => 'United Kingdom',
+			'UA' => 'Ukraine',
+			'EU' => 'European',
+			'US/CA' => 'US/CA',
+			'INT' => 'International');
+		foreach ($countries as $country) {
+			if ($country == $this->country) $html .= '<option value="'.$country.'" selected="selected">'.$country.'</option>';
+			else $html .= '<option value="'.$country.'">'.$country.'</option>';
+		}
+		return $html;
 	}
 }
 ?>
