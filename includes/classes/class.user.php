@@ -52,14 +52,15 @@ class User
 	public function __construct($id) 
 	{
 		$db = Database::obtain();
-		$result = $db->query("SELECT * FROM users WHERE id = ".$db->escape($id)." LIMIT 1");
-		$userinfo = $db->fetch($result);
+		$sql= 'SELECT * FROM users WHERE id = '.$db->escape($id);
+		$userinfo = $db->query_first($sql);
 
 		$this->id = $userinfo['id'];
 		$this->nickname = $userinfo['nickname'];
 		$this->steamid = $userinfo['steamid'];
 		$this->country = $userinfo['country'];
 		$this->email = $userinfo['email'];
+		$this->banpoints = $userinfo['banpoints'];
 		$this->rating = rating($this->id);
 		$this->mainclass = mainclass($this->id);
 		$this->avatar = APIGet($this->steamid,avatar);
@@ -69,6 +70,7 @@ class User
 		$this->longitude = $userinfo['longitude'];
 		$this->status = $userinfo['status'];
 	}
+
 
 	public function display_profile($id, $full = true) 
 	{
@@ -80,6 +82,7 @@ class User
 					<dl>
 						<dt>Mainclass:</dt><dd><img style="float: left;" class="class_icon" src="theme/images/class/'.player_class($this->mainclass).'.png" height="14"><span style="float: left; margin-left: 3px;">'.displayClass($this->mainclass).'</span></dd>
 						<dt>Skilllevel:</dt><dd>'.$this->division.'</dd>
+						<dt>Banpoints:</dt><dd>'.$this->banpoints.'.</dd>
 						<dt>Rating:</dt><dd>' . $this->rating . '</dd>
 					</dl>';
 		else
