@@ -8,16 +8,10 @@ if(isset($_POST['nickname'], $_POST['email'], $_POST['steamId64'])) {
 	$nickname = substr($_POST['nickname'], 0, 80);
 	$email = $_POST['email'];
 	$steamid = (string)$_POST['steamId64'];
-	$data = array('steamid'  => $steamid,
-				  'nickname' => $nickname,
-				  'email'	 => $email,
-				  'country'	 => $_POST['loc']);
-	$sql = $db->insert('users',$data);
-	$data2['id'] = $sql;
-	$sql2 = $db->insert('ratings',$data2);
-	$_SESSION['id'] = User::get_id($steamid);
-	echo 'Your account has been successfully created.';
-	redirect('index.php',3);
+	if (newUser($nickname,$steamid,$email,$_POST['loc'])) {
+		echo 'Your account has been successfully created.';
+		redirect('index.php',3);
+	}
 } else {
 	
 echo '
@@ -52,7 +46,48 @@ echo '
 				<label>Email:</label>
 				<input type="text" name="email"/><small style="float: left;margin: 3px;">(Can opt-out at any time)</small>
 				<label>Country:</label>
-				<input type="text" name="loc" value="'.APIGet($steamid,loccountrycode).'" />
+				<select type="text" name="loc">
+					<option value="Austria">Austria</option>
+					<option value="Belarus">Belarus</option>
+					<option value="Belgium">Belgium</option>
+					<option value="Bosnia Herzegovina">Bosnia Herzegovina</option>
+					<option value="Bulgaria">Bulgaria</option>
+					<option value="Croatia">Croatia</option>
+					<option value="Czech Republic">Czech Republic</option>
+					<option value="Denmark">Denmark</option>
+					<option value="Estonia">Estonia</option>
+					<option value="Finland">Finland</option>
+					<option value="France">France</option>
+					<option value="Germany">Germany</option>
+					<option value="Greece">Greece</option>
+					<option value="Hungary">Hungary</option>
+					<option value="Iceland">Iceland</option>
+					<option value="Ireland">Ireland</option>
+					<option value="Israel">Israel</option>
+					<option value="Italy">Italy</option>
+					<option value="Latvia">Latvia</option>
+					<option value="Lithuania">Lithuania</option>
+					<option value="Luxembourg">Luxembourg</option>
+					<option value="Macedonia">Macedonia</option>
+					<option value="Malta">Malta</option>
+					<option value="Netherlands">Netherlands</option>
+					<option value="Poland">Poland</option>
+					<option value="Portugal">Portugal</option>
+					<option value="Romania">Romania</option>
+					<option value="Russia">Russia</option>
+					<option value="Serbia">Serbia</option>
+					<option value="Slovakia">Slovakia</option>
+					<option value="Slovenia">Slovenia</option>
+					<option value="Spain">Spain</option>
+					<option value="Sweden">Sweden</option>
+					<option value="Switzerland">Switzerland</option>
+					<option value="Turkey">Turkey</option>
+					<option value="United Kingdom">United Kingdom</option>
+					<option value="Ukraine">Ukraine</option>
+					<option value="European">European</option>
+					<option value="US/CA">US/CA</option>
+					<option value="International">International</option>
+				</select>
 			</div>
 			<p style="float: right; width: 250px; margin-right:50px; margin-top: 0;">Entering this information is completely optional and not required, but will aid in better match making.</p>
 		</form>

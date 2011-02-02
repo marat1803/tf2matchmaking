@@ -19,7 +19,9 @@ function getfriends ($id,$extra = 'simple') {
 	$friendsinfo = $db->fetch($result);	
 	$fids = $friendsinfo['friends'];
 	if ($fids != "" && count($fids) > 0) {
-		$query = 'SELECT * FROM users WHERE id IN(' . $db->escape($fids) .') ORDER BY lastseen DESC LIMIT 10';
+		if ($extra == 'remove') $limit = '';
+		else $limit = 'LIMIT 10';
+		$query = 'SELECT * FROM users WHERE id IN(' . $db->escape($fids) .') ORDER BY lastseen DESC '.$limit;
 		$result = $db->query($query);
 		while ($friend = $db->fetch($result)) {
 			$online = getOnline($friend['id']);			

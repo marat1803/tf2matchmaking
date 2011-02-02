@@ -23,7 +23,7 @@ echo '
             </ul>
             <div class="avatar_panel">
                 <img class="avatar_big" src="'.APIGet($user->steamid,avatar).'">';
-                if ($id != $user->id) echo'
+                if ($id != $_SESSION['id']) echo'
                 <div class="friend_add button">+ Add</div>';
             echo '</div>
             '.$user->display_profile($id, false).'

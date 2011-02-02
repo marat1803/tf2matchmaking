@@ -17,8 +17,7 @@
 					<input type="text" value="<?php echo $user->email; ?>" name="email"/>
 					<label>Country:</label>
 					<select type="text" name="loc">
-						<option selected="selected"><?php echo $user->country; ?></option>
-						<option>USA</option>
+					<?php echo $user->countrySelect(); ?>
 					</select>
 				</div>
 				<div class="panel" style="width: 300px;">
