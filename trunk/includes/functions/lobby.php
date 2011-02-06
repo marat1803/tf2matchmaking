@@ -162,7 +162,7 @@ function displayLobbyPlayers($lobbyID, $lobbytype, $team,$ready = false, $rate =
 				if ($readystatus == 1 && $lobby->leader != $data['id']) $class = '<li class="ready">';
 				if ($readystatus == 0 && $lobby->leader != $data['id']) $class = '<li class="not_ready">';
 				if ($lobby->leader == $data['id']) $class = '<li class="lobby_leader">';
-				if (!$data['id']) {
+				if ($data['id']) {
 					$link = '<a href="profile.php?id='.$data['id'].'" target="_blank">';
 					$linkend = '</a>';
 				} else { 
@@ -171,7 +171,7 @@ function displayLobbyPlayers($lobbyID, $lobbytype, $team,$ready = false, $rate =
 				}
 				$display .= $class.$link.'
 							<img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'
-							<img class="avatar" src='.$data['avatar'].'>'.$linkend.'/li>';
+							<img class="avatar" src='.$data['avatar'].'>'.$linkend.'</li>';
 			}
 			if ($rate)  $display .= '<li><a href="profile.php?id='.$data['id'].'" target="_blank">
 			<img src="theme/images/class/'.$data['class'].'.png" height="18">'.$data["nickname"].'
@@ -344,7 +344,7 @@ function checkOfflinePlayers($id) {
 
 function removeOfflinePlayers($players) {
 	foreach ($players as $player) {
-		leaveLobby(getLPid($player['id'],isPlayerInLobby($player['id'])));
+		leaveLobby(getLPid($player,isPlayerInLobby($player)));
 	}
 }
 

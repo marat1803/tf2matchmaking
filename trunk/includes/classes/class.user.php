@@ -82,7 +82,7 @@ class User
 					<dl>
 						<dt>Mainclass:</dt><dd><img style="float: left;" class="class_icon" src="theme/images/class/'.player_class($this->mainclass).'.png" height="14"><span style="float: left; margin-left: 3px;">'.displayClass($this->mainclass).'</span></dd>
 						<dt>Skilllevel:</dt><dd>'.$this->division.'</dd>
-						<dt>Banpoints:</dt><dd>'.$this->banpoints.'.</dd>
+						<dt>Banpoints:</dt><dd>'.$this->banpoints.'</dd>
 						<dt>Rating:</dt><dd>' . $this->rating . '</dd>
 					</dl>';
 		else
@@ -122,6 +122,7 @@ class User
 
 	public function updateDetails($details) {
 		$db = Database::obtain();
+		$details['nickname'] = htmlentities($details['nickname'], ENT_QUOTES);
 		$where = 'id = '.$db->escape($this->id);
 		$db->update('users',$details,$where);
 

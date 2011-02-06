@@ -42,7 +42,7 @@
 					<dl>
 						<dt>Name:</dt><dd><?php echo etf2l($user->steamid, 'displayname'); ?></dd>
 						<dt>User ID:</dt><dd><?php echo etf2l($user->steamid, 'id'); ?></dd>
-						<dt>Profile:</dt><dd><a href="<?php echo etf2l($user->steamid, 'url'); ?>"><?php echo str_replace('http://etf2l.org/forum/user','', etf2l($user->steamid, 'url')); ?></a></dd>
+						<dt>Profile:</dt><dd><a href="<?php echo etf2l($user->steamid, 'url'); ?>"><?php echo str_replace('http://etf2l.org/forum','', etf2l($user->steamid, 'url')); ?></a></dd>
 					</dl>
 				</div>
 			</div>
