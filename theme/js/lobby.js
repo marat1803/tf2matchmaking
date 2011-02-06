@@ -2,7 +2,7 @@ $(document).ready(function(){
 	id = getQuerystring('id');
 	refreshPage(id);
 	refreshRatePage = 6000;
-	refreshRateChat = 1500;
+	refreshRateChat = 1900;
 	refreshIntervalPage = setInterval('refreshPage(id)', refreshRatePage);
 	refreshIntervalChat = setInterval('refreshChat(id)', refreshRateChat);
 	enterChat(id);
@@ -11,6 +11,7 @@ $(document).ready(function(){
 	changeReady(id);
 	changeTeam(id);
 	switchClass(id);
+	autoscrollchat();
 });
 
 function refreshPage(id) {
@@ -160,10 +161,8 @@ function newChatMessage(id) {
 			$.ajax({
 				data: {"id": id, "message": message, "request": "newMessage"},
 				url: 'api.php',
-			success: function() {
-				$('#chat_new').attr('value', '');
-			}
 		});
+		$('#chat_new').attr('value', '');
 		}	
 }
 
@@ -174,6 +173,10 @@ function enterChat(id) {
 		}
 });
 
+}
+
+function autoscrollchat() {
+	$('#chat_box').animate({ scrollTop: element.offset().top }, 'slow');
 }
 
 function refreshChat(id) {

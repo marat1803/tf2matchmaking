@@ -13,8 +13,10 @@ if ($id) {
 		if ($_POST['nickname'] != $user->nickname) $details['nickname'] = $_POST['nickname'];
 		if ($_POST['email'] != $user->email) $details['email'] = $_POST['email'];
 		if ($_POST['loc'] != $user->country) $details['country'] = $_POST['loc'];
-		$user->updateDetails($details);
-		$user = new User($id);
+		if ($details) {
+			$user->updateDetails($details);
+			$user = new User($id);
+		}
 	}
 
 	include_once 'includes/header.inc';
