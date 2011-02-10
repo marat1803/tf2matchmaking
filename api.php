@@ -128,7 +128,7 @@ if($uid && $request == "rate") {
 }
 
 if ($uid && $lid && $message && $request == "newMessage") {
-	newMessage($uid,$lid,$message);
+	echo newMessage($uid,$lid,$message);
 }
 
 if ($uid && $lid && $request == "showChat") {
