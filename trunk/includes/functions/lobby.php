@@ -272,6 +272,32 @@ function getPlayersLocation($id) {
 	return $ploc;
 }
 
+function getPlayersSkill($id) {
+	$db = Database::obtain();
+	$sql = 'SELECT playerID FROM lobby_players WHERE `lobbyID` = '.$db->escape($id);
+	$ids = $db->fetch_array($sql);
+	for($i=0; $i < count($ids); $i++) {
+		$player[$i]['skill'] = skill($ids[$i]['playerID']);
+		$player[$i]['id'] = $ids[$i]['playerID'];
+	}
+	return $player;
+}
+
+function balanceTeams($id,$players) {
+	$max = count($players);
+	function cmp($a, $b) {
+		if ($a == $b) return 0;
+    	return ($a['skill'] < $b['skill']) ? -1 : 1;
+	}
+	usort($players,'cmp');
+	for ($i=0;$i<$max/2;$i++) {
+		if ($team == 1) $team = 2;
+		elseif ($team == 2 || !$team) $team = 1;
+		joinTeam(getLPid($players[$i]['id'],$id),$team);
+		joinTeam(getLPid($players[$max-$i-1]['id'],$id),$team);
+	}
+}
+
 function updateLobbyServer($lid,$sid) {
 	$db = Database::obtain();
 	$data['sid'] = $sid;
