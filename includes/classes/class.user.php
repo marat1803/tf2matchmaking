@@ -3,6 +3,7 @@ require_once('includes/functions/rating.php');
 require_once('includes/functions/friends.php');
 require_once('includes/functions/steamcomm.php');
 require_once('includes/functions/etf2l.php');
+require_once('includes/functions/skill.php');
 
 function mainclass($id) {
 	$db = Database::obtain();
@@ -155,6 +156,7 @@ class User
 			'MK' => 'Macedonia',
 			'MT' => 'Malta',
 			'NL' => 'Netherlands',
+			'NO' => 'Norway',
 			'PL' => 'Poland',
 			'PT' => 'Portugal',
 			'RO' => 'Romania',

@@ -91,6 +91,11 @@ if ($lid) {
 				echo GetDistance($lat,$lon,$server->latitude,$server->longitude);
 			}
 			break;
+		case "balanceTeams":
+			$players = getPlayersSkill($lid);
+			balanceTeams($lid,$players);
+			break;
+
 	}
 } elseif ($uid) {
 	switch ($request) {
