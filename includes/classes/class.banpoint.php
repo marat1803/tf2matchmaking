@@ -26,9 +26,10 @@ function newBanPoints($player,$lobby,$admin,$offence,$points,$comment) {
 				  'points'   => $points,
 				  'comment'  => $comment);
 	$db->insert('banpoints',$data);
-	$user['banpoints'] = 'banpoints + '.$points;
+	$user['banpoints'] = 'INCREMENT('.$points.')';
 	$where = 'id = '.$db->escape($player);
 	$db->update('users',$user,$where);
+	return 'Succesfully added ban points';
 }
 
 

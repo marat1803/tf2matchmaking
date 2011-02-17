@@ -28,10 +28,7 @@ echo '
             echo '</div>
             '.$user->display_profile($id, false).'
             <ul class="recentlobby_panel">
-                <li><span>Powerlobby<small style="float: right;">6 vs. 6</small></span><img class="map_pic" src="theme/images/maps/cp_granary.jpg"></li>
-                <li><span>Superlobby<small style="float: right;">6 vs. 6</small></span><img class="map_pic" src="theme/images/maps/cp_granary.jpg"></li>
-                <li><span>Staubsaugerlobby<small style="float: right;">6 vs. 6</small></span><img class="map_pic" src="theme/images/maps/cp_badlands.jpg"></li>
-                <li><span>Freibier<small style="float: right;">6 vs. 6</small></span><img class="map_pic" src="theme/images/maps/cp_dustbowl.jpg"></li>
+                '.displayLastLobbies($id).'
             </ul>
             <dl class="stats_panel">
                 <dt>Wins</dt><dd>7</dd>

@@ -17,7 +17,6 @@
 				<li class="current"> &raquo; Admincenter</li>
 
 			</ul>
-		<form method="post" action="admincenter.html">
 			<div class="panel">
 				<ul>
 					<li><a href="#">&raquo; Userlist</a></li>
@@ -27,18 +26,21 @@
 			</div>
 			<div class="panel" style="width: 700px">
 				<h1>Ban user:</h1>
-				<label>User:</label><input type="text" />
-				<label>Reason:</label>
-				<select>
+				<form method="post" action="admincenter.html">
+				<label>User</label>Nightbox
+				<label>Reason</label>
+				<select style="width: 135px;">
 					<option value="noshow">No Show</option>
 					<option value="noshowvoice">No Show Voice</option>
 					<option value="ragequit">Rage Quit</option>
 					<option value="racism">Racism</option>
 					<option value="custom">Custom</option>
 				</select>
-				<label>Ammount:</label><input type="text" />
+				<label>Amount</label><input type="text" />
+				<label>Comment</label><textarea name="comments" rows="3" cols="20" style="float: left;"></textarea>
+				<input type="submit" value="Submit" class="button small" style="clear: left;float: left;" />
+				</form>
 			</div>
-		</form>
 		</div>
 	</div>
 	<script src="js/jquery.js" type="text/javascript"></script>

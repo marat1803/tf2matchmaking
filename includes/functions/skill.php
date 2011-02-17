@@ -3,7 +3,8 @@
 function division($id) { 
 	$user = new User($id);
 	$division = str_replace('Division', '', $user->division);
-	if ($division) return $division;
+	if ($user->division == 'Division Premier') return 0;
+	elseif ($division) return $division;
 	else return 0;
 }
 
@@ -18,8 +19,10 @@ function gWonRatio($won,$lost) {
 }
 
 function skill($id) {
-	$skill = (100*division($id)/7);//*($rating)*($adminMark)*(kdr($kills,$assists,$deaths))*gWonRatio($won,$lost);
-	return $skill;
+	if ($division != 0) $division = 100*(7-division($id))/7;
+	else $division = 1;
+	$skill = $division;//*($rating)*($adminMark)*(kdr($kills,$assists,$deaths))*gWonRatio($won,$lost);
+	return intval($skill);
 }
 
 ?>

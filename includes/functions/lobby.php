@@ -117,10 +117,14 @@ function displayClass($class) {
 
 function player($playerID) {
 	$db = Database::obtain();
-	$sql = "SELECT * FROM users WHERE `id` = ".$db->escape($playerID);
-	$res = $db->query($sql);
-	$row = $db->fetch($res);
-	return $row;
+	$sql = 'SELECT * FROM users WHERE id = '.$db->escape($playerID);
+	return $db->query_first($sql);
+}
+
+function lobby($lobbyID) {
+	$db = Database::obtain();
+	$sql = 'SELECT * FROM lobbies WHERE id = '.$db->escape($lobbyID);
+	return $db->query_first($sql);
 }
 
 function grabLobbyPlayers($lobbyID, $lobbytype, $team) {
@@ -402,4 +406,32 @@ function changeLobby ($id,$setting,$into) {
 	$where = 'id = '.$db->escape($id);
 	$sql = $db->update('lobbies',$data,$where);
 }
+
+function lastLobbies($id) {
+	$db = Database::obtain();
+	$sql = 'SELECT lobbyID FROM lobby_players WHERE playerID = '.$db->escape($id).' ORDER BY id DESC LIMIT 4';
+	return $db->fetch_array($sql);
+}
+
+function selectLastLobbies($id) {
+	$lobbies = lastLobbies($id);
+	$string = '<select style="width: 135px;" name="lobby">';
+	foreach ($lobbies as $lobby) {
+		$lobbyinfo = lobby($lobby['lobbyID']);
+		$string .= '<option value="'.$lobbyinfo['id'].'">'.$lobbyinfo['name'].'</option>';
+	}
+	$string .= '</select>';
+	return $string;
+}
+
+function displayLastLobbies($id) {
+	$lobbies = lastLobbies($id);
+	$string = '';
+	foreach ($lobbies as $lobby) {
+		$lobbyinfo = lobby($lobby['lobbyID']);
+		$string .= '<li><span>'.$lobbyinfo['name'].'<small style="float: right;">'.type($lobbyinfo['type']).'</small></span><img class="map_pic" src="theme/images/maps/'.$lobbyinfo['map'].'.jpg"></li>';
+	}
+	return $string;
+}
+
 ?>
