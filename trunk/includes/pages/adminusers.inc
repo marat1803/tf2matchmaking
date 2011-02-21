@@ -15,7 +15,7 @@
 				<h1>Userlist:</h1>
 					<table style="width: 100%;">
 						<thead>
-							<tr><td>ID</td><td>Name</td><td>SteamID</td><td>Country</td><td>Actions</td><td>&nbsp;</tr>	
+							<tr><td>ID</td><td>Name</td><td>SteamID</td><td>Country</td><td>Actions</td><td>&nbsp;</td></tr>	
 						</thead>
 						<tbody>
 							<?php echo $userlist; ?>
