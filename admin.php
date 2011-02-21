@@ -23,6 +23,10 @@ if ($user->status == "admin") {
 				}
 				include_once 'includes/pages/adminban.inc';
 			} else include_once 'includes/pages/adminban.inc';
+		case "userslist":
+			$page = $_GET['page'];
+			$userlist = usersList($page);
+			include_once 'includes/pages/adminusers.inc';
 	}
 } else header('Location: index.php');
 
