@@ -563,6 +563,16 @@ a#logo{
 .lobby_tooltip .teamname.blu { background: #80a1c2 }
 .lobby_tooltip .teamname.red { background: #c15143 }
 
+/* Forum */
+
+.author {
+	float:left;
+}
+.message {
+	position:relative;
+	left:100px;
+}
+
 /* Allgemeine Klassen */
 .clear { 
     display:block;
