@@ -565,12 +565,47 @@ a#logo{
 
 /* Forum */
 
+table tr:nth-child(even){
+	background:url("images/gradient.png") repeat-x scroll 0 -150px #2F251B;
+}
+
+ thead tr{
+	border-bottom: 1px solid #F0E1BA;
+	padding-bottom: 2px;
+ }
+
+.post{
+	float: left;
+	padding: 20px;
+	border-bottom: 1px solid #F0E1BA;
+	width: 650px;
+	margin: 5px;
+}
+
 .author {
 	float:left;
+	border-right: 1px solid #DA8A4C;
+	margin-right: 15px;
+	padding-right: 15px;
 }
+
+.author a{
+	padding: 2px;
+}
+
+.author img{
+	border: 1px solid #F0E1BA;
+	margin: 10px;
+}
+
 .message {
-	position:relative;
-	left:100px;
+	float: left;
+	width: 530px;
+}
+
+.post_buttons{
+	float: right;
+	margin-top: 15px;
 }
 
 /* Allgemeine Klassen */
