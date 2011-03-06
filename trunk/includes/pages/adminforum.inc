@@ -1,27 +1,29 @@
 		<div id="content" class="big_panel user_center">
 			<ul class="nav_panel">
-				<li><a href="index.php">Home</a></li>
+				<li><a href="index.html">Home</a></li>
 				<li class="current"> &raquo; Admincenter</li>
 
 			</ul>
 			<div class="panel">
 				<ul>
-					<li>&raquo; Userlist</li>
+					<li>&raquo; Forum</li>
 					<li><a href="#">&raquo; Adminlist</a></li>
 					<li><a href="#">&raquo; Banlist</a></li>
 				</ul>
 			</div>
 			<div class="panel" style="width: 700px">
-				<h1>Userlist:</h1>
+				<h1>Topics:</h1>
 					<table style="width: 100%;">
 						<thead>
-							<tr><td>ID</td><td>Name</td><td>SteamID</td><td>Country</td><td>Ban Points</td><td>Actions</td><td>&nbsp;</td></tr>	
+							<tr><td>&nbsp;</td><td>Name</td><td>Posts</td><td>Date</td></tr>	
 						</thead>
 						<tbody>
-							<?php echo $userlist; ?>
+							<?php echo displayTopics(); ?>
 						</tbody>
 					</table>
-					<img src="theme/images/bullet_right.png" style="float:right;" /><img src="theme/images/bullet_left.png" style="float:right;" />
+					<div class="post_buttons">
+						<a href="admin.php?page=forum&action=newTopic"  class="small button">New Topic</a>
+					</div>
 			</div>
 		</div>
 	</div>

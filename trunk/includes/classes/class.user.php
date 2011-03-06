@@ -55,7 +55,7 @@ function usersList($page=0) {
 	$sql = 'SELECT * FROM  users LIMIT '.$limit.' , 20';
 	$users = $db->fetch_array($sql);
 	foreach ($users as $user) {
-		$return .= '<tr><td>'.$user['id'].'</td><td><a href="profile.php?id?='.$user['id'].'">'.$user['nickname'].'</a></td><td><a href="http://steamcommunity.com/profiles/'.$user['steamid'].'">'.GetAuthID($user['steamid']).'</a></td><td>'.$user['country'].'</td><td><a href="admin.php?page=banuser&id='.$user['id'].'"><img src="theme/images/bullet_plus_red.png" alt="Add ban points" /></a><img src="theme/images/bullet_yellow.png" alt="Suspend" /></td><td><img src="theme/images/bullet_edit.png" /></td></tr>';
+		$return .= '<tr><td>'.$user['id'].'</td><td><a href="profile.php?id='.$user['id'].'">'.$user['nickname'].'</a></td><td><a href="http://steamcommunity.com/profiles/'.$user['steamid'].'">'.GetAuthID($user['steamid']).'</a></td><td>'.$user['country'].'</td><td>'.$user['banpoints'].'</td><td><a href="admin.php?page=banuser&id='.$user['id'].'"><img src="theme/images/bullet_plus_red.png" alt="Add ban points" /></a><img src="theme/images/bullet_yellow.png" alt="Suspend" /></td><td><img src="theme/images/bullet_edit.png" /></td></tr>';
 	}
 	return $return;
 }

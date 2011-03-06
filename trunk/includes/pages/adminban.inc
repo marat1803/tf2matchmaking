@@ -22,7 +22,14 @@
 						<option value="noshow">No Show</option>
 						<option value="noshowvoice">No Show Voice</option>
 						<option value="ragequit">Rage Quit</option>
+						<option value="afk">AFK</option>
+						<option value="noob">Playing against the team</option>
+						<option value="offclass">Playing Off Class</option>
+						<option value="micspam">Mic spamming</option>
+						<option value="exploit">Using exploits</option>
+						<option value="swearing">Excessive Swearing</option>
 						<option value="racism">Racism</option>
+						<option value="cheating">Cheating</option>
 						<option value="custom">Custom</option>
 					</select>
 					<label>Amount</label><input type="text" name="amount" />
