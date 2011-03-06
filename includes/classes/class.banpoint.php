@@ -19,6 +19,19 @@ class banpoint {
 
 function newBanPoints($player,$lobby,$admin,$offence,$points,$comment) {
 	$db = Database::obtain();
+	$pointsvalue = array('noshow' => 5,
+						 'noshowvoice' => 3,
+						 'ragequit' => 5,
+						 'afk' => 3,
+						 'noob' => 4,
+						 'offclass' => 4,
+						 'micspam' => 3,
+						 'exploit' => 4,
+						 'swearing' => 3,
+						 'racism' => 20,
+						 'cheating' => 500,
+						 );
+	if ($offence != 'custom') $points = $pointsvalue[$offence];
 	$data = array('playerid' => $player,
 				  'lobbyid'  => $lobby,
 				  'admin'    => $admin,
