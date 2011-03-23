@@ -6,9 +6,11 @@
 			</ul>
 			<div class="panel">
 				<ul>
-					<li><a href="#">&raquo; Userlist</a></li>
-					<li>&raquo; Ban user</li>
-					<li><a href="#">&raquo; Banlist</a></li>
+					<li><a href="admin.php">&raquo; Dashboard</a></li>
+					<li><a href="admin.php?page=adminslist">&raquo; Admins</a></li>
+					<li><a href="admin.php?page=banslist">&raquo; Bans</a></li>
+					<li><a href="admin.php?page=forum">&raquo; Forum</a></li>
+					<li><a href="admin.php?page=userslist">&raquo; Users</a></li>
 				</ul>
 			</div>
 			<div class="panel" style="width: 700px">

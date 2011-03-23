@@ -587,6 +587,8 @@ table tr:nth-child(even){
 	border-right: 1px solid #DA8A4C;
 	margin-right: 15px;
 	padding-right: 15px;
+	overflow: hidden;
+	width:85px;
 }
 
 .author a{

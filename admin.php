@@ -23,10 +23,15 @@ if ($user->status == "admin") {
 				}
 				include_once 'includes/pages/adminban.inc';
 			} else include_once 'includes/pages/adminban.inc';
+			break;
 		case "userslist":
 			$page = $_GET['page'];
 			$userlist = usersList($page);
 			include_once 'includes/pages/adminusers.inc';
+			break;
+		case "banslist":
+			include_once 'includes/pages/adminbans.inc';
+			break;
 		case "forum":
 			if ($_GET['action'] == 'newTopic') {
 				if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name']) && isset($_POST['message'])) {
@@ -39,11 +44,13 @@ if ($user->status == "admin") {
 					redirect('admin.php?page=forum&topic='.$_GET['topic'],0);
 				} else include_once 'includes/pages/adminnewpost.inc';
 			} elseif ($_GET['topic']) {
+				$topic = Topic($_GET['topic']);
 				include_once 'includes/pages/adminposts.inc';
 			}
 			else include_once 'includes/pages/adminforum.inc';
+			break;
 	}
-} else header('Location: index.php');
+} else redirect('index.php',0);
 
 
 ?>
