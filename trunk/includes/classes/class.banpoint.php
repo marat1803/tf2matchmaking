@@ -32,6 +32,8 @@ function newBanPoints($player,$lobby,$admin,$offence,$points,$comment) {
 						 'cheating' => 500,
 						 );
 	if ($offence != 'custom') $points = $pointsvalue[$offence];
+	$weight = pointWeight($player,$offence);
+	$points = $points * pow(2,$weight);
 	$data = array('playerid' => $player,
 				  'lobbyid'  => $lobby,
 				  'admin'    => $admin,
@@ -45,6 +47,25 @@ function newBanPoints($player,$lobby,$admin,$offence,$points,$comment) {
 	return 'Succesfully added ban points';
 }
 
+function pointWeight($player,$offence) {
+	$db = Database::obtain();
+	$sql = 'SELECT COUNT(*) FROM banpoints WHERE playerid = '.$db->escape($player).' AND offence = "'.$db->escape($offence).'"';
+	$weight = $db->query_first($sql);
+	return $weight['COUNT(*)'];
+}
+
+function bansList() {
+	$db = Database::obtain();
+	$sql = 'SELECT * FROM banpoints ORDER BY id DESC LIMIT 30';
+	$rows = $db->fetch_array($sql);
+	$return = '';
+	foreach ($rows as $row) {
+		$player = player($row['playerid']);
+		$admin = player($row['admin']);
+		$return .= '<tr><td>'.$player['id'].'</td><td><a href="profile.php?id='.$player['id'].'">'.$player['nickname'].'</a></td><td>'.$admin['nickname'].'</td><td>'.$row['offence'].'</td><td>'.$row['points'].'</td><td></td></tr>';
+	}
+	return $return;
+}
 
 
 

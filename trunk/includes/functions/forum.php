@@ -39,21 +39,41 @@ function displayTopics() {
 	return $return;
 }
 
+function Topic($id) {
+	$db = Database::obtain();
+	$sql = 'SELECT * FROM forum_topics WHERE id = '.$db->escape($id);
+	return $db->query_first($sql);
+}
+
 function displayPosts($topic) {
 	$db = Database::obtain();
-	$sql = 'SELECT * FROM forum_posts WHERE topic = '.$db->escape($topic);
+	$sql = 'SELECT * FROM forum_posts WHERE topic = '.$db->escape($topic).' ORDER by id ASC';
 	$posts = $db->fetch_array($sql);
 	$return = '';
 	foreach ($posts as $post) {
 		$author = player($post['poster']);
 		$return .= '<div class="post">
 						<div class="author">
-						<a href="profile.php?id='.$author['id'].'">'.$author['name'].'<br /><img src="cache/avatars/'.$author['steamid'].'.jpg" width="50" height="50" /></a>
+						<a href="profile.php?id='.$author['id'].'">'.$author['nickname'].'<br /><img src="cache/avatars/'.$author['steamid'].'.jpg" width="50" height="50" /></a>
 						</div>
 						<div class="message">
 							'.$post['message'].'
 						</div>
 					</div>';
+	}
+	return $return;
+}
+
+function newPosts() {
+	$db = Database::obtain();
+	$sql = 'SELECT nickname,topic,name,forum_topics.date FROM forum_posts 
+			INNER JOIN users ON forum_posts.poster = users.id
+			INNER JOIN forum_topics ON forum_posts.topic = forum_topics.id
+			ORDER BY date DESC LIMIT 5';
+	$posts = $db->fetch_array($sql);
+	$return = '';
+	foreach ($posts as $post) {
+		$return = '<tr><td><img src="theme/images/bullet_green.png"></td><td><a href="admin.php?page=forum&topic='.$post['topic'].'">'.$post['name'].'</a></td><td>&nbsp;</td><td>'.$post['nickname'].'</td><td><img src="theme/images/time_red.png">'.ago($post['date']).'</td></tr>';
 	}
 	return $return;
 }

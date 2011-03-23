@@ -18,7 +18,7 @@ if ($uid) $user = new User($uid);
 if ($lid) $lobby = new Lobby($lid);
 if ($uid && $lid) $id = getLPid($uid,$lid);
 
-if ($id) {
+if ($uid && $lid) {
 	switch ($request) {
 		case "userready":
 			$status = readystatus($id,true);
@@ -50,7 +50,7 @@ if ($id) {
 			$server->loadConfig($players,etf2l,$lobby->map);
 			break;
 		case "joinGame":
-			if (!isPlayerInLobby($uid) && (countPlayers($lid) != 2*(teamplayers($lobby->type)))) joinLobby($uid,$lid);
+			if (!isPlayerInLobby($uid) && countPlayers($lid) != 2*(teamplayers($lobby->type))) joinLobby($uid,$lid);
 			if (isPlayerInLobby($uid) != $lid) echo '0';
 			break;
 		case "leaveLobby":
